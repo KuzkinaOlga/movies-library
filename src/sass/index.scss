@@ -1,4 +1,11 @@
 @import './common';
 // @import './example';
 @import './base/base';
-// @import './base/stylesheet'
+@import './components/header-futer.scss';
+@import './components/home-page.scss';
+@import './components/libruary-page.scss';
+@import './components/search-film.scss';
+@import './components/wathed-libruary.scss';
+@import './components/modal-card.scss';
+@import './components/modal-futer.scss';
+@import './components/loader.scss';
