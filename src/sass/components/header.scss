@@ -25,12 +25,11 @@
 }
 
 .logo-link {
-
+display: flex;
 }
 
 .logo-img {
     margin-right: 10px;
-    color: #818181;
 }
 
 .logo-text {
@@ -120,7 +119,7 @@
 .search-form-button {
     border: 0;
     background-color: transparent;
-    border: 1px dashed #ddd;
+    // border: 1px dashed #ddd;
 
     cursor: pointer;
 }
