@@ -28,4 +28,7 @@ function getTopMovies() {
     return axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`)
         .then(({ data }) => console.log(data))
 }
-getTopMovies()
+getTopMovies();
+
+console.log()
+
