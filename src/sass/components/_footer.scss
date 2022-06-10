@@ -1,35 +1,20 @@
 footer {
-  width: 100%;
   background-color: #f7f7f7;
   padding-bottom: 30px;
   padding-top: 30px;
-  margin-top: auto;
 }
 .container__footer {
-  //   display: flex;
-  align-items: center;
+    display: flex;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.footer__rights {
   color: #545454;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.14;
 }
-.footer__firstline {
-  //   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.footer__rights {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-.footer__team {
-  display: flex;
-  justify-content: center;
-}
+
 .footer__item {
   padding-left: 10px;
   padding-right: 10px;

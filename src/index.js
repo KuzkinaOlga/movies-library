@@ -1,10 +1,11 @@
 import { renderList } from './js/render-list';
 import { getRefs } from './js/get-refs';
 
-// import ApiService from './js/api.js';
+const container = getRefs().gallery;
 
-// const apiData = new ApiService();
-import  getData  from './js/api';
+import getTopMovies from './js/api';
 
-getData().then((base) => console.log(base));
-
+getTopMovies().then(({ results }) => {
+    console.log(results)  
+    renderList(results,container)
+} )
