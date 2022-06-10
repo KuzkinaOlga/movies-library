@@ -1,6 +1,10 @@
 .header {
     width: 100%;
-
+    background-image: url(../images/hero-home.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 45px;
+    padding-bottom: 80px;
     // height: 230px;
     // background-color: #252525;
     // background-repeat: no-repeat;
@@ -8,13 +12,9 @@
 
 .header-container {
     // display: flex;
-    max-width: 1024px;
-    margin: 0 auto;
-    padding: 40px 20px 90px 20px;
-
-    background-image: url(../images/hero-home.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    // max-width: 1024px;
+    // margin: 0 auto;
+    // padding: 40px 20px 90px 20px;
 }
 
 .nav-container {
