@@ -5,17 +5,23 @@ const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
 
 export default function getData() {
     let base = {};
-    return axios.get(`https://api.themoviedb.org/3/movie/550?api_key=${API_KEY}`)
-        .then(({ data }) => {
+    return axios.get(`https://api.themoviedb.org/3/movie/55?api_key=${API_KEY}`)
+        .then(({ data }) =>{  
             base = {
                 title: data.original_title,
                 genres: data.genres,
                 id: data.id,
-                dat: data.release_date
+                date: data.release_date,
+                poster: data.poster_path,
+                about: data.overview,
+                populanty: data.popularity,
+                vote: data.vote_average,
+                votes: data.vote_count
             }
-       return base
-    })
-}
+            return base;
+        }
+        )
+    }
        
 
 function getTopMovies() {
