@@ -30,5 +30,5 @@ function getTopMovies() {
 }
 getTopMovies();
 
-console.log()
+
 
