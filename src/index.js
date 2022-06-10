@@ -1,5 +1,6 @@
 import { renderList } from './js/render-list';
 import { getRefs } from './js/get-refs';
+import './js/pagination';
 
 // import ApiService from './js/api.js';
 
@@ -7,4 +8,3 @@ import { getRefs } from './js/get-refs';
 import  getData  from './js/api';
 
 getData().then((base) => console.log(base));
-
