@@ -4,8 +4,14 @@ footer {
   padding-top: 30px;
 }
 .container__footer {
-    display: flex;
-  justify-content: center;
+   text-align: center;
+ 
+  
+  @media screen and (min-width: 768px) {
+       display: flex;
+       justify-content: center;
+       
+    }
 }
 
 .footer__rights {
@@ -14,10 +20,15 @@ footer {
   font-size: 14px;
   line-height: 1.14;
 }
-
+.footer__group{
+  display: flex;
+    @media screen and (max-width: 767px) {
+    margin-top: 10px;
+    }
+}
 .footer__item {
-  padding-left: 10px;
-  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .footer__modal {
   padding-left: 10px;
