@@ -1,6 +1,7 @@
+
 import { renderList } from './js/render-list';
 import { getRefs } from './js/get-refs';
-import './js/pagination';
+// import './js/pagination';
 
 const container = getRefs().gallery;
 

@@ -34,7 +34,7 @@ export function renderList(hits, container) {
          srcset=""  type="image/jpeg" width="280" height="400"  data-src= "${backdrop_path} 1x,${backdrop_path} 2x">
                                                
                     <img
-                        src="${backdrop_path}"
+                        src=""
                         alt="${original_title}"
                         loading="lazy"
                         class="poster" 
