@@ -17,7 +17,7 @@ export function renderMarkup( hits,  container) {
          srcset=""  type="image/jpeg" width="280" height="400"  data-src= "${poster_path} 1x,${poster_path} 2x">
                                                
                     <img
-                        src=""
+                        src="https://image.tmdb.org/t/p/w500${poster_path}"
                         alt="${original_title}"
                         loading="lazy"
                         class="poster" 
