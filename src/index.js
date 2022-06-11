@@ -7,14 +7,14 @@ const container = getRefs().gallery;
 
 
 // const apiData = new ApiService();
-// import  getData  from './js/api';
+import  getData  from './js/api';
 
-// getData().then((base) => console.log(base));
+getData().then((base) => console.log(base));
 
 import getTopMovies from './js/api';
 
 getTopMovies().then(({ results }) => {
     console.log(results)  
-    renderList(results,container)
+    renderList(results, container);
 } )
 
