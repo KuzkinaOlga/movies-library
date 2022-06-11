@@ -1,8 +1,8 @@
 
-// import { renderList } from './js/render-list';
+import { renderList } from './js/render-list';
 import { getRefs } from './js/get-refs';
 import './js/pagination';
-import { renderMarkup } from './js/my-render';
+// import { renderMarkup } from './js/my-render';
 const container = getRefs().gallery;
 
 
@@ -15,6 +15,6 @@ import getTopMovies from './js/api';
 
 getTopMovies().then(({ results }) => {
     console.log(results)  
-   renderMarkup(results, container);
+   renderList(results, container);
 } )
 
