@@ -61,3 +61,4 @@ function paginationSearch() {
 // });
 
 export { pagination };
+console.log()
