@@ -1,26 +1,9 @@
-import { getGanres } from './api.js';
-
-// getTopMovies().then(({results})=>console.log(results))
-export function renderList(hits, container) {
-    
-    const markup = hits.map(({ id, poster_path, original_title, genres, release_date }) => {
-        // console.log(genre_ids)
-        // let elem ;
-        // getGanres().then((genres) => {
-        //     genre_ids.forEach((elem) => { return elem = elem })
-        //     // console.log(elem )
-        //     genres.forEach((item) => {
-               
-        //         if (item.id === elem) {
-        //     console.log(item.name)        
-        //        }
-        //    }   ) 
-        // })
-        // console.log(genre_ids.forEach((item)=>console.log(item)))
-   return `<li class="movie-card" data-id=${id}>
-            <a href="" class="movie-link">
-              
-              <picture class="poster-thumb">
+export function renderMarkup( hits,  container) {
+  const markup = hits.map(({ id, poster_path, original_title, genres, release_date }) => {
+ return  `<a class="post" data-id=${id}>
+  <div class="photo-card">
+  <div class="thumb">
+  <picture class="poster-thumb">
                   
         <source class="lzy_img" media="(min-width: 1200px)" 
         srcset=""  type="image/jpeg" width="310" height="450"  data-src="${poster_path} 1x,${poster_path} 2x">
@@ -40,6 +23,8 @@ export function renderList(hits, container) {
                         class="poster" 
                     />
                 </picture>
+  <div class="info">
+   
                
                 <div class="movie-info">     
                     <h2 class="movie-title">${original_title}</h2>
@@ -50,9 +35,11 @@ export function renderList(hits, container) {
                       <p class="movie-date">${release_date}</p>
                     </div>                                 
                 </div>
-            </a>
-         </li>`
-
-      }).join('');
-      container.insertAdjacentHTML("beforeend", markup);
-  }
+  </div>
+  </div>
+</div>
+</a>
+        `
+    }).join('');
+    container.insertAdjacentHTML("beforeend", markup);
+}
