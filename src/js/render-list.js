@@ -1,5 +1,5 @@
 import { getGanres } from './api.js';
-// // getTopMovies().then(({ data }) => console.log(data))
+
 // getTopMovies().then(({results})=>console.log(results))
 export function renderList(hits, container) {
     
