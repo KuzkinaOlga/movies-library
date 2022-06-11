@@ -1,6 +1,7 @@
 @import './common';
 // @import './example';
 @import './base/base';
+@import './utils/variables';
 @import './components/header.scss';
 @import './components/home-page.scss';
 @import './components/libruary-page.scss';
@@ -10,3 +11,4 @@
 @import './components/modal-futer.scss';
 @import './components/loader.scss';
 @import './components/footer';
+@import './components/pagination';
