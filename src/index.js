@@ -7,9 +7,9 @@ const container = getRefs().gallery;
 
 
 // const apiData = new ApiService();
-import  getData  from './js/api';
+// import  getData  from './js/api';
 
-getData().then((base) => console.log(base));
+// getData().then((base) => console.log(base.results));
 
 import getTopMovies from './js/api';
 
