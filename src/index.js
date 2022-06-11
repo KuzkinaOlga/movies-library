@@ -1,15 +1,15 @@
 
 import { renderList } from './js/render-list';
 import { getRefs } from './js/get-refs';
-// import './js/pagination';
+import './js/pagination';
 
 const container = getRefs().gallery;
 
 
 // const apiData = new ApiService();
-import  getData  from './js/api';
+// import  getData  from './js/api';
 
-getData().then((base) => console.log(base));
+// getData().then((base) => console.log(base));
 
 import getTopMovies from './js/api';
 
