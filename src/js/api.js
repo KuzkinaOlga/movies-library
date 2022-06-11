@@ -24,11 +24,17 @@ export default function getData() {
     }
        
 
-function getTopMovies() {
-    return axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`)
-        .then(({ data }) => console.log(data))
+export default function getTopMovies() {
+    return axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`)
+        .then(({ data }) => {
+          return data  
+        })
 }
-getTopMovies();
 
-
+export function getGanres() {
+    return axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`)
+        .then(({ data }) => {
+            return data.genres 
+        })
+}
 
