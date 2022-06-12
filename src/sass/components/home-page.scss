@@ -1,19 +1,95 @@
 .container {
-    padding-right: 20px;
-    padding-left: 20px;
-    margin: 0 auto;
-  
-    @media screen and (min-width: 320px) {
-      width: 320px;
-    }
-  
-    @media screen and (min-width: 768px) {
-      padding-right: 32px;
-      padding-left: 32px;
-      width: 768px;
-    }
-  
-    @media screen and (min-width: 1024px) {
-      width: 1024px;
-    }
+  padding-right: 20px;
+  padding-left: 20px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 320px) {
+    width: 320px;
   }
+
+  @media screen and (min-width: 768px) {
+    padding-right: 32px;
+    padding-left: 32px;
+    width: 768px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 1024px;
+  }
+}
+
+.collection > .movie-card {
+  @media screen and (min-width: 320px) {
+    margin-bottom: 20px;
+  }
+ 
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc(50% - 32px);
+    width: 335px;
+    margin-left: 32px;
+    margin-top: 32px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    flex-basis: calc(33.33333% - 16px);
+    width: 309px;
+    margin-left: 16px;
+  }
+}
+
+.movie-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.poster-thumb {
+  border-radius: 5px;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.poster {
+  width: 100%;
+  height: 100%;
+}
+
+.movie-info {
+  transform: scale(1);
+  transition: transform .25s linear;
+  padding-top: 8px;
+}
+
+.movie-description, 
+.movie-title {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.movie-description {
+  flex-grow: 1;
+  display: flex;
+  color: #ff6b08;
+}
+
+.genres-list {
+  display: flex;
+  margin-right: 5px;
+}
+
+.movie-genres:first-child {
+  padding-left: 0;
+}
+
+.movie-genres {
+  padding-left: 5px;
+}
+
+.movie-date {
+  padding-left: 5px;
+  padding-right: 8px;
+  border-left: 1px solid #ff6b08;
+}
