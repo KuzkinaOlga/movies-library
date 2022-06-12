@@ -3,7 +3,7 @@ import { renderList } from './js/render-list';
 import { getRefs } from './js/get-refs';
 
 import  getData  from './js/api';
-
+import darkTheme from './js/dark-theme';
 const refs = getRefs();
 
 
@@ -12,6 +12,7 @@ const refs = getRefs();
 import { onShowMyLibrary, onShowHome } from './js/header';
 import './js/pagination';
 // import { renderMarkup } from './js/my-render';
+darkTheme();
 const container = getRefs().gallery;
 
 
