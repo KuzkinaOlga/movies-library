@@ -28,7 +28,8 @@ const container = getRefs().gallery;
 
 import getTopMovies from './js/api';
 
-function topMoviesRender (){getTopMovies().then(({ results }) => {
+function topMoviesRender() {
+  getTopMovies().then(({ results }) => {
   renderList(results, container);
 } )} 
   topMoviesRender ()
