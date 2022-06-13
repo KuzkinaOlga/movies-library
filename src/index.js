@@ -5,10 +5,12 @@ import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
 import './js/pagination';
 import ApiService from './js/api';
+import { onContainerClick } from './js/modal-movie';
 
 const apiData = new ApiService();
 const container = getRefs().gallery;
 apiData.getGanres()
+
 
 darkTheme();
 
