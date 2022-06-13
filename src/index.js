@@ -2,7 +2,6 @@
 import { renderList } from './js/render-list';
 import { getRefs } from './js/get-refs';
 
-import  getData  from './js/api';
 import darkTheme from './js/dark-theme';
 const refs = getRefs();
 
@@ -29,11 +28,10 @@ const container = getRefs().gallery;
 
 import getTopMovies from './js/api';
 
-getTopMovies().then(({ results }) => {
-    console.log(results)  
+function topMoviesRender (){getTopMovies().then(({ results }) => {
   renderList(results, container);
-} )
-  
+} )} 
+  topMoviesRender ()
   let searchQuery = '';
   
   // Listiners
@@ -49,18 +47,21 @@ getTopMovies().then(({ results }) => {
     e.preventDefault();
     console.log('onLogoClick');
     onShowHome();
+    topMoviesRender ()
   }
   
   function onHomeBtnClick(e) {
     e.preventDefault();
     console.log('onHomeBtnClick');
     onShowHome();
+    topMoviesRender ()
   }
   
   function onMyLybraryBtnClick(e) {
     e.preventDefault();
     console.log('onMyLybraryBtnClick');
     onShowMyLibrary();
+    container.innerHTML = '';
   }
   
   function onFormSubmit(e) {
