@@ -70,7 +70,7 @@ export function renderList(hits, container) {
 
   function posterPath(poster) {
     if (poster === null) {
-      return `https://image.tmdb.org/t/p/w500/kqjL17yufvn9OVLyXYpvtyrFfak.jpg`;
+      return noImg;
     }
     return `https://image.tmdb.org/t/p/w500${poster}`;
   }
