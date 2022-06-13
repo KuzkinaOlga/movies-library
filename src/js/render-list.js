@@ -65,12 +65,12 @@ export function renderList(hits, container) {
       container.insertAdjacentHTML("beforeend", markup);
   }
 
-  export function releaseDate(year) {
+  function releaseDate(year) {
     if (!year)  'No data';
     return year.slice(0, 4);
   }
 
-  export function posterPath(poster) {
+  function posterPath(poster) {
     if (poster === null) {
       return noImg;
     }
