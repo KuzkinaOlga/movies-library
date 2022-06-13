@@ -2,7 +2,6 @@ import { getGanres } from './api.js';
 
 // getTopMovies().then(({results})=>console.log(results))
 export function renderList(hits, container) {
-    
     const markup = hits.map(({ id, poster_path, original_title, genres, release_date }) => {
         // console.log(genre_ids)
         // let elem ;
