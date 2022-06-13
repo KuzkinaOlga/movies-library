@@ -1,7 +1,8 @@
 import Pagination from "tui-pagination";
 // import 'tui-pagination/dist/tui-pagination.css';
 import axios from "axios";
-import { renderList } from './render-list';
+import { renderList, releaseDate, posterPath } from './render-list';
+import noImg from '../images/no-poster-available.jpeg';
 import { getRefs } from './get-refs';
 
 const container = getRefs().gallery;
