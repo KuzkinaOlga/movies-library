@@ -22,13 +22,19 @@ export default class ApiService {
         }
         catch{}
 }
-    async getGanres() {
+  async getGanres() {
+    try {
+      const { data } = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
+      console.log(data);
+    }
+    catch { }
+  }
+    async getMainMovie(id) {
         try {
-        const { data } = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
-        console.log(data);
+        const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`);
+       return data;
       }
         catch { }
-        
 }
     resetPage() {
        this.page = 1; 

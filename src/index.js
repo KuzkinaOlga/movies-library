@@ -20,6 +20,7 @@ darkTheme();
 // Top movies
 function topMoviesRender() {
   apiData.getTopMovies().then(({ results }) => {
+  container.innerHTML = "";
   renderList(results, container);
 } )}
 topMoviesRender();
@@ -48,10 +49,17 @@ function onFormSubmit(e) {
     });
     getRefs().form.reset();
     }
-
-   
 }
 
+// Main movie
+// const cardClick = getRefs().galleryContainer;
+
+// container.addEventListener('click',addMainMovie)
+// function addMainMovie(evt) {
+ 
+//   console.log(evt.currentTarget.elements)
+// }
+// apiData.getMainMovie(id = 21);
 
 // Listiners
 getRefs().logo.addEventListener('click', onLogoClick);
@@ -72,6 +80,7 @@ function onLogoClick(e) {
 function onHomeBtnClick(e) {
   e.preventDefault();
   onShowHome();
+
   topMoviesRender();
 }
 
