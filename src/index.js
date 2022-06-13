@@ -80,7 +80,6 @@ function onMyLybraryBtnClick(e) {
   container.innerHTML = "";
 }
 
-
 function onWatchedBtnClick() {
   if (getRefs().queueBtn.classList.contains('active-btn')) {
     getRefs().queueBtn.classList.remove('active-btn');
