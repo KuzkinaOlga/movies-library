@@ -1,12 +1,13 @@
 import Pagination from "tui-pagination";
 // import 'tui-pagination/dist/tui-pagination.css';
 import axios from "axios";
-import { renderList, releaseDate, posterPath } from './render-list';
-import noImg from '../images/no-poster-available.jpeg';
+import { renderList } from './render-list';
 import { getRefs } from './get-refs';
+import { searchBy, queryForTui } from '../index';
+
 
 const container = getRefs().gallery;
-const containerTui = document.getElementById('tui-pagination-container');
+export const containerTui = document.getElementById('tui-pagination-container');
 // const instance = new Pagination(containerTui, { ... });
 
 // instance.getCurrentPage();
@@ -48,9 +49,16 @@ pagination.on('afterMove', e => {
   console.log(currentPage);
   container.innerHTML = '';
   containerTui.classList.add('visually-hidden');
-  paginationSearch(`https://api.themoviedb.org/3/trending/movie/week?page=${currentPage}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`);
+  if (searchBy === 'search') {
+    value = queryForTui;
+    console.log(searchBy );
+    console.log(queryForTui );
+    paginationSearch(`https://api.themoviedb.org/3/search/movie?&query=${value}&page=${currentPage}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`);
+  } else { paginationSearch(`https://api.themoviedb.org/3/trending/movie/week?page=${currentPage}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`);}
   return currentPage;
-});
+}
+
+);
 
  async function paginationSearch(url) {
 
@@ -73,4 +81,9 @@ pagination.on('afterMove', e => {
 //   }
 // });
 
-export { pagination };
+function paginationTotalItems(n) {
+  pagination.reset(n);
+  pagination._paginate(1);
+}
+
+export { pagination, paginationTotalItems };
