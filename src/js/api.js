@@ -47,7 +47,7 @@ export default class ApiService {
 //   }
 }
 
-// export default function getData() {
+// export default function getDataTest() {
 //     let base = {};
 //     return axios.get(`https://api.themoviedb.org/3/movie/55?api_key=${API_KEY}`)
 //         .then(({ data }) =>{  
