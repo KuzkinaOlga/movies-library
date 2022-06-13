@@ -9,8 +9,8 @@ import { paginationTotalItems } from './js/pagination';
 import getTopMovies from './js/api';
 import { onContainerClick } from './js/modal-movie';
 
-let searchBy = '';
-let queryForTui = '';
+export let searchBy = '';
+export let queryForTui = '';
 const apiData = new ApiService();
 const container = getRefs().gallery;
 apiData.getGanres()
