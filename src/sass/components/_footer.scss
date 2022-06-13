@@ -4,23 +4,14 @@ footer {
   padding-top: 30px;
 }
 .container__footer {
-
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-
-   text-align: center;
- 
-  
+  text-align: center;
   @media screen and (min-width: 768px) {
        display: flex;
        justify-content: center;
-       
     }
 }
 
 .footer__rights {
-
   color: #545454;
   font-weight: 400;
   font-size: 14px;
@@ -34,43 +25,14 @@ footer {
   }
 }
 
-
-.footer__firstline {
-  align-items: center;
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-.footer__rights {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 10px;
-  @media screen and (min-width: 768px) {
-    padding-bottom: 0;
-    padding-right: 3px;
-  }
-}
-.footer__team {
-  position: relative;
-  margin: 0;
-
 .footer__group{
-
   display: flex;
     @media screen and (max-width: 767px) {
     margin-top: 10px;
     }
 }
 .footer__item {
-
-  padding-left: 10px;
-  padding-right: 10px;
   color: #ff6b08;
-
   margin-left: 10px;
   margin-right: 10px;
 
@@ -86,5 +48,4 @@ footer {
 }
 .footer__modal:focus {
   color: #ff6b08;
-}
 }

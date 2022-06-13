@@ -1,6 +1,11 @@
 import Pagination from "tui-pagination";
 // import 'tui-pagination/dist/tui-pagination.css';
+import axios from "axios";
+import { renderList, releaseDate, posterPath } from './render-list';
+import noImg from '../images/no-poster-available.jpeg';
+import { getRefs } from './get-refs';
 
+const container = getRefs().gallery;
 const containerTui = document.getElementById('tui-pagination-container');
 // const instance = new Pagination(containerTui, { ... });
 
@@ -10,7 +15,7 @@ let value = '';
 let currentPage = 1;
 
 const options = {
-  totalItems: 500,
+  totalItems: 20000,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
@@ -37,15 +42,23 @@ const options = {
 
 const pagination = new Pagination(containerTui, options);
 
+
 pagination.on('afterMove', e => {
   currentPage = e.page;
   console.log(currentPage);
-  // clear page
+  container.innerHTML = '';
   containerTui.classList.add('visually-hidden');
+  paginationSearch(`https://api.themoviedb.org/3/trending/movie/week?page=${currentPage}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`);
   return currentPage;
 });
 
-function paginationSearch() {
+ async function paginationSearch(url) {
+
+  const data = await axios.get(url);
+  const result = await data.data;
+  const results = await result.results;
+  renderList(results, container);
+
   containerTui.classList.remove('visually-hidden');
 };
 
