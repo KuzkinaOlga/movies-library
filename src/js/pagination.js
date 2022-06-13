@@ -3,7 +3,7 @@ import Pagination from "tui-pagination";
 import axios from "axios";
 import { renderList } from './render-list';
 import { getRefs } from './get-refs';
-// import { searchBy, queryForTui } from '../index';
+import { searchBy, queryForTui } from '../index';
 
 
 const container = getRefs().gallery;

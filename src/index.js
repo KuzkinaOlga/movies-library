@@ -9,7 +9,8 @@ import { paginationTotalItems } from './js/pagination';
 import getTopMovies from './js/api';
 import { onContainerClick } from './js/modal-movie';
 
-
+let searchBy = '';
+let queryForTui = '';
 const apiData = new ApiService();
 const container = getRefs().gallery;
 apiData.getGanres()
@@ -42,7 +43,7 @@ function onFormSubmit(e) {
       }else {
       container.innerHTML = '';
       renderList(results, container);
-      // searchBy = 'search';
+      searchBy = 'search';
       }
     });
     getRefs().form.reset();
