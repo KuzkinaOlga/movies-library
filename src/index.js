@@ -1,38 +1,49 @@
 
 import { renderList } from './js/render-list';
 import { getRefs } from './js/get-refs';
-
 import darkTheme from './js/dark-theme';
-const refs = getRefs();
-
-
-
-
 import { onShowMyLibrary, onShowHome } from './js/header';
 import './js/pagination';
-// import { renderMarkup } from './js/my-render';
-darkTheme();
+import ApiService from './js/api';
+
+const apiData = new ApiService();
 const container = getRefs().gallery;
+apiData.getGanres()
 
+darkTheme();
 
-
-
-
-
-// const apiData = new ApiService();
-
-// import  getData  from './js/api';
-
-// getData().then((base) => console.log(base.results));
-
-
-import getTopMovies from './js/api';
-
-function topMoviesRender (){getTopMovies().then(({ results }) => {
+// Top movies
+function topMoviesRender() {
+  apiData.getTopMovies().then(({ results }) => {
   renderList(results, container);
 } )} 
-  topMoviesRender ()
-  let searchQuery = '';
+topMoviesRender();
+
+// Search movies
+  function onFormSubmit(e) {
+    e.preventDefault();
+    apiData.query = e.currentTarget.elements.searchQuery.value.trim();
+  
+    if (!apiData.query) {
+      alert('Please enter name movie');
+      return;
+    }
+    apiData.getSearchMovies(apiData.query).then(({results}) => {
+      if (results.length === 0) {
+         alert('not find');
+      } else {
+      container.innerHTML = '';
+      renderList(results, container);
+      }
+      
+    });
+    console.log('onFormSubmit');
+    console.log(apiData.query);
+    getRefs().form.reset();
+}
+  
+
+
   
   // Listiners
   getRefs().logo.addEventListener('click', onLogoClick);
@@ -64,17 +75,7 @@ function topMoviesRender (){getTopMovies().then(({ results }) => {
     container.innerHTML = '';
   }
   
-  function onFormSubmit(e) {
-    e.preventDefault();
-    searchQuery = e.currentTarget.elements.searchQuery.value.trim();
-  
-    if (!searchQuery) {
-      alert('Not correct search key');
-      return;
-    }
-    console.log('onFormSubmit');
-    console.log(searchQuery);
-  }
+
   
   function onWatchedBtnClick() {
     if (getRefs().queueBtn.classList.contains('active-btn')) {

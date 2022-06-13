@@ -23,6 +23,7 @@ export function renderList(hits, container) {
   <div class="thumb">
   <picture class="poster-thumb">
 
+
         <source class="lzy_img" media="(min-width: 1200px)"
         srcset=""  type="image/jpeg" width="310" height="450"  data-src="${poster_path} 1x,${poster_path} 2x">
 
@@ -33,6 +34,7 @@ export function renderList(hits, container) {
 
         <source class="lzy_img" media="(max-width: 767px)"
          srcset=""  type="image/jpeg" width="280" height="400"  data-src= "${poster_path} 1x,${poster_path} 2x">
+
 
                     <img
                         src="${posterPath(poster_path)}"
