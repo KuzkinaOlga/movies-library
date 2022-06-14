@@ -1,4 +1,5 @@
 
+
 // import Notiflix from 'notiflix';
 import * as basicLightbox from 'basiclightbox'
 // import { getRefs } from './get-refs';
@@ -90,3 +91,4 @@ function onClickToAddToQueueBtn() {
   console.log("CLICK TO ADD 2");
   localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(item));
 }
+
