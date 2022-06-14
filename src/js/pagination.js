@@ -48,7 +48,7 @@ pagination.on('afterMove', e => {
   currentPage = e.page;
   console.log(currentPage);
   container.innerHTML = '';
-  containerTui.classList.add('visually-hidden');
+  getRefs().pagination.classList.remove('pagination-off');
   if (searchBy === 'search') {
     value = queryForTui;
     console.log(searchBy );
@@ -61,13 +61,17 @@ pagination.on('afterMove', e => {
 );
 
  async function paginationSearch(url) {
-
-  const data = await axios.get(url);
-  const result = await data.data;
-  const results = await result.results;
-  renderList(results, container);
-
-  containerTui.classList.remove('visually-hidden');
+  try {
+    //------------ start Loader
+    const data = await axios.get(url);
+    const result = await data.data;
+    const results = await result.results;
+    renderList(results, container);
+    //----------- stop Loader
+    containerTui.classList.remove('visually-hidden');
+ } catch (error) {
+  console.error(error);
+ }
 };
 
 // pagination.on('beforeMove', evt => {

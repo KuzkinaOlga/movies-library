@@ -1,6 +1,3 @@
-
-
-// import Notiflix from 'notiflix';
 import * as basicLightbox from 'basiclightbox'
 // import { getRefs } from './get-refs';
 // import axios from "axios";
@@ -83,12 +80,33 @@ export function onContainerClick(event) {
 
 function onClickToAddToWatchedBtn() {
   console.log("CLICK TO ADD 1");
-  localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(item));
+  //localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(item));
 
   
 }
 function onClickToAddToQueueBtn() {
   console.log("CLICK TO ADD 2");
-  localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(item));
+  //localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(item));
+}
+function onClickToAddToWatchedBtn(event) {
+
+  getDataTest().then((film) => {
+    console.log(film);
+    localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(film));
+    
+    // if () {
+    //    Notiflix.Notify.failure(`Sorry, there are no images matching your search query. Please try again.`);
+    // }
+
+  });
+ 
 }
 
+function onClickToAddToQueueBtn(event) {
+
+    getDataTest().then((film) => {
+    console.log(film);
+      localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(film));
+  });
+  
+}
