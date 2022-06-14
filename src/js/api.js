@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import axios from "axios";
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
@@ -12,65 +12,27 @@ export default class ApiService {
     this.searchQuery = '';
     this.page = 1;
   }
-  // async getTopMovies() {
-  //   try {
-  //     const { data } = await axios.get(
-  //       `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
-  //     );
-  //     return data;
-  //   } catch {
-  //     console.log('error');
-  //   }
-
-  // }
-  // async getSearchMovies(searchQuery) {
-  //   try {
-  //     const { data } = await axios.get(
-  //       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}`
-  //     );
-  //     this.page += 1;
-  //     return data;
-  //   } catch {}
-  // }
-  // async getGanres() {
-  //   try {
-  //     const { data } = await axios.get(
-  //       `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
-  //     );
-  //     console.log(data);
-  //   } catch {}
-  // }
-  // resetPage() {
-  //   this.page = 1;
-  // }
-  // get query() {
-  //   return this.searchQuery;
-  // }
-  // set query(newQuery) {
-  //   this.searchQuery = newQuery;
-  // }
-
-    async  getTopMovies() {
+  async  getTopMovies() {
         try { 
         const {data} =await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
         return data; 
         }
-        catch{console.log('error')}
+       catch{Notify.failure("something went wrong")}
 }
-    async  getSearchMovies(searchQuery) {
+  async  getSearchMovies(searchQuery) {
         try { 
         const {data} =await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}`);
         this.page += 1;
         return data ; 
         }
-        catch{}
+        catch{Notify.failure("something went wrong")}
 }
   async getGanres() {
     try {
       const { data } = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
       console.log(data);
     }
-    catch { }
+    catch {Notify.failure("something went wrong"); }
   }
     async getMainMovie(searchQuery) {
         try {
@@ -89,7 +51,7 @@ export default class ApiService {
 
        return base;
       }
-        catch { }
+        catch {Notify.failure("something went wrong"); }
 }
     resetPage() {
        this.page = 1; 
@@ -100,12 +62,5 @@ export default class ApiService {
     set query(newQuery) {
         this.searchQuery = newQuery;
   };
-//    getCurrentPage() {
-//     return this.page;
-//   };
-//   getPer_page() {
-//     return this.per_page;
-//   }
-
 }
 
