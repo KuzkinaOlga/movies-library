@@ -9,6 +9,7 @@ const refs = {
   myLibraryBtns: document.querySelector('.js-librari-list'),
   watchedBtn: document.querySelector('.js-watched-btn'),
   queueBtn: document.querySelector('.js-queue-btn'),
+  container:document.querySelector('.gallery'),
 };
 
 const {
@@ -21,6 +22,7 @@ const {
   myLibraryBtns,
   watchedBtn,
   queueBtn,
+  container,
 } = refs;
 
 function onShowMyLibrary() {
@@ -34,6 +36,7 @@ function onShowMyLibrary() {
   headerContainer.classList.remove('header__home-padding');
   nav.classList.add('nav__library-margin');
   nav.classList.remove('nav__home-margin');
+  container.innerHTML = "";
 }
 
 function onShowHome() {

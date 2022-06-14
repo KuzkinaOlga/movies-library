@@ -52,6 +52,7 @@ function onFormSubmit(e) {
 }
 
 // Main movie
+container.addEventListener('click', onContainerClick);
 // const cardClick = getRefs().galleryContainer;
 
 // container.addEventListener('click',addMainMovie)
@@ -72,7 +73,6 @@ getRefs().queueBtn.addEventListener('click', onQueueBtnClick);
 // Header functions
 function onLogoClick(e) {
   e.preventDefault();
-  console.log('onLogoClick');
   onShowHome();
   topMoviesRender();
 }
@@ -87,7 +87,6 @@ function onHomeBtnClick(e) {
 function onMyLybraryBtnClick(e) {
   e.preventDefault();
   onShowMyLibrary();
-  container.innerHTML = "";
 }
 
 function onWatchedBtnClick() {

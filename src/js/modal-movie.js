@@ -1,10 +1,11 @@
 import * as basicLightbox from 'basiclightbox'
-import { getRefs } from './get-refs';
-import axios from "axios";
+// import { getRefs } from './get-refs';
+// import axios from "axios";
+import ApiService from './api';
 
-const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
-const container = getRefs().gallery;
-container.addEventListener('click', onContainerClick);
+const apiMainMovie = new ApiService();
+// const container = getRefs().gallery;
+// container.addEventListener('click', onContainerClick);
 
 const ADD_TO_WATCHED_FILM = "add-to-watched-film";
 const ADD_TO_QUEUE_FILM = "add-to-queue-film";
@@ -18,7 +19,7 @@ export function onContainerClick(event) {
   } event.preventDefault();
   window.addEventListener('keydown', onImageClose);
 
-  getDataTest(event.target.alt).then((film) => {
+  apiMainMovie.getMainMovie(event.target.alt).then((film) => {
     console.log(film);
     currentMovie = basicLightbox.create(`
     <div class="current-movie">
@@ -65,8 +66,8 @@ export function onContainerClick(event) {
 
   console.log(btnAddToWatched);
 
-  btnAddToWatched.addEventListener('click', onClickToAddToWatchedBtn);
-  btnAddToQueue.addEventListener('click', onClickToAddToQueueBtn);
+  // btnAddToWatched.addEventListener('click', onClickToAddToWatchedBtn);
+  // btnAddToQueue.addEventListener('click', onClickToAddToQueueBtn);
 
 
 }
@@ -88,25 +89,4 @@ function onClickToAddToWatchedBtn() {
 function onClickToAddToQueueBtn() {
   console.log("CLICK TO ADD 2");
   //localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(item));
-  
 }
-
-export default function getDataTest(searchQuery) {
-    //let base = {};
-    return axios.get(`https://api.themoviedb.org/3/movie/55?api_key=${API_KEY}&language=en-US&query=${searchQuery}`)
-        .then(({ data }) =>{  
-            base = {
-                title: data.original_title,
-                genres: data.genres,
-                id: data.id,
-                date: data.release_date,
-                poster: data.poster_path,
-                about: data.overview,
-                populanty: data.popularity,
-                vote: data.vote_average,
-                votes: data.vote_count
-            }
-            return base;
-        }
-        )
-    }

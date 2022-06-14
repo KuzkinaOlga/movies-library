@@ -29,10 +29,22 @@ export default class ApiService {
     }
     catch { }
   }
-    async getMainMovie(id) {
+    async getMainMovie(searchQuery) {
         try {
-        const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`);
-       return data;
+          const { data } = await axios.get(`https://api.themoviedb.org/3/movie/55?api_key=${API_KEY}&language=en-US&query=${searchQuery}`);
+          const base = await {
+            title: data.original_title,
+            genres: data.genres,
+            id: data.id,
+            date: data.release_date,
+            poster: data.poster_path,
+            about: data.overview,
+            populanty: data.popularity,
+            vote: data.vote_average,
+            votes: data.vote_count
+          };
+
+       return base;
       }
         catch { }
 }
