@@ -1,8 +1,9 @@
 export function getRefs() {
     return {
-        containerMovies: document.querySelector('.collection'),
+        // containerMovies: document.querySelector('.collection'),
         gallery: document.querySelector('.gallery'),
-        galleryContainer: document.querySelector('.gallery > .container'),
+        linkCard: document.querySelectorAll('.post'),
+        // galleryContainer: document.querySelector('.gallery>.container'),
 
         // Header Refs
         headerContainer: document.querySelector('.js-header-container'),
@@ -14,5 +15,8 @@ export function getRefs() {
         myLibraryBtns: document.querySelector('.js-librari-list'),
         watchedBtn: document.querySelector('.js-watched-btn'),
         queueBtn: document.querySelector('.js-queue-btn'),
+        // Pagination-Tui
+        pagination: document.querySelector('.tui-pagination'),
+
     };
 }

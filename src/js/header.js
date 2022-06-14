@@ -9,6 +9,7 @@ const refs = {
   myLibraryBtns: document.querySelector('.js-librari-list'),
   watchedBtn: document.querySelector('.js-watched-btn'),
   queueBtn: document.querySelector('.js-queue-btn'),
+  container:document.querySelector('.gallery'),
 };
 
 const {
@@ -21,6 +22,7 @@ const {
   myLibraryBtns,
   watchedBtn,
   queueBtn,
+  container,
 } = refs;
 
 function onShowMyLibrary() {
@@ -34,6 +36,7 @@ function onShowMyLibrary() {
   headerContainer.classList.remove('header__home-padding');
   nav.classList.add('nav__library-margin');
   nav.classList.remove('nav__home-margin');
+  container.innerHTML = "";
 }
 
 function onShowHome() {
@@ -69,18 +72,18 @@ function onMyLybraryBtnClick(e) {
   onShowMyLibrary();
 }
 
-function onFormSubmit(e) {
-  e.preventDefault();
-  searchQuery = e.currentTarget.elements.searchQuery.value.trim();
+// function onFormSubmit(e) {
+//   e.preventDefault();
+//   searchQuery = e.currentTarget.elements.searchQuery.value.trim();
 
-  if (!searchQuery) {
-    alert('Not correct search key');
-    return;
-  }
+//   if (!searchQuery) {
+//     alert('Not correct search key');
+//     return;
+//   }
 
-  console.log('onFormSubmit');
-  console.log(searchQuery);
-}
+//   console.log('onFormSubmit');
+//   console.log(searchQuery);
+// }
 
 function onWatchedBtnClick() {
   if (queueBtn.classList.contains('active-btn')) {

@@ -1,7 +1,13 @@
 import Pagination from "tui-pagination";
 // import 'tui-pagination/dist/tui-pagination.css';
+import axios from "axios";
+import { renderList } from './render-list';
+import { getRefs } from './get-refs';
+import { searchBy, queryForTui } from '../index';
 
-const containerTui = document.getElementById('tui-pagination-container');
+
+const container = getRefs().gallery;
+export const containerTui = document.getElementById('tui-pagination-container');
 // const instance = new Pagination(containerTui, { ... });
 
 // instance.getCurrentPage();
@@ -10,7 +16,7 @@ let value = '';
 let currentPage = 1;
 
 const options = {
-  totalItems: 500,
+  totalItems: 20000,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
@@ -37,16 +43,35 @@ const options = {
 
 const pagination = new Pagination(containerTui, options);
 
+
 pagination.on('afterMove', e => {
   currentPage = e.page;
   console.log(currentPage);
-  // clear page
-  containerTui.classList.add('visually-hidden');
+  container.innerHTML = '';
+  getRefs().pagination.classList.remove('pagination-off');
+  if (searchBy === 'search') {
+    value = queryForTui;
+    console.log(searchBy );
+    console.log(queryForTui );
+    paginationSearch(`https://api.themoviedb.org/3/search/movie?&query=${value}&page=${currentPage}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`);
+  } else { paginationSearch(`https://api.themoviedb.org/3/trending/movie/week?page=${currentPage}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`);}
   return currentPage;
-});
+}
 
-function paginationSearch() {
-  containerTui.classList.remove('visually-hidden');
+);
+
+ async function paginationSearch(url) {
+  try {
+    //------------ start Loader
+    const data = await axios.get(url);
+    const result = await data.data;
+    const results = await result.results;
+    renderList(results, container);
+    //----------- stop Loader
+    containerTui.classList.remove('visually-hidden');
+ } catch (error) {
+  console.error(error);
+ }
 };
 
 // pagination.on('beforeMove', evt => {
@@ -60,4 +85,9 @@ function paginationSearch() {
 //   }
 // });
 
-export { pagination };
+function paginationTotalItems(n) {
+  pagination.reset(n);
+  pagination._paginate(1);
+}
+
+export { pagination, paginationTotalItems };
