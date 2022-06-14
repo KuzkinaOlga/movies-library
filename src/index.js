@@ -3,6 +3,7 @@ import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
 import './js/pagination';
+import './js/up-btn';
 import ApiService from './js/api';
 import { containerTui } from './js/pagination';
 import { paginationTotalItems } from './js/pagination';
@@ -39,7 +40,7 @@ function onFormSubmit(e) {
          if (total_results > 20) {
         paginationTotalItems(total_results);
         containerTui.classList.remove('visually-hidden');
-      } 
+      }
       if (results.length === 0) {
          alert('not find');
       }else {
@@ -58,7 +59,7 @@ container.addEventListener('click', onContainerClick);
 
 // container.addEventListener('click',addMainMovie)
 // function addMainMovie(evt) {
- 
+
 //   console.log(evt.currentTarget.elements)
 // }
 // apiData.getMainMovie(id = 21);
@@ -76,6 +77,7 @@ function onLogoClick(e) {
   e.preventDefault();
   onShowHome();
   topMoviesRender();
+  getRefs().pagination.classList.remove('pagination-off');
 }
 
 function onHomeBtnClick(e) {
@@ -83,11 +85,13 @@ function onHomeBtnClick(e) {
   onShowHome();
 
   topMoviesRender();
+  getRefs().pagination.classList.remove('pagination-off');
 }
 
 function onMyLybraryBtnClick(e) {
   e.preventDefault();
   onShowMyLibrary();
+  getRefs().pagination.classList.add('pagination-off');
 }
 
 function onWatchedBtnClick() {
@@ -100,3 +104,5 @@ function onWatchedBtnClick() {
 function onQueueBtnClick() {
   if (getRefs().watchedBtn.classList.contains('active-btn')) {
     getRefs().watchedBtn.classList.remove('active-btn');
+  };
+}
