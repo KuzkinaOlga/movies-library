@@ -13,16 +13,16 @@ const ADD_TO_QUEUE_FILM = "add-to-queue-film";
 
 let currentMovie = '';
 export function onContainerClick(event) {
-  console.log(event.target.children.contains('post') )
-  if (!event.currentTarget.classList.contains('photo-card')) {
-    
+  const parent = event.target.closest('li').firstChild;
+  const { id } = parent.dataset; 
+  if (!parent) {
     return;
   }
 
   event.preventDefault();
   window.addEventListener('keydown', onImageClose);
-console.log(event.target)
-  apiMainMovie.getMainMovie(event.target.alt).then((film) => {
+
+  apiMainMovie.getMainMovie( id).then((film) => {
     console.log(film);
     currentMovie = basicLightbox.create(`
     <div class="current-movie">
