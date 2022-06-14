@@ -1,11 +1,8 @@
-import * as basicLightbox from 'basiclightbox'
-// import { getRefs } from './get-refs';
-// import axios from "axios";
+import Notiflix from 'notiflix';
+import * as basicLightbox from 'basiclightbox
 import ApiService from './api';
 
 const apiMainMovie = new ApiService();
-// const container = getRefs().gallery;
-// container.addEventListener('click', onContainerClick);
 
 const ADD_TO_WATCHED_FILM = "add-to-watched-film";
 const ADD_TO_QUEUE_FILM = "add-to-queue-film";
@@ -80,11 +77,12 @@ export function onContainerClick(event) {
 
 function onClickToAddToWatchedBtn() {
   console.log("CLICK TO ADD 1");
-  //localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(item));
+  localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify());
 
   
 }
 function onClickToAddToQueueBtn() {
   console.log("CLICK TO ADD 2");
-  //localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(item));
+  localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify());
 }
+

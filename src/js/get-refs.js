@@ -18,5 +18,11 @@ export function getRefs() {
         // Pagination-Tui
         pagination: document.querySelector('.tui-pagination'),
 
+        upBtn: document.querySelector('.up-btn'),
+
+        // Footer
+        footerLink: document.querySelector('.footer__modal')
+
+
     };
 }

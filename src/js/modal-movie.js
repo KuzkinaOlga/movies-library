@@ -2,13 +2,15 @@ import * as basicLightbox from 'basiclightbox'
 
 import { getRefs } from './get-refs';
 import axios from "axios";
-import Notiflix from 'notiflix';
+// import Notiflix from 'notiflix';
 
 import ApiService from './api';
+
 
 const apiMainMovie = new ApiService();
 const container = getRefs().gallery;
 container.addEventListener('click', onContainerClick);
+
 
 const ADD_TO_WATCHED_FILM = "add-to-watched-film";
 const ADD_TO_QUEUE_FILM = "add-to-queue-film";
@@ -88,5 +90,52 @@ export function onContainerClick(event) {
       window.removeEventListener('keydown', onImageClose); 
     }
   }
+
+
+
+function onClickToAddToWatchedBtn(event) {
+
+  getDataTest().then((film) => {
+    console.log(film);
+    localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(film));
+    
+    // if () {
+    //    Notiflix.Notify.failure(`Sorry, there are no images matching your search query. Please try again.`);
+    // }
+
+  });
+ 
+}
+
+function onClickToAddToQueueBtn(event) {
+
+    getDataTest().then((film) => {
+    console.log(film);
+      localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(film));
+  });
+  
+}
+
+export default function getDataTest(searchQuery) {
+    //let base = {};
+    return axios.get(`https://api.themoviedb.org/3/movie/55?api_key=${API_KEY}&language=en-US&query=${searchQuery}`)
+        .then(({ data }) =>{  
+            base = {
+                title: data.original_title,
+                genres: data.genres,
+                id: data.id,
+                date: data.release_date,
+                poster: data.poster_path,
+                about: data.overview,
+                populanty: data.popularity,
+                vote: data.vote_average,
+                votes: data.vote_count,
+                
+            }
+          return base;
+          
+        }
+        )
+    }
 
 

@@ -1,4 +1,6 @@
-upBtn = document.querySelector('.up-btn');
+import { getRefs } from './get-refs';
+
+const upBtn = getRefs().upBtn;
 upBtn.addEventListener('click', upFunction);
 
 window.onscroll = function () {
