@@ -64,15 +64,15 @@ function onFormSubmit(e) {
   if (!getFilm.value) {
     return alert('Not correct search key');
   }
-
   // get searchFilm
   getFilm.fetchFilm().then(response => {
     // console.dir(response); // pages
+    galleryList.innerHTML = '';
     return renderMarkup(response.data.results, galleryList);
   });
 }
 
-function renderMarkup(searchQuery, container) {
+export function renderMarkup(searchQuery, container) {
   const markup = searchQuery
     .map(({ id, poster_path, original_title, genre_ids, release_date }) => {
       // convertGenresToNames
