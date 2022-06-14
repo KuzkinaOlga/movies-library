@@ -61,7 +61,7 @@ container.addEventListener('click', onContainerClick);
 
 
 // Footer link
-// foterLink.addEventListener('click', onFooterClick);
+foterLink.addEventListener('click', onFooterClick);
 
 
 // Listiners
