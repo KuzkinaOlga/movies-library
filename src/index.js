@@ -3,6 +3,8 @@ import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
 import './js/pagination';
+// import './js/film-find';
+import renderMarkup from './js/film-find';
 import ApiService from './js/api';
 import { containerTui } from './js/pagination';
 import { paginationTotalItems } from './js/pagination';
@@ -13,45 +15,45 @@ export let searchBy = '';
 export let queryForTui = '';
 const apiData = new ApiService();
 const container = getRefs().gallery;
-apiData.getGanres()
+apiData.getGanres();
 
 darkTheme();
 
 // Top movies
 function topMoviesRender() {
   apiData.getTopMovies().then(({ results }) => {
-  renderList(results, container);
-} )}
+    renderList(results, container);
+  });
+}
 topMoviesRender();
 
 // Search movies
 function onFormSubmit(e) {
-    e.preventDefault();
-    apiData.query = e.currentTarget.elements.searchQuery.value.trim();
-    queryForTui = apiData.query;
-    if (!apiData.query) {
-      alert('Please enter name movie');
-      return;
-    } else {
-       apiData.getSearchMovies(apiData.query).then(({results, total_results}) => {
-         if (total_results > 20) {
-        paginationTotalItems(total_results);
-        containerTui.classList.remove('visually-hidden');
-      } 
-      if (results.length === 0) {
-         alert('not find');
-      }else {
-      container.innerHTML = '';
-      renderList(results, container);
-      searchBy = 'search';
-      }
-    });
+  e.preventDefault();
+  apiData.query = e.currentTarget.elements.searchQuery.value.trim();
+  queryForTui = apiData.query;
+  if (!apiData.query) {
+    alert('Please enter name movie');
+    return;
+  } else {
+    apiData
+      .getSearchMovies(apiData.query)
+      .then(({ results, total_results }) => {
+        if (total_results > 20) {
+          paginationTotalItems(total_results);
+          containerTui.classList.remove('visually-hidden');
+        }
+        if (results.length === 0) {
+          alert('not find');
+        } else {
+          container.innerHTML = '';
+          renderMarkup(results, container);
+          searchBy = 'search';
+        }
+      });
     getRefs().form.reset();
-    }
-
-   
+  }
 }
-
 
 // Listiners
 getRefs().logo.addEventListener('click', onLogoClick);
@@ -78,7 +80,7 @@ function onHomeBtnClick(e) {
 function onMyLybraryBtnClick(e) {
   e.preventDefault();
   onShowMyLibrary();
-  container.innerHTML = "";
+  container.innerHTML = '';
 }
 
 function onWatchedBtnClick() {
@@ -91,3 +93,5 @@ function onWatchedBtnClick() {
 function onQueueBtnClick() {
   if (getRefs().watchedBtn.classList.contains('active-btn')) {
     getRefs().watchedBtn.classList.remove('active-btn');
+  }
+}
