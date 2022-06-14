@@ -15,7 +15,8 @@ export function getRefs() {
         myLibraryBtns: document.querySelector('.js-librari-list'),
         watchedBtn: document.querySelector('.js-watched-btn'),
         queueBtn: document.querySelector('.js-queue-btn'),
-        // Footer
-        footerLink: document.querySelector('.footer__modal'), 
+        // Pagination-Tui
+        pagination: document.querySelector('.tui-pagination'),
+
     };
 }
