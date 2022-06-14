@@ -65,8 +65,8 @@ export function onContainerClick(event) {
   
     btnAddToWatched.addEventListener("click", (() => {
       
-      let currentMovieInfo = { title, genres, date, poster, about, populanty, vote, votes };
-      addToWachedFilms.push(currentMovieInfo);
+      //let currentMovieInfo = { title, genres, date, poster, about, populanty, vote, votes };
+      addToWachedFilms.push({ title, genres, date, poster, about, populanty, vote, votes });
       localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
 
   }));
