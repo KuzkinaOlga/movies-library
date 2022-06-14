@@ -18,9 +18,9 @@ export function renderList(hits, container) {
         //    }   )
         // })
         // console.log(genre_ids.forEach((item)=>console.log(item)))
-   return  `<li><a class="post" data-id=${id}>
+   return  `<li class="card-list"><a class="post" data-id=${id}>
   <div class="photo-card">
-  <div class="thumb">
+
   <picture class="poster-thumb">
 
 
@@ -55,7 +55,6 @@ export function renderList(hits, container) {
                       <p class="movie-date">${releaseDate(release_date)}</p>
                     </div>
                 </div>
-  </div>
   </div>
 </div>
 </a></li> 

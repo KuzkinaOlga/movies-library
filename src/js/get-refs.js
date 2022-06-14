@@ -17,6 +17,12 @@ export function getRefs() {
         queueBtn: document.querySelector('.js-queue-btn'),
         // Pagination-Tui
         pagination: document.querySelector('.tui-pagination'),
+
         upBtn: document.querySelector('.up-btn'),
+
+        // Footer
+        footerLink: document.querySelector('.footer__modal')
+
+
     };
 }
