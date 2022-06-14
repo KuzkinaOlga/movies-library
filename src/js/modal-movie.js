@@ -14,6 +14,8 @@ const ADD_TO_WATCHED_FILM = "add-to-watched-film";
 const ADD_TO_QUEUE_FILM = "add-to-queue-film";
 
 let currentMovie = '';
+let addToWachedFilms = [];
+let addToQueueFilms = [];
 export function onContainerClick(event) {
   const parent = event.target.closest('li').firstChild;
   const { id } = parent.dataset; 
@@ -62,20 +64,14 @@ export function onContainerClick(event) {
   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
   
     btnAddToWatched.addEventListener("click", (() => {
-      console.log({title,genres, date, poster,about,populanty,vote, votes});
-      const addToWachedFilms = [ ];
       
-      addToWachedFilms.push({title,genres, date, poster,about,populanty,vote, votes});
-      console.log(addToWachedFilms);
+      let currentMovieInfo = { title, genres, date, poster, about, populanty, vote, votes };
+      addToWachedFilms.push(currentMovieInfo);
       localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
 
   }));
-  btnAddToQueue.addEventListener("click", (() => {
-      console.log({title,genres, date, poster,about,populanty,vote, votes});
-      const addToQueueFilms = [ ];
-      
+  btnAddToQueue.addEventListener("click", (() => {   
       addToQueueFilms.push({title,genres, date, poster,about,populanty,vote, votes});
-      console.log(addToQueueFilms);
       localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(addToQueueFilms));
 
   })); 
