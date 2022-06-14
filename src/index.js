@@ -13,6 +13,7 @@ export let searchBy = '';
 export let queryForTui = '';
 const apiData = new ApiService();
 const container = getRefs().gallery;
+const mainCard = getRefs().linkCard;
 apiData.getGanres()
 
 darkTheme();

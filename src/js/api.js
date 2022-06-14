@@ -31,7 +31,7 @@ export default class ApiService {
   }
     async getMainMovie(searchQuery) {
         try {
-          const { data } = await axios.get(`https://api.themoviedb.org/3/movie/55?api_key=${API_KEY}&language=en-US&query=${searchQuery}`);
+          const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${searchQuery}?api_key=${API_KEY}&language=en-US`);
           const base = await {
             title: data.original_title,
             genres: data.genres,

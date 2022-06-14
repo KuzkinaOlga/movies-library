@@ -2,6 +2,7 @@ export function getRefs() {
     return {
         // containerMovies: document.querySelector('.collection'),
         gallery: document.querySelector('.gallery'),
+        linkCard: document.querySelectorAll('.post'),
         // galleryContainer: document.querySelector('.gallery>.container'),
 
         // Header Refs
