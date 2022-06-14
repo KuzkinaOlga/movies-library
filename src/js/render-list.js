@@ -1,10 +1,20 @@
-import { getGanres } from './api.js';
 import noImg from '../images/no-poster-available.jpeg';
+import { genresAddOthers } from './genres';
 
 // getTopMovies().then(({results})=>console.log(results))
+
+function renderGenres(genre_ids) {
+  return genresAddOthers(genre_ids)
+    .map(genre => `<li class="movie-genres">${genre}</li>`)
+    .join(' ,');
+}
+
 export function renderList(hits, container) {
 
-    const markup = hits.map(({ id, poster_path, original_title, genres, release_date }) => {
+    const markup = hits.map(({ id, poster_path, original_title, genre_ids, release_date }) => {
+      
+      let genres = renderGenres(genre_ids);
+
         // console.log(genre_ids)
         // let elem ;
         // getGanres().then((genres) => {
@@ -18,6 +28,7 @@ export function renderList(hits, container) {
         //    }   )
         // })
         // console.log(genre_ids.forEach((item)=>console.log(item)))
+
    return  `<a class="post" data-id=${id}>
   <div class="photo-card">
   <div class="thumb">

@@ -3,6 +3,7 @@ import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
 import './js/pagination';
+import './js/film-find';
 import ApiService from './js/api';
 import { containerTui } from './js/pagination';
 import { paginationTotalItems } from './js/pagination';
@@ -20,7 +21,6 @@ darkTheme();
 // Top movies
 function topMoviesRender() {
   apiData.getTopMovies().then(({ results }) => {
-  container.innerHTML = "";
   renderList(results, container);
 } )}
 topMoviesRender();
@@ -49,17 +49,10 @@ function onFormSubmit(e) {
     });
     getRefs().form.reset();
     }
+
+   
 }
 
-// Main movie
-// const cardClick = getRefs().galleryContainer;
-
-// container.addEventListener('click',addMainMovie)
-// function addMainMovie(evt) {
- 
-//   console.log(evt.currentTarget.elements)
-// }
-// apiData.getMainMovie(id = 21);
 
 // Listiners
 getRefs().logo.addEventListener('click', onLogoClick);
@@ -80,7 +73,6 @@ function onLogoClick(e) {
 function onHomeBtnClick(e) {
   e.preventDefault();
   onShowHome();
-
   topMoviesRender();
 }
 
@@ -100,3 +92,4 @@ function onWatchedBtnClick() {
 function onQueueBtnClick() {
   if (getRefs().watchedBtn.classList.contains('active-btn')) {
     getRefs().watchedBtn.classList.remove('active-btn');
+  }}
