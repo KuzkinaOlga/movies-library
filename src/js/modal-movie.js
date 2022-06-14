@@ -1,6 +1,7 @@
 import * as basicLightbox from 'basiclightbox'
 import { getRefs } from './get-refs';
 import axios from "axios";
+import Notiflix from 'notiflix';
 
 const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
 const container = getRefs().gallery;
@@ -8,7 +9,6 @@ container.addEventListener('click', onContainerClick);
 
 const ADD_TO_WATCHED_FILM = "add-to-watched-film";
 const ADD_TO_QUEUE_FILM = "add-to-queue-film";
-
 
 let currentMovie = '';
 export function onContainerClick(event) {
@@ -24,10 +24,10 @@ export function onContainerClick(event) {
     <div class="current-movie">
         <img  src="${event.target.src}" class="current-movie__img">
         <div class="current-movie__info">
-        <h2 class="current-movie__title"> ${film.title}</h2>
+        <h2 class="current-movie__title"> ${event.target.alt}</h2>
         <p class="current-movie__votes"> Vote / Votes
           <span class="current-movie__vote-data">${film.vote}</span>
-          <span class="current-movie__votes-data">${film.votes}</span> 
+          <span class="current-movie__votes-data">${film.votes}</span>
         </p>
         <p class="current-movie__popularity"> Popularity <span class="current-movie__popularity-data">${film.populanty}</span></p>
         <p class="current-movie__original-title"> Original Title <span class="current-movie__original-title-data">${film.title}</span></p>
@@ -49,28 +49,19 @@ export function onContainerClick(event) {
       </div>
 
 
-    </div>` 
+    </div>`
       );
     
     currentMovie.show();
-   
-  });
-  
-
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
-  const btnAddToQueue= document.querySelector(".current-movie_btn-add-to-queue");  
-
-  // itemW = currentMovie;
-  // itemQ = currentMovie;
-
-  console.log(btnAddToWatched);
-
-  btnAddToWatched.addEventListener('click', onClickToAddToWatchedBtn);
-  btnAddToQueue.addEventListener('click', onClickToAddToQueueBtn);
-
+  const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
+  
+  btnAddToWatched.addEventListener("click", onClickToAddToWatchedBtn);
+  btnAddToQueue.addEventListener("click", onClickToAddToQueueBtn); 
+  });
 
 }
- 
+
   function onImageClose(event) {
     if (event.code === 'Escape') {
       currentMovie.close();
@@ -79,15 +70,25 @@ export function onContainerClick(event) {
   }
 
 
-function onClickToAddToWatchedBtn() {
-  console.log("CLICK TO ADD 1");
-  //localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(item));
+function onClickToAddToWatchedBtn(event) {
 
-  
+  getDataTest().then((film) => {
+    console.log(film);
+    localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(film));
+    
+    // if () {
+    //    Notiflix.Notify.failure(`Sorry, there are no images matching your search query. Please try again.`);
+    // }
+
+  });
+ 
 }
-function onClickToAddToQueueBtn() {
-  console.log("CLICK TO ADD 2");
-  //localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(item));
+function onClickToAddToQueueBtn(event) {
+
+    getDataTest().then((film) => {
+    console.log(film);
+      localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(film));
+  });
   
 }
 
@@ -104,9 +105,11 @@ export default function getDataTest(searchQuery) {
                 about: data.overview,
                 populanty: data.popularity,
                 vote: data.vote_average,
-                votes: data.vote_count
+                votes: data.vote_count,
+                
             }
-            return base;
+          return base;
+          
         }
         )
     }
