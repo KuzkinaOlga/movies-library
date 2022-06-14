@@ -88,28 +88,28 @@ export default class ApiService {
        
 
 
-export default function getTopMovies() {
-    Loading.standard();
-    return axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`)
-        .then(({ data }) => {
-          return data  
-        })
-        .finally(()=>{
-            Loading.remove();
-        })
-}
+// export default function getTopMovies() {
+//     Loading.standard();
+//     return axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`)
+//         .then(({ data }) => {
+//           return data  
+//         })
+//         .finally(()=>{
+//             Loading.remove();
+//         })
+// }
 
-export function getGanres() {
-    Loading.standard();
-    return axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`)
-        .then(({ data }) => {
-            return data.genres 
-        })
-        .finally(()=>{
-            Loading.remove();
-        })
-}
-=======
+// export function getGanres() {
+//     Loading.standard();
+//     return axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`)
+//         .then(({ data }) => {
+//             return data.genres 
+//         })
+//         .finally(()=>{
+//             Loading.remove();
+//         })
+// }
+
 // export async function getTopMovies() {
 //     try { 
 //         const {data} =await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);

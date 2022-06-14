@@ -17,7 +17,7 @@ const apiData = new ApiService();
 const container = getRefs().gallery;
 const mainCard = getRefs().linkCard;
 const foterLink = getRefs().footerLink;
-apiData.getGanres()
+// apiData.getGanres()
 
 darkTheme();
 
