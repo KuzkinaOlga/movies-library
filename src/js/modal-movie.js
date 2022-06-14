@@ -30,10 +30,7 @@ export function onContainerClick(event) {
         <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
         <div class="current-movie__info">
         <h2 class="current-movie__title"> ${title}</h2>
-        <p class="current-movie__votes"> Vote / Votes
-          <span class="current-movie__vote-data">${vote}</span>
-          <span class="current-movie__votes-data">${votes}</span> 
-        </p>
+        <p class="current-movie__votes"> Vote:<span class="current-movie__vote-data">${vote}</span> / Votes:<span class="current-movie__votes-data">${votes}</span>   </p>
         <p class="current-movie__popularity"> Popularity: <span class="current-movie__popularity-data">${populanty}</span></p>
         <p class="current-movie__original-title"> Original Title: <span class="current-movie__original-title-data">${title}</span></p>
         <p class="current-movie__genre"> Genre:  <span class="current-movie__genre-data">${ganreList};</span>
