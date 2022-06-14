@@ -4,10 +4,13 @@ import { getRefs } from './get-refs';
 import axios from "axios";
 // import Notiflix from 'notiflix';
 
+import ApiService from './api';
 
-// const apiMainMovie = new ApiService();
-// const container = getRefs().gallery;
-// container.addEventListener('click', onContainerClick);
+
+const apiMainMovie = new ApiService();
+const container = getRefs().gallery;
+container.addEventListener('click', onContainerClick);
+
 
 const ADD_TO_WATCHED_FILM = "add-to-watched-film";
 const ADD_TO_QUEUE_FILM = "add-to-queue-film";
@@ -24,7 +27,7 @@ export function onContainerClick(event) {
   window.addEventListener('keydown', onImageClose);
 
   apiMainMovie.getMainMovie( id).then(({title,genres, date, poster,about,populanty,vote, votes}) => {
-    const ganreList = genres.map((ganre) => ganre.name).join(', ');
+  const ganreList = genres.map((ganre) => ganre.name).join(', ');
   
     currentMovie = basicLightbox.create(`
     <div class="current-movie">
@@ -33,18 +36,13 @@ export function onContainerClick(event) {
 
         <h2 class="current-movie__title"> ${event.target.alt}</h2>
         <p class="current-movie__votes"> Vote / Votes
-          <span class="current-movie__vote-data">${film.vote}</span>
-          <span class="current-movie__votes-data">${film.votes}</span>
+          <span class="current-movie__vote-data">${vote}</span>
+          <span class="current-movie__votes-data">${votes}</span>
         </p>
-        <p class="current-movie__popularity"> Popularity <span class="current-movie__popularity-data">${film.populanty}</span></p>
-        <p class="current-movie__original-title"> Original Title <span class="current-movie__original-title-data">${film.title}</span></p>
+        <p class="current-movie__popularity"> Popularity <span class="current-movie__popularity-data">${populanty}</span></p>
+        <p class="current-movie__original-title"> Original Title <span class="current-movie__original-title-data">${title}</span></p>
         <p class="current-movie__genre"> Genre
-          //<span class="current-movie__genre-data">${film.genres[{}]}</span>
-          <ul class="current-movie__genre-data">
-                        ${film.genres}
-                        </ul>
-
-
+          <span class="current-movie__genre-data">${ganreList}</span>
         </p>
         <div class="current-movie__about-section">
           <h3 class="current-movie__about"> ABOUT</h3>
@@ -60,16 +58,30 @@ export function onContainerClick(event) {
     </div>`
       );
     
-    currentMovie.show();
+  currentMovie.show();
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
 
   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
   
-  btnAddToWatched.addEventListener("click", onClickToAddToWatchedBtn);
-  btnAddToQueue.addEventListener("click", onClickToAddToQueueBtn); 
+    btnAddToWatched.addEventListener("click", (() => {
+      console.log({title,genres, date, poster,about,populanty,vote, votes});
+      const addToWachedFilms = [ ];
+      
+      addToWachedFilms.push({title,genres, date, poster,about,populanty,vote, votes});
+      console.log(addToWachedFilms);
+      localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
+
+  }));
+  btnAddToQueue.addEventListener("click", (() => {
+      console.log({title,genres, date, poster,about,populanty,vote, votes});
+      const addToQueueFilms = [ ];
+      
+      addToQueueFilms.push({title,genres, date, poster,about,populanty,vote, votes});
+      console.log(addToQueueFilms);
+      localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(addToQueueFilms));
+
+  })); 
   });
-
-
 }
 
   function onImageClose(event) {
@@ -78,6 +90,7 @@ export function onContainerClick(event) {
       window.removeEventListener('keydown', onImageClose); 
     }
   }
+
 
 
 function onClickToAddToWatchedBtn(event) {
@@ -124,4 +137,5 @@ export default function getDataTest(searchQuery) {
         }
         )
     }
+
 
