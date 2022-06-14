@@ -1,12 +1,9 @@
 import Notiflix from 'notiflix';
 import * as basicLightbox from 'basiclightbox
 import ApiService from './api';
-
 const apiMainMovie = new ApiService();
-
 const ADD_TO_WATCHED_FILM = "add-to-watched-film";
 const ADD_TO_QUEUE_FILM = "add-to-queue-film";
-
 
 let currentMovie = '';
 export function onContainerClick(event) {
@@ -15,7 +12,6 @@ export function onContainerClick(event) {
   if (!parent) {
     return;
   }
-
   event.preventDefault();
   window.addEventListener('keydown', onImageClose);
 
@@ -31,55 +27,36 @@ export function onContainerClick(event) {
         <p class="current-movie__popularity"> Popularity: <span class="current-movie__popularity-data">${populanty}</span></p>
         <p class="current-movie__original-title"> Original Title: <span class="current-movie__original-title-data">${title}</span></p>
         <p class="current-movie__genre"> Genre:  <span class="current-movie__genre-data">${ganreList};</span>
-      
-
         </p>
         <div class="current-movie__about-section">
           <h3 class="current-movie__about"> ABOUT</h3>
           <p class="current-movie__about-data"> ${about} </p>
         </div>
-
         <div class="current-movie__btn-container">
         <button type = "button" class="current-movie_btn-add-to-watched">ADD TO WATCHED</button>
         <button type = "button" class="current-movie_btn-add-to-queue">ADD TO QUEUE</button>
       </div>
-
-
     </div>` 
       );
-    
     currentMovie.show();
-   
   });
-  
-
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
   const btnAddToQueue= document.querySelector(".current-movie_btn-add-to-queue");  
-
   // itemW = currentMovie;
   // itemQ = currentMovie;
-
   console.log(btnAddToWatched);
-
   // btnAddToWatched.addEventListener('click', onClickToAddToWatchedBtn);
   // btnAddToQueue.addEventListener('click', onClickToAddToQueueBtn);
-
-
 }
- 
-  function onImageClose(event) {
+function onImageClose(event) {
     if (event.code === 'Escape') {
       currentMovie.close();
       window.removeEventListener('keydown', onImageClose); 
     }
   }
-
-
 function onClickToAddToWatchedBtn() {
   console.log("CLICK TO ADD 1");
   localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify());
-
-  
 }
 function onClickToAddToQueueBtn() {
   console.log("CLICK TO ADD 2");
