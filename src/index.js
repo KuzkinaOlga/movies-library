@@ -6,7 +6,8 @@ import './js/pagination';
 import ApiService from './js/api';
 import { containerTui } from './js/pagination';
 import { paginationTotalItems } from './js/pagination';
-import getTopMovies from './js/api';
+import {onFooterClick} from './js/modal-footer'
+// import getTopMovies from './js/api';
 import { onContainerClick } from './js/modal-movie';
 
 export let searchBy = '';
@@ -14,6 +15,7 @@ export let queryForTui = '';
 const apiData = new ApiService();
 const container = getRefs().gallery;
 const mainCard = getRefs().linkCard;
+const foterLink = getRefs().footerLink;
 apiData.getGanres()
 
 darkTheme();
@@ -54,14 +56,10 @@ function onFormSubmit(e) {
 
 // Main movie
 container.addEventListener('click', onContainerClick);
-// const cardClick = getRefs().galleryContainer;
 
-// container.addEventListener('click',addMainMovie)
-// function addMainMovie(evt) {
- 
-//   console.log(evt.currentTarget.elements)
-// }
-// apiData.getMainMovie(id = 21);
+
+// Footer link
+// foterLink.addEventListener('click', onFooterClick);
 
 // Listiners
 getRefs().logo.addEventListener('click', onLogoClick);
