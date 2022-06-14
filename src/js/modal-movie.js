@@ -99,6 +99,9 @@ function onClickToAddToQueueBtn(event) {
     getDataTest().then((film) => {
     console.log(film);
       localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(film));
+      // if () {
+    //    Notiflix.Notify.failure(`Sorry, there are no images matching your search query. Please try again.`);
+    // }
   });
   
 }
