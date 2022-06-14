@@ -1,29 +1,36 @@
 import * as basicLightbox from 'basiclightbox'
+
 import { getRefs } from './get-refs';
 import axios from "axios";
 import Notiflix from 'notiflix';
 
-const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
-const container = getRefs().gallery;
-container.addEventListener('click', onContainerClick);
+
+const apiMainMovie = new ApiService();
+// const container = getRefs().gallery;
+// container.addEventListener('click', onContainerClick);
 
 const ADD_TO_WATCHED_FILM = "add-to-watched-film";
 const ADD_TO_QUEUE_FILM = "add-to-queue-film";
 
 let currentMovie = '';
 export function onContainerClick(event) {
-
-  if (!event.target.classList.contains('poster')) {
+  const parent = event.target.closest('li').firstChild;
+  const { id } = parent.dataset; 
+  if (!parent) {
     return;
-  } event.preventDefault();
+  }
+
+  event.preventDefault();
   window.addEventListener('keydown', onImageClose);
 
-  getDataTest(event.target.alt).then((film) => {
-    console.log(film);
+  apiMainMovie.getMainMovie( id).then(({title,genres, date, poster,about,populanty,vote, votes}) => {
+    const ganreList = genres.map((ganre) => ganre.name).join(', ');
+  
     currentMovie = basicLightbox.create(`
     <div class="current-movie">
-        <img  src="${event.target.src}" class="current-movie__img">
+        <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
         <div class="current-movie__info">
+
         <h2 class="current-movie__title"> ${event.target.alt}</h2>
         <p class="current-movie__votes"> Vote / Votes
           <span class="current-movie__vote-data">${film.vote}</span>
@@ -37,10 +44,11 @@ export function onContainerClick(event) {
                         ${film.genres}
                         </ul>
 
+
         </p>
         <div class="current-movie__about-section">
           <h3 class="current-movie__about"> ABOUT</h3>
-          <p class="current-movie__about-data"> ${film.about} </p>
+          <p class="current-movie__about-data"> ${about} </p>
         </div>
 
         <div class="current-movie__btn-container">
@@ -54,11 +62,13 @@ export function onContainerClick(event) {
     
     currentMovie.show();
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
+
   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
   
   btnAddToWatched.addEventListener("click", onClickToAddToWatchedBtn);
   btnAddToQueue.addEventListener("click", onClickToAddToQueueBtn); 
   });
+
 
 }
 
@@ -83,6 +93,7 @@ function onClickToAddToWatchedBtn(event) {
   });
  
 }
+
 function onClickToAddToQueueBtn(event) {
 
     getDataTest().then((film) => {
@@ -113,3 +124,4 @@ export default function getDataTest(searchQuery) {
         }
         )
     }
+

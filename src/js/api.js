@@ -22,13 +22,31 @@ export default class ApiService {
         }
         catch{}
 }
-    async getGanres() {
+  async getGanres() {
+    try {
+      const { data } = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
+      console.log(data);
+    }
+    catch { }
+  }
+    async getMainMovie(searchQuery) {
         try {
-        const { data } = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
-        console.log(data);
+          const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${searchQuery}?api_key=${API_KEY}&language=en-US`);
+          const base = await {
+            title: data.original_title,
+            genres: data.genres,
+            id: data.id,
+            date: data.release_date,
+            poster: data.poster_path,
+            about: data.overview,
+            populanty: data.popularity,
+            vote: data.vote_average,
+            votes: data.vote_count
+          };
+
+       return base;
       }
         catch { }
-        
 }
     resetPage() {
        this.page = 1; 
