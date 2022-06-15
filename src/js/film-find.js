@@ -1,8 +1,22 @@
+
+import axios from 'axios';
+// import ApiService from './api';
+// import { paginationTotalItems } from './pagination';
+// import { containerTui } from './pagination';
+
+// import { getRefs } from './js/get-refs';
+// let searchBy = '';
+// const searchFilm = document.querySelector('#search-form');
+// const galleryList = document.querySelector('.gallery');
+//
+let gengesArray = [];
+
 // import axios from 'axios';
 // // import { getRefs } from './js/get-refs';
 // const searchFilm = document.querySelector('#search-form');
 // const galleryList = document.querySelector('.gallery');
 // let gengesArray = [];
+
 
 // const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
 // axios.defaults.baseURL = 'https://api.themoviedb.org/3/search/movie/';
@@ -47,6 +61,16 @@
 //   //   }
 // }
 
+
+// const apiData = new ApiService();
+// const getFilm = new GetFilms();
+const getFilmGenres = new GetFilms();
+
+// get ganres
+getFilmGenres.fetchFilmGenres().then(response => {
+  gengesArray = response.genres;
+});
+
 // const getFilmGenres = new GetFilms();
 // const getFilm = new GetFilms();
 
@@ -54,6 +78,7 @@
 // getFilmGenres.fetchFilmGenres().then(response => {
 //   gengesArray = response.genres;
 // });
+
 
 // //  onFormSubmit
 // searchFilm.addEventListener('submit', onFormSubmit);
@@ -85,6 +110,68 @@
 //         });
 //       });
 //       /// convertGenresToNames
+
+
+      if (release_date === undefined) {
+        release_date = '';
+      }
+      return `<li class="card-list"><a class="post" data-id=${id}>
+  <div class="photo-card">
+
+  <picture class="poster-thumb">
+
+
+        <source class="lzy_img" media="(min-width: 1200px)"
+        srcset=""  type="image/jpeg" width="310" height="450"  data-src="${poster_path} 1x,${poster_path} 2x">
+
+
+        <source class="lzy_img" media="(min-width: 768px)"
+         srcset=""  type="image/jpeg" width="335" height="455"  data-src= "${poster_path} 1x,${poster_path} 2x">
+
+
+        <source class="lzy_img" media="(max-width: 767px)"
+         srcset=""  type="image/jpeg" width="280" height="400"  data-src= "${poster_path} 1x,${poster_path} 2x">
+
+
+                    <img
+                        src="${posterPath(poster_path)}"
+                        alt="${original_title}"
+                        loading="lazy"
+                        class="poster"
+                    />
+                </picture>
+  <div class="info">
+
+
+                <div class="movie-info">
+                    <h2 class="movie-title">${original_title}</h2>
+                    <div class="movie-description">
+                      <ul class="genres-list">
+                      ${genreNames.join(', ')}
+                      </ul>
+                      <p class="movie-date">${release_date.substring(0, 4)}</p>
+                    </div>
+                </div>
+  </div>
+</div>
+</a></li> 
+        `;
+    })
+    .join('');
+  container.insertAdjacentHTML('beforeend', markup);
+}
+
+// function releaseDate(year) {
+//   if (!year) 'No data';
+//   return year.slice(0, 4);
+// }
+
+function posterPath(poster) {
+  if (poster === null) {
+    return noImg;
+  }
+  return `https://image.tmdb.org/t/p/w500${poster}`;
+}
 
 //       if (release_date === undefined) {
 //         release_date = '';
@@ -133,3 +220,4 @@
 //     .join('');
 //   container.insertAdjacentHTML('beforeend', markup);
 // }
+
