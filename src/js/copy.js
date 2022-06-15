@@ -1,20 +1,14 @@
 import { renderList } from './js/render-list';
-import { renderMarkup } from './js/film-find';
 import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
 import './js/pagination';
-
-import './js/film-find';
-
 import './js/up-btn';
-
 import ApiService from './js/api';
 import { containerTui } from './js/pagination';
 import { paginationTotalItems } from './js/pagination';
-import { onFooterClick } from './js/modal-footer';
-import { onContainerClick } from './js/modal-movie';
-// import { onContainerClick } from './js/my-modal';
+import {onFooterClick} from './js/modal-footer'
+import { onContainerClick } from './js/my-modal';
 
 export let searchBy = '';
 export let queryForTui = '';
@@ -27,16 +21,17 @@ darkTheme();
 
 // Top movies
 function topMoviesRender() {
-  container.innerHTML = '';
+  container.innerHTML = "";
   apiData.getTopMovies().then(({ results }) => {
-
-  renderList(results, container);
+    renderList(results, container);
+  });
 }
-
 topMoviesRender();
+
 
 // Search movies
 function onFormSubmit(e) {
+
   e.preventDefault();
   apiData.query = e.currentTarget.elements.searchQuery.value.trim();
   queryForTui = apiData.query;
@@ -55,19 +50,11 @@ function onFormSubmit(e) {
           alert('not find');
         } else {
           container.innerHTML = '';
-          renderMarkup(results, container);
-          // renderList(results, container);
+          renderList(results, container);
           searchBy = 'search';
         }
       });
     getRefs().form.reset();
-
-    }
-
-   
-}
-
-
   }
 }
 
@@ -96,6 +83,7 @@ function onLogoClick(e) {
 function onHomeBtnClick(e) {
   e.preventDefault();
   onShowHome();
+
   topMoviesRender();
   getRefs().pagination.classList.remove('pagination-off');
 }
@@ -107,6 +95,7 @@ function onMyLybraryBtnClick(e) {
   container.innerHTML = '';
 
   getRefs().pagination.classList.add('pagination-off');
+
 }
 
 function onWatchedBtnClick() {
@@ -120,8 +109,5 @@ function onQueueBtnClick() {
   if (getRefs().watchedBtn.classList.contains('active-btn')) {
     getRefs().watchedBtn.classList.remove('active-btn');
 
-  }}
-
   }
-}
-
+  };

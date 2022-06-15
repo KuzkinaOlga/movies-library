@@ -11,6 +11,7 @@ function renderGenres(genre_ids) {
 
 export function renderList(hits, container) {
 
+
     const markup = hits.map(({ id, poster_path, original_title, genre_ids, release_date }) => {
       
       let genres = renderGenres(genre_ids);
@@ -30,8 +31,26 @@ export function renderList(hits, container) {
         // console.log(genre_ids.forEach((item)=>console.log(item)))
 
    return  `<a class="post" data-id=${id}>
+
+  const markup = hits
+    .map(({ id, poster_path, original_title, genres, release_date }) => {
+      // console.log(genre_ids)
+      // let elem ;
+      // getGanres().then((genres) => {
+      //     genre_ids.forEach((elem) => { return elem = elem })
+      //     // console.log(elem )
+      //     genres.forEach((item) => {
+
+      //         if (item.id === elem) {
+      //     console.log(item.name)
+      //        }
+      //    }   )
+      // })
+      // console.log(genre_ids.forEach((item)=>console.log(item)))
+      return `<li class="card-list"><a class="post" data-id=${id}>
+
   <div class="photo-card">
-  <div class="thumb">
+
   <picture class="poster-thumb">
 
 
@@ -67,23 +86,22 @@ export function renderList(hits, container) {
                     </div>
                 </div>
   </div>
-  </div>
 </div>
-</a>
-        `
+</a></li> 
+        `;
+    })
+    .join('');
+  container.insertAdjacentHTML('beforeend', markup);
+}
 
-      }).join('');
-      container.insertAdjacentHTML("beforeend", markup);
-  }
+function releaseDate(year) {
+  if (!year) 'No data';
+  return year.slice(0, 4);
+}
 
-  function releaseDate(year) {
-    if (!year)  'No data';
-    return year.slice(0, 4);
+function posterPath(poster) {
+  if (poster === null) {
+    return noImg;
   }
-
-  function posterPath(poster) {
-    if (poster === null) {
-      return noImg;
-    }
-    return `https://image.tmdb.org/t/p/w500${poster}`;
-  }
+  return `https://image.tmdb.org/t/p/w500${poster}`;
+}
