@@ -28,9 +28,9 @@ export function onContainerClick(event) {
   event.preventDefault();
   window.addEventListener('keydown', onImageClose);
 
-  apiMainMovie.getMainMovie( id).then(({title,genres, date, poster,about,populanty,vote, votes}) => {
+  apiMainMovie.getMainMovie(id).then(({title, genres, date, poster,about,populanty,vote, votes}) => {
   const ganreList = genres.map((ganre) => ganre.name).join(', ');
-  
+ 
     currentMovie = basicLightbox.create(`
     <div class="current-movie">
         <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
@@ -112,25 +112,5 @@ function onClickToAddToQueueBtn(event) {
   
 }
 
-export default function getDataTest(searchQuery) {
-    //let base = {};
-    return axios.get(`https://api.themoviedb.org/3/movie/55?api_key=${API_KEY}&language=en-US&query=${searchQuery}`)
-        .then(({ data }) =>{  
-            base = {
-                title: data.original_title,
-                genres: data.genres,
-                id: data.id,
-                date: data.release_date,
-                poster: data.poster_path,
-                about: data.overview,
-                populanty: data.popularity,
-                vote: data.vote_average,
-                votes: data.vote_count,
-            }
-          return base;
-          
-        }
-        )
-    }
 
 

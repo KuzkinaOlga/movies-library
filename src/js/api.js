@@ -17,14 +17,14 @@ export default class ApiService {
         }
        catch{Notify.failure("something went wrong")}
 }
-  async  getSearchMovies(searchQuery) {
-        try { 
-        const {data} =await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}`);
-        this.page += 1;
-        return data ; 
-        }
-        catch{Notify.failure("something went wrong")}
-}
+//   async  getSearchMovies(searchQuery) {
+//         try { 
+//         const {data} =await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}`);
+//         this.page += 1;
+//         return data ; 
+//         }
+//         catch{Notify.failure("something went wrong")}
+// }
 
   // async getGanres() {
   //   try {
@@ -38,7 +38,7 @@ export default class ApiService {
   async getMainMovie(searchQuery) {
     try {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/${searchQuery}?api_key=${API_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${searchQuery}?api_key=${API_KEY}`
       );
       const base = await {
         title: data.original_title,
@@ -51,7 +51,6 @@ export default class ApiService {
         vote: data.vote_average,
         votes: data.vote_count,
       };
-
       return base;
     } catch {Notify.failure("something went wrong")}
   }
