@@ -1,5 +1,5 @@
 import { renderList } from './js/render-list';
-// import { renderMarkup } from './js/film-find';
+import { renderMarkup } from './js/film-find';
 import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
@@ -27,7 +27,7 @@ function topMoviesRender() {
   container.innerHTML = '';
   apiData.getTopMovies().then(({ results }) => {
     renderList(results, container);
-  })
+  });
 }
 topMoviesRender();
 
@@ -57,7 +57,7 @@ function onFormSubmit(e) {
         }
       });
     getRefs().form.reset();
-    }   
+  }
 }
 
 // Main movie
@@ -106,7 +106,5 @@ function onWatchedBtnClick() {
 function onQueueBtnClick() {
   if (getRefs().watchedBtn.classList.contains('active-btn')) {
     getRefs().watchedBtn.classList.remove('active-btn');
-
-  }}
-
-
+  }
+}

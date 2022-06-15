@@ -2,7 +2,7 @@ import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.css';
 import axios from 'axios';
 // import { renderList } from './render-list';
-// import { renderMarkup } from './film-find';
+import { renderMarkup } from './film-find';
 import { getRefs } from './get-refs';
 import { searchBy, queryForTui } from '../index';
 
