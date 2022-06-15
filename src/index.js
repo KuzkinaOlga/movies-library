@@ -32,33 +32,33 @@ function topMoviesRender() {
 topMoviesRender();
 
 // Search movies
-function onFormSubmit(e) {
-  e.preventDefault();
-  apiData.query = e.currentTarget.elements.searchQuery.value.trim();
-  queryForTui = apiData.query;
-  if (!apiData.query) {
-    alert('Please enter name movie');
-    return;
-  } else {
-    apiData
-      .getSearchMovies(apiData.query)
-      .then(({ results, total_results }) => {
-        if (total_results > 20) {
-          paginationTotalItems(total_results);
-          containerTui.classList.remove('visually-hidden');
-        }
-        if (results.length === 0) {
-          alert('not find');
-        } else {
-          container.innerHTML = '';
-          renderMarkup(results, container);
-          // renderList(results, container);
-          searchBy = 'search';
-        }
-      });
-    getRefs().form.reset();
-  }
-}
+// function onFormSubmit(e) {
+//   e.preventDefault();
+//   apiData.query = e.currentTarget.elements.searchQuery.value.trim();
+//   queryForTui = apiData.query;
+//   if (!apiData.query) {
+//     alert('Please enter name movie');
+//     return;
+//   } else {
+//     apiData
+//       .getSearchMovies(apiData.query)
+//       .then(({ results, total_results }) => {
+//         if (total_results > 20) {
+//           paginationTotalItems(total_results);
+//           containerTui.classList.remove('visually-hidden');
+//         }
+//         if (results.length === 0) {
+//           alert('not find');
+//         } else {
+//           container.innerHTML = '';
+//           renderMarkup(results, container);
+//           // renderList(results, container);
+//           searchBy = 'search';
+//         }
+//       });
+//     getRefs().form.reset();
+//   }
+// }
 
 // Main movie
 container.addEventListener('click', onContainerClick);
