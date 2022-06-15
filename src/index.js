@@ -4,11 +4,8 @@ import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
 import './js/pagination';
-
 import './js/film-find';
-
 import './js/up-btn';
-
 import ApiService from './js/api';
 import { containerTui } from './js/pagination';
 import { paginationTotalItems } from './js/pagination';
@@ -29,10 +26,9 @@ darkTheme();
 function topMoviesRender() {
   container.innerHTML = '';
   apiData.getTopMovies().then(({ results }) => {
-
-  renderList(results, container);
+    renderList(results, container);
+  })
 }
-
 topMoviesRender();
 
 // Search movies
@@ -61,14 +57,7 @@ function onFormSubmit(e) {
         }
       });
     getRefs().form.reset();
-
-    }
-
-   
-}
-
-
-  }
+    }   
 }
 
 // Main movie
@@ -103,9 +92,7 @@ function onHomeBtnClick(e) {
 function onMyLybraryBtnClick(e) {
   e.preventDefault();
   onShowMyLibrary();
-
   container.innerHTML = '';
-
   getRefs().pagination.classList.add('pagination-off');
 }
 
@@ -122,6 +109,4 @@ function onQueueBtnClick() {
 
   }}
 
-  }
-}
 
