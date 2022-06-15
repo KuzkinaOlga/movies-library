@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 // import { getRefs } from './js/get-refs';
 const searchFilm = document.querySelector('#search-form');
@@ -147,3 +148,4 @@ function posterPath(poster) {
   }
   return `https://image.tmdb.org/t/p/w500${poster}`;
 }
+
