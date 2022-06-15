@@ -4,7 +4,11 @@ import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
 import './js/pagination';
+
+import './js/film-find';
+
 import './js/up-btn';
+
 import ApiService from './js/api';
 import { containerTui } from './js/pagination';
 import { paginationTotalItems } from './js/pagination';
@@ -25,9 +29,10 @@ darkTheme();
 function topMoviesRender() {
   container.innerHTML = '';
   apiData.getTopMovies().then(({ results }) => {
-    renderList(results, container);
-  });
+
+  renderList(results, container);
 }
+
 topMoviesRender();
 
 // Search movies
@@ -56,6 +61,13 @@ function onFormSubmit(e) {
         }
       });
     getRefs().form.reset();
+
+    }
+
+   
+}
+
+
   }
 }
 
@@ -84,7 +96,6 @@ function onLogoClick(e) {
 function onHomeBtnClick(e) {
   e.preventDefault();
   onShowHome();
-
   topMoviesRender();
   getRefs().pagination.classList.remove('pagination-off');
 }
@@ -108,5 +119,9 @@ function onWatchedBtnClick() {
 function onQueueBtnClick() {
   if (getRefs().watchedBtn.classList.contains('active-btn')) {
     getRefs().watchedBtn.classList.remove('active-btn');
+
+  }}
+
   }
 }
+
