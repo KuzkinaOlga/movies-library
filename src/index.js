@@ -1,5 +1,5 @@
 import { renderList } from './js/render-list';
-// import { renderMarkup } from './js/film-find';
+import { renderMarkup } from './js/film-find';
 import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
