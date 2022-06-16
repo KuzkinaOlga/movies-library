@@ -3,7 +3,6 @@ import { getRefs } from './get-refs';
 const searchFilm = getRefs().searchMovie;
 const galleryList = getRefs().gallery;
 const incorrectInput = getRefs().incorrectInput;
-// let gengesArray = [];
 import { renderList } from './render-list';
 import ApiService from './api';
 const getFilm = new ApiService();
@@ -12,28 +11,31 @@ export let queryForTui = '';
 
 //  onFormSubmit
 searchFilm.addEventListener('submit', onFormSubmit);
+
 function onFormSubmit(e) {
   e.preventDefault();
   getFilm.value = e.currentTarget.elements.searchQuery.value.trim();
   queryForTui = getFilm.value;
 
+  // incorrectInputAnimation();
   if (!getFilm.value) {
+    setTimeout(() => {
+      incorrectInput.classList.add('is-hidden');
+    }, 4000);
     return incorrectInput.classList.remove('is-hidden');
   }
 
-
   getFilm.getSearchMovies(getFilm.value).then(({ results }) => {
-    console.log(results.length);
-    if (results.length > 1) {
-      console.log(results.length);
-      incorrectInput.classList.add('is-hidden');
-    } else {
+    // incorrectInputAnimation();
+    if (results.length < 1) {
+      setTimeout(() => {
+        incorrectInput.classList.add('is-hidden');
+      }, 4000);
       return incorrectInput.classList.remove('is-hidden');
     }
-
-
     galleryList.innerHTML = '';
     return renderList(results, galleryList);
   });
+  // clear input value
+  e.currentTarget.elements.searchQuery.value = '';
 }
-
