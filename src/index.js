@@ -13,7 +13,9 @@ import { onFooterClick } from './js/modal-footer';
 import { onContainerClick } from './js/modal-movie';
 // import { onContainerClick } from './js/my-modal';
 import {showWarningNoName} from './js/warning'
-
+import {getWatchinLocal} from './js/my-libruary'
+import { load } from './js/my-libruary'
+load()
 export let searchBy = '';
 export let queryForTui = '';
 const apiData = new ApiService();
@@ -65,6 +67,7 @@ function onMyLybraryBtnClick(e) {
   onShowMyLibrary();
   container.innerHTML = '';
   getRefs().pagination.classList.add('pagination-off');
+  getWatchinLocal();
 }
 
 function onWatchedBtnClick() {
