@@ -5,6 +5,7 @@ import axios from 'axios';
 import { renderMarkup } from './film-find';
 import { getRefs } from './get-refs';
 import { searchBy, queryForTui } from '../index';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const container = getRefs().gallery;
 export const containerTui = document.getElementById('tui-pagination-container');
@@ -16,7 +17,7 @@ let value = '';
 let currentPage = 1;
 
 const options = {
-  totalItems: 20000,
+  totalItems: 19980,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
@@ -67,12 +68,20 @@ pagination.on('afterMove', e => {
 async function paginationSearch(url) {
   try {
     //------------ start Loader
+    Loading.arrows({
+      svgColor: '#ff6b08',
+      backgroundColor: 'rgba(0,0,0,0.25)',
+      cssAnimation: true,
+      cssAnimationDuration: 2000,
+      clickToClose: true,
+    });
     const data = await axios.get(url);
     const result = await data.data;
     const results = await result.results;
     // renderList(results, container);
     renderMarkup(results, container);
-    //----------- stop Loader
+     //----------- stop Loader
+     Loading.remove();
     containerTui.classList.remove('visually-hidden');
   } catch (error) {
     console.error(error);
