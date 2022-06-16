@@ -8,7 +8,8 @@ function renderGenres(genre_ids) {
 }
 
 export function renderList(hits, container) {
-    const markup = hits.map(({ id, poster_path, original_title, genre_ids, release_date }) => {
+  const markup = hits
+    .map(({ id, poster_path, original_title, genre_ids, release_date }) => {
       let genres = renderGenres(genre_ids);
 
       return `<li class="card-list"><a class="post" data-id=${id}>
@@ -59,7 +60,7 @@ export function renderList(hits, container) {
 }
 
 function releaseDate(year) {
-  if (!year) 'No data';
+  if (!year) return 'No data';
   return year.slice(0, 4);
 }
 

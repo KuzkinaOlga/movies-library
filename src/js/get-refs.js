@@ -4,6 +4,7 @@ export function getRefs() {
     gallery: document.querySelector('.gallery'),
     linkCard: document.querySelectorAll('.post'),
     searchMovie: document.querySelector('#search-form'),
+    incorrectInput: document.querySelector('.incorrect__input'),
     // galleryContainer: document.querySelector('.gallery>.container'),
 
     // Header Refs
