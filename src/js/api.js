@@ -10,7 +10,7 @@ axios.defaults.params = {
 };
 export default class ApiService {
   constructor() {
-    this.searchQuery = '';
+    this.value = '';
     this.page = 1;
   }
 
@@ -30,19 +30,20 @@ export default class ApiService {
         catch{Notify.failure("Oops something went wrong")}
 }
 
-  // async getGanres() {
-  //   try {
-  //     const { data } = await axios.get(
-  //       `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
-  //     );
-  //     console.log(data);
-
-  //   } catch {Notify.failure("something went wrong")}
-  // }
-  async getMainMovie(searchQuery) {
+  async getGanres() {
     try {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/${searchQuery}?api_key=${API_KEY}`
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
+      );
+      return data;
+
+    } catch { Notify.failure("Oops something went wrong") }
+    
+  }
+  async getMainMovie(value) {
+    try {
+      const { data } = await axios.get(
+        `https://api.themoviedb.org/3/movie/${value}?api_key=${API_KEY}`
       );
       const base = await {
         title: data.original_title,
@@ -62,10 +63,10 @@ export default class ApiService {
     this.page = 1;
   }
   get query() {
-    return this.searchQuery;
+    return this.value;
   }
   set query(newQuery) {
-    this.searchQuery = newQuery;
+    this.searchQuery = value;
   }
     }
-  
+ 

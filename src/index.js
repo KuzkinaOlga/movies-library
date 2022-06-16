@@ -12,6 +12,7 @@ import { paginationTotalItems } from './js/pagination';
 import { onFooterClick } from './js/modal-footer';
 import { onContainerClick } from './js/modal-movie';
 // import { onContainerClick } from './js/my-modal';
+import {showWarningNoName} from './js/warning'
 
 export let searchBy = '';
 export let queryForTui = '';
