@@ -2,18 +2,23 @@ import * as basicLightbox from 'basiclightbox'
 
 import { getRefs } from './get-refs';
 import axios from "axios";
+
 import Notiflix from 'notiflix';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
+
 import ApiService from './api';
+
 
 const apiMainMovie = new ApiService();
 const container = getRefs().gallery;
 container.addEventListener('click', onContainerClick);
 
+
 let ADD_TO_WATCHED_FILM = "add-to-watched-film";
 let ADD_TO_QUEUE_FILM = "add-to-queue-film";
+
 
 let currentMovie = '';
 let addToWachedFilms = [];
@@ -28,9 +33,9 @@ export function onContainerClick(event) {
   event.preventDefault();
   window.addEventListener('keydown', onImageClose);
 
-  apiMainMovie.getMainMovie( id).then(({title,genres, date, poster,about,populanty,vote, votes}) => {
+  apiMainMovie.getMainMovie(id).then(({title, genres, date, poster,about,populanty,vote, votes}) => {
   const ganreList = genres.map((ganre) => ganre.name).join(', ');
-  
+ 
     currentMovie = basicLightbox.create(`
     <div class="current-movie">
         <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
@@ -103,5 +108,31 @@ export function onContainerClick(event) {
       window.removeEventListener('keydown', onImageClose); 
     }
   }
+
+
+
+function onClickToAddToWatchedBtn(event) {
+
+  getDataTest().then((film) => {
+    console.log(film);
+    localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(film));
+    
+    // if () {
+    //    Notiflix.Notify.failure(`Sorry, there are no images matching your search query. Please try again.`);
+    // }
+
+  });
+ 
+}
+
+function onClickToAddToQueueBtn(event) {
+
+    getDataTest().then((film) => {
+    console.log(film);
+      localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(film));
+  });
+  
+}
+
 
 
