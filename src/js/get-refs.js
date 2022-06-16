@@ -3,6 +3,7 @@ export function getRefs() {
     // containerMovies: document.querySelector('.collection'),
     gallery: document.querySelector('.gallery'),
     linkCard: document.querySelectorAll('.post'),
+    searchMovie: document.querySelector('#search-form'),
     // galleryContainer: document.querySelector('.gallery>.container'),
 
     // Header Refs
@@ -15,6 +16,7 @@ export function getRefs() {
     myLibraryBtns: document.querySelector('.js-librari-list'),
     watchedBtn: document.querySelector('.js-watched-btn'),
     queueBtn: document.querySelector('.js-queue-btn'),
+
     // Pagination-Tui
     pagination: document.querySelector('.tui-pagination'),
 

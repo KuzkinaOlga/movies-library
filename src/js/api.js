@@ -3,7 +3,11 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
-
+axios.defaults.params = {
+  api_key: API_KEY,
+  language: 'en-US',
+  include_adult: 'false',
+};
 export default class ApiService {
   constructor() {
     this.searchQuery = '';
@@ -15,16 +19,16 @@ export default class ApiService {
         const {data} =await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
         return data; 
         }
-       catch{Notify.failure("something went wrong")}
+       catch{Notify.failure("Oops something went wrong")}
 }
-//   async  getSearchMovies(searchQuery) {
-//         try { 
-//         const {data} =await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}`);
-//         this.page += 1;
-//         return data ; 
-//         }
-//         catch{Notify.failure("something went wrong")}
-// }
+  async  getSearchMovies(searchQuery) {
+        try { 
+        const {data} =await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchQuery}`);
+        this.page += 1;
+        return data ; 
+        }
+        catch{Notify.failure("Oops something went wrong")}
+}
 
   // async getGanres() {
   //   try {
@@ -52,7 +56,7 @@ export default class ApiService {
         votes: data.vote_count,
       };
       return base;
-    } catch {Notify.failure("something went wrong")}
+    } catch {Notify.failure("Oops something went wrong")}
   }
   resetPage() {
     this.page = 1;
