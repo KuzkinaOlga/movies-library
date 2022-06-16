@@ -20,7 +20,7 @@ export default class GetFilms {
   }
 
   async fetchFilm() {
-    return await axios.get(`/?&query=${this.searchValue}&page=${this.page}`);
+    return await axios.get(`?&query=${this.searchValue}&page=${this.page}`);
   }
   async fetchFilmGenres() {
     return await fetch(
