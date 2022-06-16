@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 // import { getRefs } from './js/get-refs';
 const searchFilm = document.querySelector('#search-form');

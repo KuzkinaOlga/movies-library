@@ -275,8 +275,7 @@
 
 .incorrect__input {
   position: absolute;
-  color: #ff001b;
-  // color: transparent;
+  color: transparent;
   width: 120%;
   top: 200%;
   left: 50%;
@@ -288,10 +287,26 @@
   line-height: 1.14;
   align-items: center;
   text-align: center;
-  //animation-name: textColor;
+  animation-name: incorrectTextInputAnimation;
+  animation-duration: 5000ms;
   @media screen and (max-width: 768px) {
     top: 230%;
     width: 100%;
     left: 50%;
+  }
+}
+
+@keyframes incorrectTextInputAnimation {
+  0% {
+    opacity: 1;
+    color: #ff001b;
+  }
+  50% {
+    opacity: 1;
+    color: #ff001b;
+  }
+  100% {
+    opacity: 0;
+    color: #ff001b;
   }
 }
