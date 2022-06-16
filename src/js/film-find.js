@@ -7,7 +7,9 @@ const galleryList =  getRefs().gallery;
 import { renderList } from './render-list';
 import ApiService from './api';
 const getFilm = new ApiService();
-
+import { containerTui,  paginationTotalItems} from './pagination';
+export let searchBy = '';
+export let queryForTui = '';
 // const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
 // axios.defaults.baseURL = 'https://api.themoviedb.org/3/search/movie/';
 // axios.defaults.params = {
@@ -64,12 +66,18 @@ searchFilm.addEventListener('submit', onFormSubmit);
 function onFormSubmit(e) {
   e.preventDefault();
   getFilm.value = e.currentTarget.elements.searchQuery.value.trim();
+  queryForTui = getFilm.value;
 
   if (!getFilm.value) {
     return alert('Not correct search key');
   }
   // get searchFilm
-  getFilm.getSearchMovies(getFilm.value).then(({results}) => {
+  getFilm.getSearchMovies(getFilm.value).then(({results, total_results}) => {
+    if (total_results > 20) {
+      paginationTotalItems(total_results);
+      searchBy = 'search';
+      containerTui.classList.remove('visually-hidden');
+    }
     galleryList.innerHTML = '';
     return renderList(results, galleryList);
   });
@@ -132,7 +140,7 @@ function onFormSubmit(e) {
 //                 </div>
 //   </div>
 // </div>
-// </a></li> 
+// </a></li>
 //         `;
 //     })
 //     .join('');

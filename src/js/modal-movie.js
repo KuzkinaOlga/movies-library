@@ -2,7 +2,11 @@ import * as basicLightbox from 'basiclightbox'
 
 import { getRefs } from './get-refs';
 import axios from "axios";
-// import Notiflix from 'notiflix';
+
+import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+
 
 import ApiService from './api';
 
@@ -12,8 +16,9 @@ const container = getRefs().gallery;
 container.addEventListener('click', onContainerClick);
 
 
-const ADD_TO_WATCHED_FILM = "add-to-watched-film";
-const ADD_TO_QUEUE_FILM = "add-to-queue-film";
+let ADD_TO_WATCHED_FILM = "add-to-watched-film";
+let ADD_TO_QUEUE_FILM = "add-to-queue-film";
+
 
 let currentMovie = '';
 let addToWachedFilms = [];
@@ -65,16 +70,33 @@ export function onContainerClick(event) {
 
   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
   
-    btnAddToWatched.addEventListener("click", (() => {
+  btnAddToWatched.addEventListener("click", (() => {
       
-      //let currentMovieInfo = { title, genres, date, poster, about, populanty, vote, votes };
-      addToWachedFilms.push({ title, genres, date, poster, about, populanty, vote, votes });
-      localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
+    let currentMovieInfo = { title, genres, date, poster, about, populanty, vote, votes };
+    addToWachedFilms.push(currentMovieInfo);
+    localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
+    document.querySelector(".current-movie_btn-add-to-watched").disabled = true;
 
+    if (addToWachedFilms.includes(currentMovieInfo)) {
+      Notify.warning('You have already added this movie to Add to Queue');
+    }
+
+
+    
   }));
   btnAddToQueue.addEventListener("click", (() => {   
+
+      let currentMovieInfo = { title, genres, date, poster, about, populanty, vote, votes};
+
       addToQueueFilms.push({title,genres, date, poster,about,populanty,vote, votes});
       localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(addToQueueFilms));
+    if (addToQueueFilms.find((film) => film.currentMovieInfo !== currentMovieInfo)) {
+
+      Notify.warning('You have already added this movie to Add to Queue');
+      document.querySelector(".current-movie_btn-add-to-queue").disabled = true;
+
+      //return;
+    }
 
   })); 
   });
