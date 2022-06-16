@@ -1,12 +1,12 @@
 
 // import axios from 'axios';
-// import { getRefs } from './get-refs';
-// const searchFilm = getRefs().searchMovie;
-// const galleryList =  getRefs().gallery;
-// // let gengesArray = [];
-// import { renderList } from './render-list';
-// import ApiService from './api';
-// const getFilm = new ApiService();
+import { getRefs } from './get-refs';
+const searchFilm = getRefs().searchMovie;
+const galleryList =  getRefs().gallery;
+// let gengesArray = [];
+import { renderList } from './render-list';
+import ApiService from './api';
+const getFilm = new ApiService();
 
 // const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
 // axios.defaults.baseURL = 'https://api.themoviedb.org/3/search/movie/';
