@@ -1,7 +1,7 @@
 import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.css';
 import axios from 'axios';
-// import { renderList } from './render-list';
+import { renderList } from './render-list';
 // import { renderMarkup } from './film-find';
 import { getRefs } from './get-refs';
 import { searchBy, queryForTui } from '../index';
@@ -78,9 +78,9 @@ async function paginationSearch(url) {
     const data = await axios.get(url);
     const result = await data.data;
     const results = await result.results;
-    // renderList(results, container);
-    renderMarkup(results, container);
-     //----------- stop Loader
+    renderList(results, container);
+    // renderMarkup(results, container);
+    //  //----------- stop Loader
      Loading.remove();
     containerTui.classList.remove('visually-hidden');
   } catch (error) {
