@@ -4,7 +4,7 @@ import axios from 'axios';
 import { renderList } from './render-list';
 // import { renderMarkup } from './film-find';
 import { getRefs } from './get-refs';
-import { searchBy, queryForTui } from '../index';
+import { searchBy, queryForTui } from './film-find';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const container = getRefs().gallery;
