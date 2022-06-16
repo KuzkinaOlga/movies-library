@@ -72,28 +72,29 @@ export function onContainerClick(event) {
   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
   
   btnAddToWatched.addEventListener("click", (() => {
-    // container.innerHTML = "";
+   
     let currentMovieInfo = { id: id, original_title: title, release_date: date, poster_path: poster, genre_ids: genre_ids };
     // console.log(currentMovieInfo.id) 
     const dataWatchinMovie = JSON.parse(localStorage.getItem("add-to-watched-film"));
   
-    if (dataWatchinMovie !== null) {
+    // if (dataWatchinMovie !== null) {
        
-      dataWatchinMovie.find(({ id }) => {
-        console.log(id)
-        // console.log(currentMovieInfo.id)
-        // id===currentMovieInfo.id
-       if (id === currentMovieInfo.id) {
-         return Notify.warning('You have already added this movie to Add to Queue');
-       }
-       else {
-         addToWachedFilms.push(currentMovieInfo);
+    //   dataWatchinMovie.find(({ id }) => {
+    //     console.log(id)
+    //     // console.log(currentMovieInfo.id)
+    //     // id===currentMovieInfo.id
+    //    if (id === currentMovieInfo.id) {
+    //      return Notify.warning('You have already added this movie to Add to Queue');
+    //    }
+    //    else {
+       
+    //    }
+    // } );
+      
+    // }
+    addToWachedFilms.push(currentMovieInfo);
       document.querySelector(".current-movie_btn-add-to-watched").disabled = true;
       localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
-       }
-    } );
-      
-    } 
 
     // if (dataWatchinMovie === null) {
     //   addToWachedFilms.push(currentMovieInfo);
@@ -103,9 +104,9 @@ export function onContainerClick(event) {
     
   
     
-       addToWachedFilms.push(currentMovieInfo);
-    localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
-    document.querySelector(".current-movie_btn-add-to-watched").disabled = true;
+    //    addToWachedFilms.push(currentMovieInfo);
+    // localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
+    // document.querySelector(".current-movie_btn-add-to-watched").disabled = true;
     
   }));
   btnAddToQueue.addEventListener("click", (() => {   
