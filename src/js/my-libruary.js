@@ -1,16 +1,19 @@
-// export function getWatchinLocal() {
-//     const WathinData = JSON.parse(localStorage.getItem("ADD_TO_WATCHED_FILM"));
-//     console.log(WathinData)}
-export function load  ()  {
+
+import { getRefs } from './get-refs';
+import { renderList } from './render-list';
+const container = getRefs().gallery;
+export function getWatchinLocal() {
+     container.innerHTML = "";
   try {
-    const serializedState = localStorage.getItem("ADD_TO_WATCHED_FILM");
-    console.log(serializedState === null ? undefined : JSON.parse(serializedState)) ;
-  } catch (error) {
-    console.error("Get state error: ", error.message);
+      const dataWatchinMovie = JSON.parse(localStorage.getItem("add-to-watched-film"));
+      if (!dataWatchinMovie) {
+          return;
+      }
+      renderList(dataWatchinMovie, container);
   }
+  catch (error) {
+    console.error("Get state error: ", error.message);
+    }
 };
 
-// export default {
-//   load
-// };
 

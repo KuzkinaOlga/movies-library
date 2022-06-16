@@ -13,9 +13,9 @@ import { onFooterClick } from './js/modal-footer';
 import { onContainerClick } from './js/modal-movie';
 // import { onContainerClick } from './js/my-modal';
 import {showWarningNoName} from './js/warning'
-// import {getWatchinLocal} from './js/my-libruary'
-import { load } from './js/my-libruary'
-load()
+import {getWatchinLocal} from './js/my-libruary'
+
+
 export let searchBy = '';
 export let queryForTui = '';
 const apiData = new ApiService();
@@ -44,8 +44,8 @@ foterLink.addEventListener('click', onFooterClick);
 getRefs().logo.addEventListener('click', onLogoClick);
 getRefs().homeBtn.addEventListener('click', onHomeBtnClick);
 getRefs().myLibraryBtn.addEventListener('click', onMyLybraryBtnClick);
-getRefs().watchedBtn.addEventListener('click', onWatchedBtnClick);
-getRefs().queueBtn.addEventListener('click', onQueueBtnClick);
+// getRefs().watchedBtn.addEventListener('click', onWatchedBtnClick);
+// getRefs().queueBtn.addEventListener('click', onQueueBtnClick);
 
 // Header functions
 function onLogoClick(e) {
@@ -59,6 +59,7 @@ function onHomeBtnClick(e) {
   e.preventDefault();
   onShowHome();
   topMoviesRender();
+  getWatchinLocal();
   getRefs().pagination.classList.remove('pagination-off');
 }
 
@@ -70,15 +71,18 @@ function onMyLybraryBtnClick(e) {
   getWatchinLocal();
 }
 
-function onWatchedBtnClick() {
-  if (getRefs().queueBtn.classList.contains('active-btn')) {
-    getRefs().queueBtn.classList.remove('active-btn');
-  }
-  getRefs().watchedBtn.classList.add('active-btn');
-}
+// function onWatchedBtnClick() {
+//   if (getRefs().queueBtn.classList.contains('active-btn')) {
+//     getRefs().queueBtn.classList.remove('active-btn');
+//   }
+//   getRefs().watchedBtn.classList.add('active-btn');
+//   container.innerHTML = '';
+//   getWatchinLocal();
+// }
 
-function onQueueBtnClick() {
-  if (getRefs().watchedBtn.classList.contains('active-btn')) {
-    getRefs().watchedBtn.classList.remove('active-btn');
-  }
-}
+// function onQueueBtnClick() {
+//   if (getRefs().watchedBtn.classList.contains('active-btn')) {
+//     getRefs().watchedBtn.classList.remove('active-btn');
+//   }
+//   container.innerHTML = '';
+// }
