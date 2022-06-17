@@ -1,113 +1,80 @@
-import axios from "axios";
+import axios from 'axios';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
-
+axios.defaults.params = {
+  api_key: API_KEY,
+  language: 'en-US',
+  include_adult: 'false',
+};
 export default class ApiService {
-    constructor() {
-      this.searchQuery = '';
-      this.page = 1;
+  constructor() {
+    this.value = '';
+    this.page = 1;
+  }
+
+  async getTopMovies() {
+    try {
+      const { data } = await axios.get(
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
+      );
+      return data;
+    } catch {
+      Notify.failure('Oops something went wrong');
     }
-    async  getTopMovies() {
-        try { 
-        const {data} =await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
-        return data; 
-        }
-        catch{console.log('error')}
-}
-    async  getSearchMovies(searchQuery) {
-        try { 
-        const {data} =await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}`);
-        this.page += 1;
-        return data ; 
-        }
-        catch{}
-}
+  }
+  async getSearchMovies(searchQuery) {
+    try {
+      const { data } = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchQuery}`
+      );
+      this.page += 1;
+      return data;
+    } catch {
+      Notify.failure('Oops something went wrong');
+    }
+  }
+
   async getGanres() {
     try {
-      const { data } = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
-      console.log(data);
+      const { data } = await axios.get(
+        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
+      );
+      return data;
+    } catch {
+      Notify.failure('Oops something went wrong');
     }
-    catch { }
   }
-    async getMainMovie(searchQuery) {
-        try {
-          const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${searchQuery}?api_key=${API_KEY}&language=en-US`);
-          const base = await {
-            title: data.original_title,
-            genres: data.genres,
-            id: data.id,
-            date: data.release_date,
-            poster: data.poster_path,
-            about: data.overview,
-            populanty: data.popularity,
-            vote: data.vote_average,
-            votes: data.vote_count
-          };
 
-       return base;
-      }
-        catch { }
-}
-    resetPage() {
-       this.page = 1; 
+  async getMainMovie(value) {
+    try {
+      const { data } = await axios.get(
+        `https://api.themoviedb.org/3/movie/${value}?api_key=${API_KEY}`
+      );
+      const base = await {
+        title: data.original_title,
+        genres: data.genres,
+        id: data.id,
+        date: data.release_date,
+        poster: data.poster_path,
+        about: data.overview,
+        populanty: data.popularity,
+        vote: data.vote_average,
+        votes: data.vote_count,
+      };
+      return base;
+    } catch {
+      Notify.failure('Oops something went wrong');
     }
-    get query() {
-      return  this.searchQuery;
-    };
-    set query(newQuery) {
-        this.searchQuery = newQuery;
-  };
-//    getCurrentPage() {
-//     return this.page;
-//   };
-//   getPer_page() {
-//     return this.per_page;
-//   }
+  }
+  resetPage() {
+    this.page = 1;
+  }
+  get query() {
+    return this.value;
+  }
+  set query(newQuery) {
+    this.searchQuery = value;
+  }
 }
-
-// export default function getDataTest() {
-//     let base = {};
-//     return axios.get(`https://api.themoviedb.org/3/movie/55?api_key=${API_KEY}`)
-//         .then(({ data }) =>{  
-//             base = {
-//                 title: data.original_title,
-//                 genres: data.genres,
-//                 id: data.id,
-//                 date: data.release_date,
-//                 poster: data.poster_path,
-//                 about: data.overview,
-//                 populanty: data.popularity,
-//                 vote: data.vote_average,
-//                 votes: data.vote_count
-//             }
-//             return base;
-//         }
-//         )
-//     }
-       
-
-// export async function getTopMovies() {
-//     try { 
-//         const {data} =await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
-// //       this.page += 1;
-//       return data; 
-//     }
-//     catch{console.log('error')}
-// }
-
-// export async function getSearchMovies(searchQuery) {
-//     try { 
-//         const {data} =await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}`);
-// //       this.page += 1;
-//       return data ; 
-//     }
-//     catch{}
-// }
-
-// export function getGanres() {
-//     return axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`)
-//         .then(({ data }) => {
-//             return data.genres 
-//         })
-// }
-

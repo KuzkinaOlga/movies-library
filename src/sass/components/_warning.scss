@@ -1,0 +1,29 @@
+.search-warning{
+    position: absolute;
+    text-align: center;
+    bottom:15%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 1.14;
+    color: #FF001B;
+     animation-name           : message;
+     animation-duration       : 3.2s;
+      @keyframes message {
+       50% {
+         opacity: 1;
+       }
+       100% {
+         opacity: 0;
+       }
+     }
+    @media screen and (min-width: 768px) {
+        font-size: 14px;
+    }
+     @media screen and (min-width: 1024px) {
+        bottom:20%;
+    }
+}

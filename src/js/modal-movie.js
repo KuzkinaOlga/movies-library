@@ -62,6 +62,7 @@ export function onContainerClick(event) {
   currentMovie.show();
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue"); 
+
   const currentMovieInfo = { id: id, original_title: title, release_date: date, poster_path: poster, genre_ids: genre_ids, vote_average: vote,
         vote_count: votes };
     const dataWatchinMovie = JSON.parse(localStorage.getItem("add-to-watched-film")) || addToWachedFilms;
@@ -79,6 +80,7 @@ export function onContainerClick(event) {
          return Notify.warning('You have already added this movie to Watched')
         }
         Notify.success('You added this movie to Watched')
+
         dataWatchinMovie.push(currentMovieInfo);
         localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
     }));
@@ -86,6 +88,7 @@ export function onContainerClick(event) {
 
     btnAddToQueue.addEventListener("click", (() => {  
      
+
       const unicIdQ = dataQueueMovie.map(({ id }) => {
         if (id === currentMovieInfo.id) {  
             return true;
@@ -99,6 +102,7 @@ export function onContainerClick(event) {
         dataQueueMovie.push(currentMovieInfo);
         localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(dataQueueMovie));
     })); 
+
   });
 }
 

@@ -3,7 +3,6 @@
   <section
     class="js-header-container header__container header__home-padding header__home-bg"
   >
-
     <!-- Dark theme component -->
     <include src="./partials/dark-theme.html"></include>
     <!-- Nav Bar -->
@@ -36,8 +35,11 @@
         type="text"
         name="searchQuery"
         autocomplete="off"
-        placeholder="Поиск фильмов"
+        placeholder="Search films or genres"
       />
+      <span class="incorrect__input is-hidden"
+        >Search result not successful. Enter the correct movie name</span
+      >
       <button class="form__button" type="submit">
         <img
           src="./images/search.svg"

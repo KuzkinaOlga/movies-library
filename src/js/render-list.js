@@ -1,24 +1,19 @@
-import { getGanres } from './api.js';
 import noImg from '../images/no-poster-available.jpeg';
+import { genresAddOthers } from './genres';
 
-// getTopMovies().then(({results})=>console.log(results))
+function renderGenres(genre_ids) {
+  return genresAddOthers(genre_ids)
+    .map(genre => `<li class="movie-genres">${genre}</li>`)
+    .join(' ,');
+}
+
 export function renderList(hits, container) {
+  const markup = hits
+    .map(({ id, poster_path, original_title, genre_ids, release_date }) => {
+      let genres = renderGenres(genre_ids);
 
-    const markup = hits.map(({ id, poster_path, original_title, genres, release_date }) => {
-        // console.log(genre_ids)
-        // let elem ;
-        // getGanres().then((genres) => {
-        //     genre_ids.forEach((elem) => { return elem = elem })
-        //     // console.log(elem )
-        //     genres.forEach((item) => {
+      return `<li class="card-list"><a class="post" data-id=${id}>
 
-        //         if (item.id === elem) {
-        //     console.log(item.name)
-        //        }
-        //    }   )
-        // })
-        // console.log(genre_ids.forEach((item)=>console.log(item)))
-   return  `<li class="card-list"><a class="post" data-id=${id}>
   <div class="photo-card">
 
   <picture class="poster-thumb">
@@ -58,20 +53,20 @@ export function renderList(hits, container) {
   </div>
 </div>
 </a></li> 
-        `
+        `;
+    })
+    .join('');
+  container.insertAdjacentHTML('beforeend', markup);
+}
 
-      }).join('');
-      container.insertAdjacentHTML("beforeend", markup);
-  }
+function releaseDate(year) {
+  if (!year) return 'No data';
+  return year.slice(0, 4);
+}
 
-  function releaseDate(year) {
-    if (!year)  'No data';
-    return year.slice(0, 4);
+function posterPath(poster) {
+  if (poster === null) {
+    return noImg;
   }
-
-  function posterPath(poster) {
-    if (poster === null) {
-      return noImg;
-    }
-    return `https://image.tmdb.org/t/p/w500${poster}`;
-  }
+  return `https://image.tmdb.org/t/p/w500${poster}`;
+}

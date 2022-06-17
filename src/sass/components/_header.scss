@@ -1,8 +1,7 @@
 .header {
   // width: 100%;
-  
-&__home-bg {
-   
+
+  &__home-bg {
     background-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.56),
@@ -64,8 +63,6 @@
       padding-bottom: 56px;
     }
   }
-
-  
 
   &__library-bg {
     background-image: linear-gradient(
@@ -219,7 +216,7 @@
   }
 
   &__input::placeholder {
-    color: white;
+    color: rgb(109, 109, 109);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.2;
@@ -274,4 +271,42 @@
 
 .is-hidden {
   display: none;
+}
+
+.incorrect__input {
+  position: absolute;
+  color: transparent;
+  width: 120%;
+  top: 200%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+  align-items: center;
+  text-align: center;
+  animation-name: incorrectTextInputAnimation;
+  animation-duration: 5000ms;
+  @media screen and (max-width: 768px) {
+    top: 230%;
+    width: 100%;
+    left: 50%;
+  }
+}
+
+@keyframes incorrectTextInputAnimation {
+  0% {
+    opacity: 1;
+    color: #ff001b;
+  }
+  50% {
+    opacity: 1;
+    color: #ff001b;
+  }
+  100% {
+    opacity: 0;
+    color: #ff001b;
+  }
 }
