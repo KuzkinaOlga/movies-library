@@ -22,9 +22,9 @@ let ADD_TO_QUEUE_FILM_L = "add-to-queue-film";
 
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queuedBtn.addEventListener('click', onQueuedBtnClick);
-homeButton.addEventListener('click', onHomeBtnClick);
+homeButton.addEventListener('click', onHomeBtnClickn);
 
-function onHomeBtnClick(evt) {
+function onHomeBtnClickn(evt) {
     libraryPage.classList.add('js-is-hidden');
 }
 

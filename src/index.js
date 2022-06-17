@@ -13,7 +13,7 @@ import { onContainerClick } from './js/modal-movie';
 // import { onContainerClick } from './js/my-modal';
 
 import { showWarningNoName } from './js/warning'
-import { onWatchedBtnClick, onQueuedBtnClick, renderLibrary, onHomeBtnClick } from './js/library';
+import { onWatchedBtnClick, onQueuedBtnClick, renderLibrary, onHomeBtnClickn } from './js/library';
 
 export let searchBy = '';
 export let queryForTui = '';
