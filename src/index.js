@@ -11,10 +11,12 @@ import { paginationTotalItems } from './js/pagination';
 import { onFooterClick } from './js/modal-footer';
 import { onContainerClick } from './js/modal-movie';
 // import { onContainerClick } from './js/my-modal';
-// import { showWarningNoName } from './js/warning';
-// import { getWatchinLocal } from './js/my-libruary';
-// import { showWarningNoName } from './js/warning'
-// import { onWatchedBtnClick, onQueuedBtnClick, renderLibrary, onHomeBtnClick } from './js/library';
+
+import { showWarningNoName } from './js/warning'
+import { onWatchedBtnClick, onQueuedBtnClick, renderLibrary, onHomeBtnClick } from './js/library';
+
+
+
 
 export let searchBy = '';
 export let queryForTui = '';
@@ -77,7 +79,9 @@ function onWatchedBtnClick() {
     getRefs().queueBtn.classList.remove('active-btn');
   }
   getRefs().watchedBtn.classList.add('active-btn');
-  container.innerHTML = '';
+
+  // container.innerHTML = '';
+
   // getWatchinLocal();
 }
 
@@ -85,5 +89,5 @@ function onQueueBtnClick() {
   if (getRefs().watchedBtn.classList.contains('active-btn')) {
     getRefs().watchedBtn.classList.remove('active-btn');
   }
-  container.innerHTML = '';
+  // container.innerHTML = '';
 }
