@@ -1,9 +1,15 @@
-import genres from '../data/genres.json';
+import ApiService from './api';
+
+let genresData = [];
+const getFilmGenres = new ApiService();
+getFilmGenres.getGanres().then(res => {
+  genresData = res;
+});
 
 //Функция возвращает массив объектов жанров по id
 
 function searchGenresById(genre_ids) {
-  return genre_ids.map(id => genres.genres.find(g => g.id === id));
+  return genre_ids.map(id => genresData.genres.find(g => g.id === id));
 }
 
 //Если жанров больше 2, добавляет 3 - Other

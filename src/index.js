@@ -3,18 +3,16 @@ import { renderList } from './js/render-list';
 import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
-import './js/pagination';
 import './js/film-find';
 import './js/up-btn';
+import './js/fix';
 import ApiService from './js/api';
-import { containerTui } from './js/pagination';
 import { paginationTotalItems } from './js/pagination';
 import { onFooterClick } from './js/modal-footer';
 import { onContainerClick } from './js/modal-movie';
 // import { onContainerClick } from './js/my-modal';
-import {showWarningNoName} from './js/warning'
-import {getWatchinLocal} from './js/my-libruary'
-
+import { showWarningNoName } from './js/warning';
+import { getWatchinLocal } from './js/my-libruary';
 
 export let searchBy = '';
 export let queryForTui = '';
@@ -28,7 +26,9 @@ darkTheme();
 // Top movies
 function topMoviesRender() {
   container.innerHTML = '';
-  apiData.getTopMovies().then(({ results }) => {
+  apiData.getTopMovies().then(({ results, total_results }) => {
+    if (total_results > 19980) total_results = 19980;
+    paginationTotalItems(total_results);
     renderList(results, container);
   });
 }
