@@ -62,20 +62,25 @@ export function onContainerClick(event) {
   currentMovie.show();
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue"); 
-  const currentMovieInfo = { id: id, original_title: title, release_date: date, poster_path: poster, genre_ids: genre_ids };
-  const dataWatchinMovie = JSON.parse(localStorage.getItem("add-to-watched-film")) ||  addToWachedFilms ;
+
+  const currentMovieInfo = { id: id, original_title: title, release_date: date, poster_path: poster, genre_ids: genre_ids, vote_average: vote,
+        vote_count: votes };
+    const dataWatchinMovie = JSON.parse(localStorage.getItem("add-to-watched-film")) || addToWachedFilms;
+    const dataQueueMovie = JSON.parse(localStorage.getItem("add-to-queue-film")) || addToQueueFilms;
+    
 
     
     btnAddToWatched.addEventListener("click", (() => {
- const unicId = dataWatchinMovie.map(({ id }) => {
-        if (id === currentMovieInfo.id) {
-          return true
+      const unicId = dataWatchinMovie.map(({ id }) => {
+          if (id === currentMovieInfo.id) {
+            return true
+          }
+      });
+        if (unicId.find((item)=> item===true)) {
+         return Notify.warning('You have already added this movie to Watched')
         }
- });
-      if (unicId.find((item)=> item===true)) {
-      return Notify.warning('You have already added this movie to Add to Wathed')
-      }
-      Notify.success('You add movie to Wathed')
+        Notify.success('You added this movie to Watched')
+
         dataWatchinMovie.push(currentMovieInfo);
         localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
     }));
@@ -83,19 +88,21 @@ export function onContainerClick(event) {
 
     btnAddToQueue.addEventListener("click", (() => {  
      
-    const unicId = dataWatchinMovie.map(({ id }) => {
-        if (id === currentMovieInfo.id) {
-          return true;
+
+      const unicIdQ = dataQueueMovie.map(({ id }) => {
+        if (id === currentMovieInfo.id) {  
+            return true;
+          }
+      });
+      
+        if (unicIdQ.find((item)=> item===true)) {
+        return Notify.warning('You have already added this movie to Queue')
         }
-    });
-     
-      if (unicId.find((item)=> item===true)) {
-      return Notify.warning('You have already added this movie to Add to Queue')
-      }
-      Notify.success('You add movie to wathed')
-      dataWatchinMovie.push(currentMovieInfo);
-      localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(addToQueueFilms));
-  })); 
+        Notify.success('You added this movie to Queue')
+        dataQueueMovie.push(currentMovieInfo);
+        localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(dataQueueMovie));
+    })); 
+
   });
 }
 
