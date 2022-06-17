@@ -15,9 +15,9 @@ container.addEventListener('click', onContainerClick);
 let ADD_TO_WATCHED_FILM = "add-to-watched-film";
 let ADD_TO_QUEUE_FILM = "add-to-queue-film";
 
-let currentMovie = '';
-let addToWachedFilms = [];
-let addToQueueFilms = [];
+// let currentMovie = '';
+const addToWachedFilms = [];
+const addToQueueFilms = [];
 export function onContainerClick(event) {
   const parent = event.target.closest('li').firstChild;
   const { id } = parent.dataset; 
@@ -62,38 +62,41 @@ export function onContainerClick(event) {
     
   currentMovie.show();
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
-
-  const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
-  
-  btnAddToWatched.addEventListener("click", (() => {
-      
-    let currentMovieInfo = { title, genres, date, poster, about, populanty, vote, votes };
-    addToWachedFilms.push(currentMovieInfo);
-    localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
-    document.querySelector(".current-movie_btn-add-to-watched").disabled = true;
-
-    if (addToWachedFilms.includes(currentMovieInfo)) {
-      Notify.warning('You have already added this movie to Add to Queue');
-    }
-
-
+  const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue"); 
+  const currentMovieInfo = { id: id, original_title: title, release_date: date, poster_path: poster, genre_ids: genre_ids, vote_average: vote,
+        vote_count: votes };
+    const dataWatchinMovie = JSON.parse(localStorage.getItem("add-to-watched-film")) || addToWachedFilms;
+    const dataQueueMovie = JSON.parse(localStorage.getItem("add-to-queue-film")) || addToQueueFilms;
     
-  }));
-  btnAddToQueue.addEventListener("click", (() => {   
+    btnAddToWatched.addEventListener("click", (() => {
+      const unicId = dataWatchinMovie.map(({ id }) => {
+          if (id === currentMovieInfo.id) {
+            return true
+          }
+      });
+        if (unicId.find((item)=> item===true)) {
+         return Notify.warning('You have already added this movie to Add to Wathed')
+        }
+        Notify.success('You add movie to Wathed')
+        dataWatchinMovie.push(currentMovieInfo);
+        localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
+    }));
 
-      let currentMovieInfo = { title, genres, date, poster, about, populanty, vote, votes};
-
-      addToQueueFilms.push({title,genres, date, poster,about,populanty,vote, votes});
-      localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(addToQueueFilms));
-    if (addToQueueFilms.find((film) => film.currentMovieInfo !== currentMovieInfo)) {
-
-      Notify.warning('You have already added this movie to Add to Queue');
-      document.querySelector(".current-movie_btn-add-to-queue").disabled = true;
-
-      //return;
-    }
-
-  })); 
+    btnAddToQueue.addEventListener("click", (() => {  
+     
+      const unicIdQ = dataQueueMovie.map(({ id }) => {
+        if (id === currentMovieInfo.id) {  
+            return true;
+          }
+      });
+      
+        if (unicIdQ.find((item)=> item===true)) {
+        return Notify.warning('You have already added this movie to Add to Queue')
+        }
+        Notify.success('You add movie to Queue')
+        dataQueueMovie.push(currentMovieInfo);
+        localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(dataQueueMovie));
+    })); 
   });
 }
 
