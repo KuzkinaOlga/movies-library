@@ -4,7 +4,7 @@ import axios from "axios";
 import ApiService from './api';
 import { onClickToAddToQueueBtn } from './modal-movie';
 import noImg from '../images/no-poster-available.jpeg';
-
+import { genresAddOthers } from './genres';
 
 const watchedBtn = document.querySelector('.js-watched-btn');
 const queuedBtn = getRefs().queueBtn;
@@ -46,9 +46,19 @@ export function onQueuedBtnClick(evt) {
 }
 
 
- function renderLibrary(films) {
-    const markup = films.map(({ original_title, poster_path, release_date, genre_ids }) => {
+ function renderGenres(genre_ids) {
+  return genresAddOthers(genre_ids)
+    .map(genre => `<li class="movie-genres">${genre}</li>`)
+    .join(' ,');
+}
 
+function renderLibrary(films) {
+
+    
+    const markup = films.map(({ original_title, poster_path, release_date, genre_ids, vote_average }) => {
+        
+        let genres = renderGenres(genre_ids);
+        
         return `<li class="films__list">
         <a class="films__id" data-id="">
   <div class="film__photo__card">
@@ -82,10 +92,10 @@ export function onQueuedBtnClick(evt) {
                     <h2 class="film__title">${original_title}</h2>
                     <div class="film__description">
                       <ul class="film__genres__list">
-                     ${genre_ids}
+                     ${genres}
                       </ul>
                       <p class="film__release__date">${releaseDate(release_date)}</p>
-                      <p class="film__vote"></p>
+                      <p class="film__vote">${vote_average}</p>
                     </div>
                 </div>
   </div>
