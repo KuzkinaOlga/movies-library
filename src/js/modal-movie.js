@@ -1,19 +1,17 @@
 import * as basicLightbox from 'basiclightbox'
-
 import { getRefs } from './get-refs';
-import axios from "axios";
-import Notiflix from 'notiflix';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-
 import ApiService from './api';
+
 
 const apiMainMovie = new ApiService();
 const container = getRefs().gallery;
 container.addEventListener('click', onContainerClick);
 
+
 let ADD_TO_WATCHED_FILM = "add-to-watched-film";
 let ADD_TO_QUEUE_FILM = "add-to-queue-film";
+
 
 // let currentMovie = '';
 const addToWachedFilms = [];
@@ -28,10 +26,11 @@ export function onContainerClick(event) {
   event.preventDefault();
   window.addEventListener('keydown', onImageClose);
 
-  apiMainMovie.getMainMovie( id).then(({title,genres, date, poster,about,populanty,vote, votes}) => {
-  const ganreList = genres.map((ganre) => ganre.name).join(', ');
-  
-    currentMovie = basicLightbox.create(`
+  apiMainMovie.getMainMovie(id).then(({ title, genres, date, poster, about, populanty, vote, votes,id }) => {
+    const ganreList = genres.map((ganre) => ganre.name).join(', ');
+    const genre_ids = genres.map((ganre) => ganre.id);
+   
+   const currentMovie = basicLightbox.create(`
     <div class="current-movie">
         <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
         <div class="current-movie__info">
@@ -59,7 +58,7 @@ export function onContainerClick(event) {
 
     </div>`
       );
-    
+   
   currentMovie.show();
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue"); 
@@ -68,6 +67,8 @@ export function onContainerClick(event) {
     const dataWatchinMovie = JSON.parse(localStorage.getItem("add-to-watched-film")) || addToWachedFilms;
     const dataQueueMovie = JSON.parse(localStorage.getItem("add-to-queue-film")) || addToQueueFilms;
     
+
+    
     btnAddToWatched.addEventListener("click", (() => {
       const unicId = dataWatchinMovie.map(({ id }) => {
           if (id === currentMovieInfo.id) {
@@ -75,12 +76,13 @@ export function onContainerClick(event) {
           }
       });
         if (unicId.find((item)=> item===true)) {
-         return Notify.warning('You have already added this movie to Add to Wathed')
+         return Notify.warning('You have already added this movie to Watched')
         }
-        Notify.success('You add movie to Wathed')
+        Notify.success('You added this movie to Watched')
         dataWatchinMovie.push(currentMovieInfo);
         localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
     }));
+  
 
     btnAddToQueue.addEventListener("click", (() => {  
      
@@ -91,9 +93,9 @@ export function onContainerClick(event) {
       });
       
         if (unicIdQ.find((item)=> item===true)) {
-        return Notify.warning('You have already added this movie to Add to Queue')
+        return Notify.warning('You have already added this movie to Queue')
         }
-        Notify.success('You add movie to Queue')
+        Notify.success('You added this movie to Queue')
         dataQueueMovie.push(currentMovieInfo);
         localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(dataQueueMovie));
     })); 
@@ -106,5 +108,10 @@ export function onContainerClick(event) {
       window.removeEventListener('keydown', onImageClose); 
     }
   }
+
+
+
+
+
 
 
