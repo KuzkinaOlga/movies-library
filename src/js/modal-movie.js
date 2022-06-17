@@ -30,7 +30,7 @@ export function onContainerClick(event) {
     const ganreList = genres.map((ganre) => ganre.name).join(', ');
     const genre_ids = genres.map((ganre) => ganre.id);
    
-    currentMovie = basicLightbox.create(`
+   const currentMovie = basicLightbox.create(`
     <div class="current-movie">
         <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
         <div class="current-movie__info">
