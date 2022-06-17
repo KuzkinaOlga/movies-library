@@ -5,7 +5,7 @@ import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
 import './js/film-find';
 import './js/up-btn';
-import './js/fix';
+
 import ApiService from './js/api';
 import { paginationTotalItems } from './js/pagination';
 import { onFooterClick } from './js/modal-footer';
@@ -14,9 +14,6 @@ import { onContainerClick } from './js/modal-movie';
 
 import { showWarningNoName } from './js/warning'
 import { onWatchedBtnClick, onQueuedBtnClick, renderLibrary, onHomeBtnClick } from './js/library';
-
-
-
 
 export let searchBy = '';
 export let queryForTui = '';
