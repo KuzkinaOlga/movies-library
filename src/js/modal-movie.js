@@ -73,20 +73,22 @@ export function onContainerClick(event) {
         }
  });
       if (unicId.find((item)=> item===true)) {
-      return Notify.warning('You have already added this movie to Add to Queue')
+      return Notify.warning('You have already added this movie to Add to Wathed')
       }
-      Notify.success('You add movie to wathed')
+      Notify.success('You add movie to Wathed')
         dataWatchinMovie.push(currentMovieInfo);
         localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
     }));
   
 
     btnAddToQueue.addEventListener("click", (() => {  
+     
     const unicId = dataWatchinMovie.map(({ id }) => {
         if (id === currentMovieInfo.id) {
-          return true
+          return true;
         }
- });
+    });
+     
       if (unicId.find((item)=> item===true)) {
       return Notify.warning('You have already added this movie to Add to Queue')
       }
