@@ -1,116 +1,91 @@
-import { renderList } from './js/render-list';
-import { getRefs } from './js/get-refs';
-import darkTheme from './js/dark-theme';
-import { onShowMyLibrary, onShowHome } from './js/header';
-import './js/pagination';
-import './js/up-btn';
-import ApiService from './js/api';
-import { containerTui } from './js/pagination';
-import { paginationTotalItems } from './js/pagination';
-import {onFooterClick} from './js/modal-footer'
-import { onContainerClick } from './js/my-modal';
-
-export let searchBy = '';
-export let queryForTui = '';
-const apiData = new ApiService();
-const container = getRefs().gallery;
-const mainCard = getRefs().linkCard;
-const foterLink = getRefs().footerLink;
-
-darkTheme();
-
-// Top movies
-function topMoviesRender() {
-  container.innerHTML = "";
-  apiData.getTopMovies().then(({ results }) => {
-    renderList(results, container);
-  });
-}
-topMoviesRender();
+// index-js
+// import { renderList } from './js/render-list';
+// // import { renderMarkup } from './js/film-find';
+// import { getRefs } from './js/get-refs';
+// import darkTheme from './js/dark-theme';
+// import { onShowMyLibrary, onShowHome } from './js/header';
+// import './js/pagination';
+// import './js/film-find';
+// import './js/up-btn';
+// import ApiService from './js/api';
+// import { containerTui } from './js/pagination';
+// import { paginationTotalItems } from './js/pagination';
+// import { onFooterClick } from './js/modal-footer';
+// import { onContainerClick } from './js/modal-movie';
+// // import { onContainerClick } from './js/my-modal';
+// import {showWarningNoName} from './js/warning'
+// import {getWatchinLocal} from './js/my-libruary'
 
 
-// Search movies
-function onFormSubmit(e) {
+// export let searchBy = '';
+// export let queryForTui = '';
+// const apiData = new ApiService();
+// const container = getRefs().gallery;
+// const mainCard = getRefs().linkCard;
+// const foterLink = getRefs().footerLink;
 
-  e.preventDefault();
-  apiData.query = e.currentTarget.elements.searchQuery.value.trim();
-  queryForTui = apiData.query;
-  if (!apiData.query) {
-    alert('Please enter name movie');
-    return;
-  } else {
-    apiData
-      .getSearchMovies(apiData.query)
-      .then(({ results, total_results }) => {
-        if (total_results > 20) {
-          paginationTotalItems(total_results);
-          containerTui.classList.remove('visually-hidden');
-        }
-        if (results.length === 0) {
-          alert('not find');
-        } else {
-          container.innerHTML = '';
-          renderList(results, container);
-          searchBy = 'search';
-        }
-      });
-    getRefs().form.reset();
-  }
-}
+// darkTheme();
 
-// Main movie
-container.addEventListener('click', onContainerClick);
+// // Top movies
+// function topMoviesRender() {
+//   container.innerHTML = '';
+//   apiData.getTopMovies().then(({ results }) => {
+//     renderList(results, container);
+//   });
+// }
+// topMoviesRender();
 
-// Footer link
-foterLink.addEventListener('click', onFooterClick);
+// // Main movie
+// container.addEventListener('click', onContainerClick);
 
-// Listiners
-getRefs().logo.addEventListener('click', onLogoClick);
-getRefs().homeBtn.addEventListener('click', onHomeBtnClick);
-getRefs().myLibraryBtn.addEventListener('click', onMyLybraryBtnClick);
-getRefs().form.addEventListener('submit', onFormSubmit);
-getRefs().watchedBtn.addEventListener('click', onWatchedBtnClick);
-getRefs().queueBtn.addEventListener('click', onQueueBtnClick);
+// // Footer link
+// foterLink.addEventListener('click', onFooterClick);
 
-// Header functions
-function onLogoClick(e) {
-  e.preventDefault();
-  onShowHome();
-  topMoviesRender();
-  getRefs().pagination.classList.remove('pagination-off');
-}
+// // Listiners
+// getRefs().logo.addEventListener('click', onLogoClick);
+// getRefs().homeBtn.addEventListener('click', onHomeBtnClick);
+// getRefs().myLibraryBtn.addEventListener('click', onMyLybraryBtnClick);
+// // getRefs().watchedBtn.addEventListener('click', onWatchedBtnClick);
+// // getRefs().queueBtn.addEventListener('click', onQueueBtnClick);
 
-function onHomeBtnClick(e) {
-  e.preventDefault();
-  onShowHome();
+// // Header functions
+// function onLogoClick(e) {
+//   e.preventDefault();
+//   onShowHome();
+//   topMoviesRender();
+//   getRefs().pagination.classList.remove('pagination-off');
+// }
 
-  topMoviesRender();
-  getRefs().pagination.classList.remove('pagination-off');
-}
+// function onHomeBtnClick(e) {
+//   e.preventDefault();
+//   onShowHome();
+//   topMoviesRender();
+//   getRefs().pagination.classList.remove('pagination-off');
+// }
 
-function onMyLybraryBtnClick(e) {
-  e.preventDefault();
-  onShowMyLibrary();
+// function onMyLybraryBtnClick(e) {
+//   e.preventDefault();
+//   onShowMyLibrary();
+//   container.innerHTML = '';
+//   getRefs().pagination.classList.add('pagination-off');
+//   getWatchinLocal();
+// }
 
-  container.innerHTML = '';
+// function onWatchedBtnClick() {
+//   if (getRefs().queueBtn.classList.contains('active-btn')) {
+//     getRefs().queueBtn.classList.remove('active-btn');
+//   }
+//   getRefs().watchedBtn.classList.add('active-btn');
+//   container.innerHTML = '';
+//   getWatchinLocal();
+// }
 
-  getRefs().pagination.classList.add('pagination-off');
-
-}
-
-function onWatchedBtnClick() {
-  if (getRefs().queueBtn.classList.contains('active-btn')) {
-    getRefs().queueBtn.classList.remove('active-btn');
-  }
-  getRefs().watchedBtn.classList.add('active-btn');
-}
-
-function onQueueBtnClick() {
-  if (getRefs().watchedBtn.classList.contains('active-btn')) {
-    getRefs().watchedBtn.classList.remove('active-btn');
-
-  }
-};
+// function onQueueBtnClick() {
+//   if (getRefs().watchedBtn.classList.contains('active-btn')) {
+//     getRefs().watchedBtn.classList.remove('active-btn');
+//   }
+//   container.innerHTML = '';
+// }
   
 
 
@@ -146,7 +121,7 @@ function onQueueBtnClick() {
 export { genresAddOthers };
 
 
-// Local
+// modal-movie
 // import * as basicLightbox from 'basiclightbox'
 // import { getRefs } from './get-refs';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -179,7 +154,7 @@ export { genresAddOthers };
 //     const ganreList = genres.map((ganre) => ganre.name).join(', ');
 //     const genre_ids = genres.map((ganre) => ganre.id);
    
-//     currentMovie = basicLightbox.create(`
+//    const currentMovie = basicLightbox.create(`
 //     <div class="current-movie">
 //         <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
 //         <div class="current-movie__info">
@@ -222,20 +197,22 @@ export { genresAddOthers };
 //         }
 //  });
 //       if (unicId.find((item)=> item===true)) {
-//       return Notify.warning('You have already added this movie to Add to Queue')
+//       return Notify.warning('You have already added this movie to Add to Wathed')
 //       }
-//       Notify.success('You add movie to wathed')
+//       Notify.success('You add movie to Wathed')
 //         dataWatchinMovie.push(currentMovieInfo);
 //         localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
 //     }));
   
 
 //     btnAddToQueue.addEventListener("click", (() => {  
+     
 //     const unicId = dataWatchinMovie.map(({ id }) => {
 //         if (id === currentMovieInfo.id) {
-//           return true
+//           return true;
 //         }
-//  });
+//     });
+     
 //       if (unicId.find((item)=> item===true)) {
 //       return Notify.warning('You have already added this movie to Add to Queue')
 //       }
@@ -252,3 +229,25 @@ export { genresAddOthers };
 //       window.removeEventListener('keydown', onImageClose); 
 //     }
 //   }
+
+// my libruary
+// import { getRefs } from './get-refs';
+// import { renderList } from './render-list';
+// const container = getRefs().gallery;
+// const watchedLocal = () => {
+    
+//      try {
+//       const dataWatchinMovie = JSON.parse(localStorage.getItem("add-to-watched-film"));
+//          return dataWatchinMovie; 
+//   }
+//   catch (error) {
+//     console.error("Get state error: ", error.message);
+//     }
+// }
+// export function getWatchinLocal() {
+//     container.innerHTML = "";
+//  if (!watchedLocal()) {
+//           return;
+//       }
+//       renderList( watchedLocal(), container);
+// };

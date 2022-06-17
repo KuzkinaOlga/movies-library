@@ -14,21 +14,27 @@ export default class ApiService {
     this.page = 1;
   }
 
-  async  getTopMovies() {
-        try { 
-        const {data} =await axios.get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
-        return data; 
-        }
-       catch{Notify.failure("Oops something went wrong")}
-}
-  async  getSearchMovies(searchQuery) {
-        try { 
-        const {data} =await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchQuery}`);
-        this.page += 1;
-        return data ; 
-        }
-        catch{Notify.failure("Oops something went wrong")}
-}
+  async getTopMovies() {
+    try {
+      const { data } = await axios.get(
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
+      );
+      return data;
+    } catch {
+      Notify.failure('Oops something went wrong');
+    }
+  }
+  async getSearchMovies(searchQuery) {
+    try {
+      const { data } = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchQuery}`
+      );
+      this.page += 1;
+      return data;
+    } catch {
+      Notify.failure('Oops something went wrong');
+    }
+  }
 
   async getGanres() {
     try {
@@ -36,10 +42,11 @@ export default class ApiService {
         `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
       );
       return data;
-
-    } catch { Notify.failure("Oops something went wrong") }
-    
+    } catch {
+      Notify.failure('Oops something went wrong');
+    }
   }
+
   async getMainMovie(value) {
     try {
       const { data } = await axios.get(
@@ -57,7 +64,9 @@ export default class ApiService {
         votes: data.vote_count,
       };
       return base;
-    } catch {Notify.failure("Oops something went wrong")}
+    } catch {
+      Notify.failure('Oops something went wrong');
+    }
   }
   resetPage() {
     this.page = 1;
@@ -68,5 +77,4 @@ export default class ApiService {
   set query(newQuery) {
     this.searchQuery = value;
   }
-    }
- 
+}
