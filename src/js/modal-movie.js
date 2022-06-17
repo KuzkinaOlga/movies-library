@@ -1,13 +1,6 @@
 import * as basicLightbox from 'basiclightbox'
-
 import { getRefs } from './get-refs';
-// import axios from "axios";
-
-// import Notiflix from 'notiflix';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-
-
 import ApiService from './api';
 
 
@@ -20,9 +13,9 @@ let ADD_TO_WATCHED_FILM = "add-to-watched-film";
 let ADD_TO_QUEUE_FILM = "add-to-queue-film";
 
 
-let currentMovie = '';
-let addToWachedFilms = [];
-let addToQueueFilms = [];
+// let currentMovie = '';
+const addToWachedFilms = [];
+const addToQueueFilms = [];
 export function onContainerClick(event) {
   const parent = event.target.closest('li').firstChild;
   const { id } = parent.dataset; 
@@ -68,61 +61,38 @@ export function onContainerClick(event) {
    
   currentMovie.show();
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
+  const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue"); 
+  const currentMovieInfo = { id: id, original_title: title, release_date: date, poster_path: poster, genre_ids: genre_ids };
+  const dataWatchinMovie = JSON.parse(localStorage.getItem("add-to-watched-film")) ||  addToWachedFilms ;
 
-  const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
-  
-  btnAddToWatched.addEventListener("click", (() => {
-   
-    let currentMovieInfo = { id: id, original_title: title, release_date: date, poster_path: poster, genre_ids: genre_ids };
-    // console.log(currentMovieInfo.id) 
-    const dataWatchinMovie = JSON.parse(localStorage.getItem("add-to-watched-film"));
-  
-    // if (dataWatchinMovie !== null) {
-       
-    //   dataWatchinMovie.find(({ id }) => {
-    //     console.log(id)
-    //     // console.log(currentMovieInfo.id)
-    //     // id===currentMovieInfo.id
-    //    if (id === currentMovieInfo.id) {
-    //      return Notify.warning('You have already added this movie to Add to Queue');
-    //    }
-    //    else {
-       
-    //    }
-    // } );
-      
-    // }
-    addToWachedFilms.push(currentMovieInfo);
-      document.querySelector(".current-movie_btn-add-to-watched").disabled = true;
-      localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
-
-    // if (dataWatchinMovie === null) {
-    //   addToWachedFilms.push(currentMovieInfo);
-    //   document.querySelector(".current-movie_btn-add-to-watched").disabled = true;
-    // return localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
-    // } 
     
+    btnAddToWatched.addEventListener("click", (() => {
+ const unicId = dataWatchinMovie.map(({ id }) => {
+        if (id === currentMovieInfo.id) {
+          return true
+        }
+ });
+      if (unicId.find((item)=> item===true)) {
+      return Notify.warning('You have already added this movie to Add to Queue')
+      }
+      Notify.success('You add movie to wathed')
+        dataWatchinMovie.push(currentMovieInfo);
+        localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
+    }));
   
-    
-    //    addToWachedFilms.push(currentMovieInfo);
-    // localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(addToWachedFilms));
-    // document.querySelector(".current-movie_btn-add-to-watched").disabled = true;
-    
-  }));
-  btnAddToQueue.addEventListener("click", (() => {   
 
-
-
-      addToQueueFilms.push(currentMovieInfo);
+    btnAddToQueue.addEventListener("click", (() => {  
+    const unicId = dataWatchinMovie.map(({ id }) => {
+        if (id === currentMovieInfo.id) {
+          return true
+        }
+ });
+      if (unicId.find((item)=> item===true)) {
+      return Notify.warning('You have already added this movie to Add to Queue')
+      }
+      Notify.success('You add movie to wathed')
+      dataWatchinMovie.push(currentMovieInfo);
       localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(addToQueueFilms));
-    // if (addToQueueFilms.find((film) => film.currentMovieInfo !== currentMovieInfo)) {
-
-    //   Notify.warning('You have already added this movie to Add to Queue');
-    //   document.querySelector(".current-movie_btn-add-to-queue").disabled = true;
-
-    //   //return;
-    // }
-
   })); 
   });
 }
@@ -136,28 +106,7 @@ export function onContainerClick(event) {
 
 
 
-// function onClickToAddToWatchedBtn(event) {
 
-//   getDataTest().then((film) => {
-//     console.log(film);
-//     localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(film));
-    
-//     // if () {
-//     //    Notiflix.Notify.failure(`Sorry, there are no images matching your search query. Please try again.`);
-//     // }
-
-//   });
- 
-// }
-
-// function onClickToAddToQueueBtn(event) {
-
-//     getDataTest().then((film) => {
-//     console.log(film);
-//       localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(film));
-//   });
-  
-// }
 
 
 

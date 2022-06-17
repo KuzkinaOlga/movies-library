@@ -59,7 +59,6 @@ function onHomeBtnClick(e) {
   e.preventDefault();
   onShowHome();
   topMoviesRender();
-  getWatchinLocal();
   getRefs().pagination.classList.remove('pagination-off');
 }
 
@@ -71,18 +70,18 @@ function onMyLybraryBtnClick(e) {
   getWatchinLocal();
 }
 
-// function onWatchedBtnClick() {
-//   if (getRefs().queueBtn.classList.contains('active-btn')) {
-//     getRefs().queueBtn.classList.remove('active-btn');
-//   }
-//   getRefs().watchedBtn.classList.add('active-btn');
-//   container.innerHTML = '';
-//   getWatchinLocal();
-// }
+function onWatchedBtnClick() {
+  if (getRefs().queueBtn.classList.contains('active-btn')) {
+    getRefs().queueBtn.classList.remove('active-btn');
+  }
+  getRefs().watchedBtn.classList.add('active-btn');
+  container.innerHTML = '';
+  getWatchinLocal();
+}
 
-// function onQueueBtnClick() {
-//   if (getRefs().watchedBtn.classList.contains('active-btn')) {
-//     getRefs().watchedBtn.classList.remove('active-btn');
-//   }
-//   container.innerHTML = '';
-// }
+function onQueueBtnClick() {
+  if (getRefs().watchedBtn.classList.contains('active-btn')) {
+    getRefs().watchedBtn.classList.remove('active-btn');
+  }
+  container.innerHTML = '';
+}
