@@ -8,8 +8,9 @@ import noImg from '../images/no-poster-available.jpeg';
 
 const watchedBtn = document.querySelector('.js-watched-btn');
 const queuedBtn = getRefs().queueBtn;
-const libraryPage = document.querySelector('.films__library__page')
-const homeButton = getRefs().homeBtn;
+// const libraryPage = document.querySelector('.films__library__page')
+// const homeButton = getRefs().homeBtn;
+const container = getRefs().gallery
 
 let watchedFilms = [];
 let queuedFilms = [];
@@ -22,28 +23,30 @@ let ADD_TO_QUEUE_FILM_L = "add-to-queue-film";
 
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queuedBtn.addEventListener('click', onQueuedBtnClick);
-homeButton.addEventListener('click', onHomeBtnClickn);
+// homeButton.addEventListener('click', onHomeBtnClickn);
 
-function onHomeBtnClickn(evt) {
-    libraryPage.classList.add('js-is-hidden');
-}
+// function onHomeBtnClickn(evt) {
+//     libraryPage.classList.add('js-is-hidden');
+// }
 
 export function onWatchedBtnClick(evt) {
     evt.preventDefault();
     watchedFilms = JSON.parse(localStorage.getItem(ADD_TO_WATCHED_FILM_L));
     console.log(watchedFilms);
-    return renderLibrary(watchedFilms);
+    container.innerHTML = "";
+     renderLibrary(watchedFilms);
 }
 
 export function onQueuedBtnClick(evt) {
     evt.preventDefault();
     queuedFilms = JSON.parse(localStorage.getItem(ADD_TO_QUEUE_FILM_L));
+   container.innerHTML = "";
     console.log(queuedFilms);
-    return renderLibrary(queuedFilms);
+    renderLibrary(queuedFilms);
 }
 
 
-export function renderLibrary(films) {
+ function renderLibrary(films) {
     const markup = films.map(({ original_title, poster_path, release_date, genre_ids }) => {
 
         return `<li class="films__list">
@@ -89,7 +92,7 @@ export function renderLibrary(films) {
 </div>
 </a></li> 
         `}).join('');
-    libraryPage.insertAdjacentHTML("beforeend", markup);
+    container.insertAdjacentHTML("beforeend", markup);
 }
 
  function releaseDate(year) {

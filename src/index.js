@@ -13,7 +13,7 @@ import { onContainerClick } from './js/modal-movie';
 // import { onContainerClick } from './js/my-modal';
 
 import { showWarningNoName } from './js/warning'
-import { onWatchedBtnClick, onQueuedBtnClick, renderLibrary, onHomeBtnClickn } from './js/library';
+import { onWatchedBtnClick, onQueuedBtnClick } from './js/library';
 
 export let searchBy = '';
 export let queryForTui = '';
@@ -71,20 +71,20 @@ function onMyLybraryBtnClick(e) {
   // getWatchinLocal();
 }
 
-function onWatchedBtnClick() {
-  if (getRefs().queueBtn.classList.contains('active-btn')) {
-    getRefs().queueBtn.classList.remove('active-btn');
-  }
-  getRefs().watchedBtn.classList.add('active-btn');
+// function onWatchedBtnClick() {
+//   if (getRefs().queueBtn.classList.contains('active-btn')) {
+//     getRefs().queueBtn.classList.remove('active-btn');
+//   }
+//   getRefs().watchedBtn.classList.add('active-btn');
 
-  // container.innerHTML = '';
+//   // container.innerHTML = '';
 
-  // getWatchinLocal();
-}
+//   // getWatchinLocal();
+// }
 
-function onQueueBtnClick() {
-  if (getRefs().watchedBtn.classList.contains('active-btn')) {
-    getRefs().watchedBtn.classList.remove('active-btn');
-  }
-  // container.innerHTML = '';
-}
+// function onQueueBtnClick() {
+//   if (getRefs().watchedBtn.classList.contains('active-btn')) {
+//     getRefs().watchedBtn.classList.remove('active-btn');
+//   }
+//   // container.innerHTML = '';
+// }
