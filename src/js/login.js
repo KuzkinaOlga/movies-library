@@ -13,7 +13,7 @@ const refs = {
 };
 
 const { myLibraryItem, loginItem, logoutItem } = refs;
-const userId = '';
+let userId = '';
 
 // LOGIN
 const singInClick = e => {
@@ -27,11 +27,11 @@ const singInClick = e => {
       // The signed-in user info.
       const user = result.user;
       // ...
-      console.log(result);
-      console.log(user.email);
       onLogoutShow();
+      userId = user.uid;
+      console.log(user);
+      console.log(userId);
       console.log('Sign-in successful');
-      userId = user.email;
     })
     .catch(error => {
       // Handle Errors here.

@@ -16,7 +16,7 @@ import { onContainerClick } from './js/modal-movie';
 import {singInClick, singOutClick} from './js/login';
 import authState from './js/auth-state';
 // import { userData } from './js/user-data';
-import {getDocs} from './js/user-data';
+import { getQueueFilms, getWatchedFilms, delFilmFromFirebase } from './js/user-data';
 
 import { showWarningNoName } from './js/warning'
 import { onWatchedBtnClick, onQueuedBtnClick } from './js/library';
@@ -30,8 +30,10 @@ const foterLink = getRefs().footerLink;
 
 authState();
 darkTheme();
-// console.log(userData);
-console.log(getDocs);
+// delFilmFromFirebase();
+getWatchedFilms();
+getQueueFilms();
+
 
 // Top movies
 function topMoviesRender() {

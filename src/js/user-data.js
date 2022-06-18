@@ -1,28 +1,83 @@
 import db from './firebase';
-import { collection, getDocs } from 'firebase/firestore';
-import { userId } from './login';
+import {
+  collection,
+  onSnapshot,
+  addDoc,
+  deleteDoc,
+  doc,
+  query,
+  where,
+} from 'firebase/firestore';
+// import { userId } from './login';
+const userId = 'izmMJHXqY6NJwC6a2MO5REctGrb2';
 
 // GET COLLECTION REF
-const colRef = collection(db, 'yds.center@gmail.com');
-let userData = [];
+const colRef = collection(db, userId);
+// let userData = [];
+let watchedFilms = [];
+let queueFilms = [];
 
-// GET COLLECTION DATA
-getDocs(colRef)
-  .then(snapshot => {
-    // let userData = [];
+// QUERIES
+const watchedQuery = query(colRef, where('type', '==', 'watched'));
+const queueQuery = query(colRef, where('type', '==', 'queue'));
+
+// FILMS COLLECTIONS
+function getWatchedFilms() {
+  //   let watchedFilms = [];
+  onSnapshot(watchedQuery, snapshot => {
     snapshot.docs.forEach(doc => {
-      userData.push({ ...doc.data(), id: doc.id });
+      watchedFilms.push({ ...doc.data(), id: doc.id });
     });
-    console.log(userData);
-    // return userData;
+    console.log(watchedFilms);
   })
-  .catch(error => {
-    console.log(error.message);
+}
+
+function getQueueFilms() {
+  //   let queueFilms = [];
+  onSnapshot(queueQuery, snapshot => {
+    snapshot.docs.forEach(doc => {
+      queueFilms.push({ ...doc.data(), id: doc.id });
+    });
+    console.log(queueFilms);
   });
+}
 
+// REAL TIME COLLECTION DATA
+// function getUserData() {
+//     let userData = [];
+//   onSnapshot(colRef, snapshot => {
+//     snapshot.docs.forEach(doc => {
+//       userData.push({ ...doc.data(), id: doc.id });
+//     });
+//     console.log(userData);
+//     return userData;
+//   })
 
+// }
 
 // ADD DOCUMENTS TO COLLECTION
-function addFilmToFirebase() {}
+function addFilmToFirebase(filmType, filmId) {
+  addDoc(colRef, {
+    type: filmType,
+    filmid: filmId,
+  });
+  // .then(() => {
 
-export { getDocs };
+  // })
+}
+
+// DELETING DOCUMENTS
+function delFilmFromFirebase() {
+  const docRef = doc(db, userId, 'dFct0oY6Cg3vilIBLo96');
+  deleteDoc(docRef);
+  // .then(() => {
+
+  // })
+}
+
+export {
+  addFilmToFirebase,
+  delFilmFromFirebase,
+  getWatchedFilms,
+  getQueueFilms,
+};

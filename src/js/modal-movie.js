@@ -3,6 +3,12 @@ import * as basicLightbox from 'basiclightbox'
 import { getRefs } from './get-refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import ApiService from './api';
+// Firebase import
+import { addFilmToFirebase } from './user-data'
+
+// Firebase const
+let filmType = '';
+let filmId = 0;
 
 
 const apiMainMovie = new ApiService();
@@ -27,7 +33,7 @@ export function onContainerClick(event) {
   event.preventDefault();
   window.addEventListener('keydown', onImageClose);
 
-  apiMainMovie.getMainMovie(id).then(({ title, genres, date, poster, about, populanty, vote, votes,id }) => {
+  apiMainMovie.getMainMovie(id).then(({ title, genres, date, poster, about, populanty, vote, votes, id }) => {
     const ganreList = genres.map((ganre) => ganre.name).join(', ');
     const genre_ids = genres.map((ganre) => ganre.id);
    
@@ -84,6 +90,12 @@ export function onContainerClick(event) {
 
         dataWatchinMovie.push(currentMovieInfo);
         localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
+        console.log(currentMovieInfo.id);
+        // Firebase code
+        filmType = 'watched';
+        filmId = currentMovieInfo.id;
+        addFilmToFirebase(filmType, filmId);
+
     }));
   
 
@@ -102,6 +114,10 @@ export function onContainerClick(event) {
         Notify.success('You added this movie to Queue')
         dataQueueMovie.push(currentMovieInfo);
         localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(dataQueueMovie));
+        // Firebase code
+        filmType = 'queue';
+        filmId = currentMovieInfo.id;
+        addFilmToFirebase(filmType, filmId);
     })); 
 
   });
