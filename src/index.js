@@ -12,6 +12,10 @@ import { onFooterClick } from './js/modal-footer';
 import { onContainerClick } from './js/modal-movie';
 // import { onContainerClick } from './js/my-modal';
 
+// AUTH IMPORTS
+import {singInClick, singOutClick} from './js/login';
+import authState from './js/auth-state';
+
 import { showWarningNoName } from './js/warning'
 import { onWatchedBtnClick, onQueuedBtnClick } from './js/library';
 
@@ -22,6 +26,7 @@ const container = getRefs().gallery;
 const mainCard = getRefs().linkCard;
 const foterLink = getRefs().footerLink;
 
+authState();
 darkTheme();
 
 // Top movies
@@ -47,6 +52,8 @@ getRefs().homeBtn.addEventListener('click', onHomeBtnClick);
 getRefs().myLibraryBtn.addEventListener('click', onMyLybraryBtnClick);
 // getRefs().watchedBtn.addEventListener('click', onWatchedBtnClick);
 // getRefs().queueBtn.addEventListener('click', onQueueBtnClick);
+getRefs().loginBtn.addEventListener('click', singInClick)
+getRefs().logoutBtn.addEventListener('click', singOutClick)
 
 // Header functions
 function onLogoClick(e) {
