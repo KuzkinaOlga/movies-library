@@ -1,17 +1,63 @@
 .current-movie {
-  width: 814px;
-  height: 558px;
-
-  display: flex;
   background-color: white;
-  padding: 40px 16px 40px 16px;
+
+  width: 280px;
+  //height: 940px;
+  padding: 40px 20px 40px 20px;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    width: 704px;
+    //height: 552px;
+    padding: 40px 16px 40px 16px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 814px;
+    //height: 558px;
+    padding: 40px 72px 40px 36px;
+  }
 }
+
+.modal__close-button-cm {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  //@include display_align-item(flex, center);
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  padding: 0;
+
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.1);
+  //background-color: $white-color;
+}
+
 .current-movie__img {
   height: 375px;
+  margin-bottom: 20px;
+  @media screen and (min-width: 768px) {
+    height: 373.55px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    height: 478px;
+  }
 }
 
 .current-movie__info {
-  margin-left: 16px;
+  @media screen and (min-width: 768px) {
+    margin-left: 68px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-left: 16px;
+  }
 }
 
 .current-movie__title {
@@ -20,26 +66,60 @@
 }
 .current-movie__votes {
   margin-bottom: 8px;
+  color: #8c8c8c;
+}
+
+.current-movie__vote-data {
+  padding-left: 5px;
+  padding-right: 8px;
+  background-color: #ff6b08;
+  border-radius: 5px;
+  color: #fff;
+  margin-left: 41px;
+  @media screen and (min-width: 1024px) {
+    margin-left: 85px;
+  }
 }
 .current-movie__votes-data {
   //margin-bottom: 8px;
   //margin-bottom: 8px;
+  color: #000000;
 }
+
 .current-movie__popularity {
   margin-bottom: 8px;
+  color: #8c8c8c;
 }
 .current-movie__popularity-data {
   //margin-bottom: 8px;
+  color: #000000;
+  margin-left: 55px;
+  @media screen and (min-width: 1024px) {
+    margin-left: 97px;
+  }
 }
 .current-movie__original-title {
   margin-bottom: 8px;
+  color: #8c8c8c;
 }
 .current-movie__original-title-data {
+  color: #000000;
+  text-transform: uppercase;
+  margin-left: 39px;
+  @media screen and (min-width: 1024px) {
+    margin-left: 83px;
+  }
 }
 .current-movie__genre {
   margin-bottom: 20px;
+  color: #8c8c8c;
 }
 .current-movie__genre-data {
+  color: #000000;
+  margin-left: 85px;
+  @media screen and (min-width: 1024px) {
+    margin-left: 120px;
+  }
 }
 .current-movie__about-section {
 }
@@ -51,19 +131,31 @@
   margin-bottom: 20px;
 }
 .current-movie__btn-container {
+  display: flex;
+  @media screen and (min-width: 768px) {
+    //height: 373.55px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    // height: 478px;
+  }
 }
 .current-movie_btn-add-to-watched {
-  margin-left: 34px;
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   background: #ff6b01;
   color: #fff;
   border-radius: 5px;
-  padding-top: 14px;
-  padding-bottom: 12px;
+
   justify-content: center;
   text-transform: uppercase;
+
+  @media screen and (min-width: 1024px) {
+    //padding-top: 14px;
+    //padding-bottom: 12px;
+    margin-left: 34px;
+  }
 }
 .current-movie_btn-add-to-queue {
   margin-left: 15px;
@@ -76,4 +168,9 @@
   padding-bottom: 12px;
   justify-content: center;
   text-transform: uppercase;
+  margin-left: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 15px;
+  }
 }
