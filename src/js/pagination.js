@@ -1,11 +1,12 @@
 import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.css';
 import axios from 'axios';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { renderList } from './render-list';
 // import { renderMarkup } from './film-find';
 import { getRefs } from './get-refs';
-import { searchBy, queryForTui } from './film-find';
-import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import { markerBy, queryForTui } from './film-find';
+import { processingStorage } from './library-pagination';
 
 const container = getRefs().gallery;
 export const containerTui = document.getElementById('tui-pagination-container');
@@ -17,7 +18,7 @@ let value = '';
 let currentPage = 1;
 
 const options = {
-  totalItems: 19980,
+  totalItems: 0,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
@@ -50,17 +51,28 @@ pagination.on('afterMove', e => {
   console.log(currentPage);
   container.innerHTML = '';
   getRefs().pagination.classList.remove('pagination-off');
-  if (searchBy === 'search') {
-    value = queryForTui;
-    console.log(searchBy);
-    console.log(queryForTui);
-    paginationSearch(
+
+  let markerBy = localStorage.getItem('markerBy');
+  console.log('markerBy =', markerBy);
+
+  switch (markerBy) {
+    case 'queue':
+      processingStorage('queue', currentPage);
+      break;
+    case  'watched':
+      processingStorage('watched', currentPage);
+      break;
+    case 'search':
+      value = queryForTui;
+      console.log(queryForTui);
+      paginationSearch(
       `https://api.themoviedb.org/3/search/movie?&query=${value}&page=${currentPage}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`
-    );
-  } else {
-    paginationSearch(
-      `https://api.themoviedb.org/3/trending/movie/week?page=${currentPage}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`
-    );
+      );
+      break;
+    default:
+      paginationSearch(
+        `https://api.themoviedb.org/3/trending/movie/week?page=${currentPage}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`
+      );
   }
   return currentPage;
 });
@@ -82,7 +94,7 @@ async function paginationSearch(url) {
     // renderMarkup(results, container);
     //  //----------- stop Loader
      Loading.remove();
-    containerTui.classList.remove('visually-hidden');
+     getRefs().pagination.classList.remove('pagination-off');
   } catch (error) {
     console.error(error);
   }
