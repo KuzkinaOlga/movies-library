@@ -13,6 +13,7 @@ const refs = {
 };
 
 const { myLibraryItem, loginItem, logoutItem } = refs;
+const userId = '';
 
 // LOGIN
 const singInClick = e => {
@@ -27,8 +28,10 @@ const singInClick = e => {
       const user = result.user;
       // ...
       console.log(result);
+      console.log(user.email);
       onLogoutShow();
       console.log('Sign-in successful');
+      userId = user.email;
     })
     .catch(error => {
       // Handle Errors here.
@@ -71,4 +74,4 @@ function onLoginShow() {
   loginItem.classList.remove('is-hidden');
 }
 
-export { singInClick, singOutClick, onLogoutShow, onLoginShow };
+export { singInClick, singOutClick, onLogoutShow, onLoginShow, userId };

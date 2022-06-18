@@ -15,6 +15,8 @@ import { onContainerClick } from './js/modal-movie';
 // AUTH IMPORTS
 import {singInClick, singOutClick} from './js/login';
 import authState from './js/auth-state';
+// import { userData } from './js/user-data';
+import {getDocs} from './js/user-data';
 
 import { showWarningNoName } from './js/warning'
 import { onWatchedBtnClick, onQueuedBtnClick } from './js/library';
@@ -28,6 +30,8 @@ const foterLink = getRefs().footerLink;
 
 authState();
 darkTheme();
+// console.log(userData);
+console.log(getDocs);
 
 // Top movies
 function topMoviesRender() {
