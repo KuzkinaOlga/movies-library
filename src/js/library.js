@@ -1,10 +1,20 @@
 // import { getRefs } from './get-refs';
 // import axios from "axios";
 
+
 // import ApiService from './api';
 // import { onClickToAddToQueueBtn } from './modal-movie';
 // import noImg from '../images/no-poster-available.jpeg';
 // import { genresAddOthers } from './genres';
+
+import ApiService from './api';
+import { onClickToAddToQueueBtn } from './modal-movie';
+import noImg from '../images/no-poster-available.jpeg';
+import { genresAddOthers } from './genres';
+// Firebase import
+
+// Firebase films collections
+
 
 // const watchedBtn = document.querySelector('.js-watched-btn');
 // const queuedBtn = getRefs().queueBtn;

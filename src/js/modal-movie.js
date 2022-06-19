@@ -3,6 +3,12 @@ import * as basicLightbox from 'basiclightbox'
 import { getRefs } from './get-refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import ApiService from './api';
+// Firebase import
+import { addFilmToFirebase } from './user-data'
+
+// Firebase const
+let filmType = '';
+let filmId = 0;
 
 
 const apiMainMovie = new ApiService();
@@ -27,18 +33,25 @@ export function onContainerClick(event) {
   event.preventDefault();
   window.addEventListener('keydown', onImageClose);
 
-  apiMainMovie.getMainMovie(id).then(({ title, genres, date, poster, about, populanty, vote, votes,id }) => {
+  apiMainMovie.getMainMovie(id).then(({ title, genres, date, poster, about, populanty, vote, votes, id }) => {
     const ganreList = genres.map((ganre) => ganre.name).join(', ');
     const genre_ids = genres.map((ganre) => ganre.id);
 
    const currentMovie = basicLightbox.create(`
     <div class="current-movie">
+        <button data-modal-close class="modal__close-button-cm">
+                    <svg class="modal__close-icon-cm">
+                        <use href="./images/form-sprite.svg#icon-close-button"></use>
+                    </svg>
+        </button>
+
         <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
         <div class="current-movie__info">
 
         <h2 class="current-movie__title"> ${event.target.alt}</h2>
         <p class="current-movie__votes"> Vote / Votes
           <span class="current-movie__vote-data">${vote}</span>
+          <span class="current-movie__votes_slash">/</span>
           <span class="current-movie__votes-data">${votes}</span>
         </p>
         <p class="current-movie__popularity"> Popularity <span class="current-movie__popularity-data">${populanty}</span></p>
@@ -83,7 +96,17 @@ export function onContainerClick(event) {
         Notify.success('You added this movie to Watched')
 
         dataWatchinMovie.push(currentMovieInfo);
+
         localStorage.setItem('watched', JSON.stringify(dataWatchinMovie));
+
+        localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
+        console.log(currentMovieInfo.id);
+        // Firebase code
+        filmType = 'watched';
+        filmId = currentMovieInfo.id;
+        addFilmToFirebase(filmType, filmId);
+
+
     }));
 
 
@@ -101,8 +124,17 @@ export function onContainerClick(event) {
         }
         Notify.success('You added this movie to Queue')
         dataQueueMovie.push(currentMovieInfo);
+
         localStorage.setItem('queue', JSON.stringify(dataQueueMovie));
     }));
+
+        localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(dataQueueMovie));
+        // Firebase code
+        filmType = 'queue';
+        filmId = currentMovieInfo.id;
+        addFilmToFirebase(filmType, filmId);
+    })); 
+
 
   });
 }
@@ -113,3 +145,27 @@ export function onContainerClick(event) {
       window.removeEventListener('keydown', onImageClose);
     }
   }
+
+
+
+  // const refs = {
+  //   openModalBtn: document.querySelector('[data-modal-open]'),
+  //   closeModalBtn: document.querySelector('[data-modal-close]'),
+  //   modal: document.querySelector('[data-modal]'),
+  // };
+
+  // refs.openModalBtn.addEventListener('click', toggleModal);
+  // refs.closeModalBtn.addEventListener('click', toggleModal);
+
+  // function toggleModal() {
+  //   refs.modal.classList.toggle('is-hidden');
+  // }
+
+
+
+
+
+
+
+
+
