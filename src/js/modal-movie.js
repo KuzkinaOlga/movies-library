@@ -37,39 +37,40 @@ export function onContainerClick(event) {
     const ganreList = genres.map((ganre) => ganre.name).join(', ');
     const genre_ids = genres.map((ganre) => ganre.id);
 
-   const currentMovie = basicLightbox.create(`
+  const currentMovie = basicLightbox.create(`
     <div class="current-movie">
         <button data-modal-close class="modal__close-button-cm">
-                    <svg class="modal__close-icon-cm">
-                        <use href="./images/form-sprite.svg#icon-close-button"></use>
-                    </svg>
+        
         </button>
 
         <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
+        
         <div class="current-movie__info">
 
         <h2 class="current-movie__title"> ${event.target.alt}</h2>
-        <p class="current-movie__votes"> Vote / Votes
-          <span class="current-movie__vote-data">${vote}</span>
-          <span class="current-movie__votes_slash">/</span>
-          <span class="current-movie__votes-data">${votes}</span>
-        </p>
-        <p class="current-movie__popularity"> Popularity <span class="current-movie__popularity-data">${populanty}</span></p>
-        <p class="current-movie__original-title"> Original Title <span class="current-movie__original-title-data">${title}</span></p>
-        <p class="current-movie__genre"> Genre
-          <span class="current-movie__genre-data">${ganreList}</span>
-        </p>
+        <div class="info__box">
+        <ul class="info__name">
+        <li class="current-movie__name"> Vote / Votes </li>
+        <li class="current-movie__name"> Popularity </li>
+        <li class="current-movie__name"> Original Title </li>
+       <li class="current-movie__name"> Genre</li>
+          </ul>
+        
+        <ul class="info__value">
+      <li class="info__item"><p > <span class="current-movie__vote-data">${vote} </span><span class="current-movie__votes_slash">/</span> <span class="current-movie__votes-data">${votes}</span></p></li>
+      <li class="info__item"><p class="current-movie__popularity-data">${populanty}</p></li>
+      <li class="info__item"><p class="current-movie__original-title-data">${title}</p></li>
+      <li class="info__item"><p class="current-movie__genre-data">${ganreList}</p></li>
+      </ul></div>
         <div class="current-movie__about-section">
           <h3 class="current-movie__about"> ABOUT</h3>
           <p class="current-movie__about-data"> ${about} </p>
         </div>
 
         <div class="current-movie__btn-container">
-        <button type = "button" class="current-movie_btn-add-to-watched">ADD TO WATCHED</button>
-        <button type = "button" class="current-movie_btn-add-to-queue">ADD TO QUEUE</button>
+        <button type = "button" class="current-movie_btn-add-to-watched btn">ADD TO WATCHED</button>
+        <button type = "button" class="current-movie_btn-add-to-queue btn">ADD TO QUEUE</button>
       </div>
-
-
     </div>`
       );
 
