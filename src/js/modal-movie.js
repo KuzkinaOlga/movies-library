@@ -103,7 +103,6 @@ export function onContainerClick(event) {
         console.log(currentMovieInfo.id);
         // Firebase code
         filmType = 'watched';
-        // filmId = currentMovieInfo.id;
         addFilmToFirebase(filmType, currentMovieInfo);
 
 
@@ -128,8 +127,7 @@ export function onContainerClick(event) {
         localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(dataQueueMovie));
         // Firebase code
         filmType = 'queue';
-        filmId = currentMovieInfo.id;
-        addFilmToFirebase(filmType, filmId);
+        addFilmToFirebase(filmType, currentMovieInfo);
         
       }));
 
@@ -148,7 +146,7 @@ export function onContainerClick(event) {
 
 
 
-
+}
 
 
 

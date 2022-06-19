@@ -6,6 +6,7 @@ import {
 // Other import
 import { signOut } from 'firebase/auth';
 
+
 const refs = {
   myLibraryItem: document.querySelector('.nav_my-library'),
   loginItem: document.querySelector('.nav__login'),
@@ -30,7 +31,6 @@ const singInClick = e => {
       onLogoutShow();
       userId = user.uid;
       console.log(user);
-      console.log(userId);
       console.log('Sign-in successful');
     })
     .catch(error => {
@@ -43,6 +43,7 @@ const singInClick = e => {
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
+
 };
 
 // LOGOUT

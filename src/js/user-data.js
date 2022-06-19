@@ -8,18 +8,17 @@ import {
   query,
   where,
 } from 'firebase/firestore';
+
+// let userId = '';
+
 // import { userId } from './login';
-import { processingStorage } from './library-pagination';
-import { getRefs } from './get-refs';
-const userId = 'izmMJHXqY6NJwC6a2MO5REctGrb2';
-const libraryContainer = getRefs().gallery;
-let currentPage = 1;
+let userId = 'izmMJHXqY6NJwC6a2MO5REctGrb2';
 
 // GET COLLECTION REF
 const colRef = collection(db, userId);
-// let userData = [];
 let watchedFilms = [];
 let queueFilms = [];
+// let userData = [];
 
 // QUERIES
 const watchedQuery = query(colRef, where('type', '==', 'watched'));
@@ -27,27 +26,18 @@ const queueQuery = query(colRef, where('type', '==', 'queue'));
 
 // FILMS COLLECTIONS
 function getWatchedFilms() {
-  //   let watchedFilms = [];
   onSnapshot(watchedQuery, snapshot => {
-    watchedFilms = []
+    watchedFilms = [];
     snapshot.docs.forEach(doc => {
       watchedFilms.push({ ...doc.data(), id: doc.id });
     });
-
-    getRefs().watchedBtn.addEventListener('click', () => {
-      processingStorage(watchedFilms, currentPage)
-      console.log('Render');
-
-    })
     console.log(watchedFilms);
-    
-    
-  })
+  });
 
+  return watchedFilms;
 }
 
 function getQueueFilms() {
-  //   let queueFilms = [];
   onSnapshot(queueQuery, snapshot => {
     queueFilms = [];
     snapshot.docs.forEach(doc => {
@@ -55,6 +45,8 @@ function getQueueFilms() {
     });
     console.log(queueFilms);
   });
+
+  return queueFilms;
 }
 
 // REAL TIME COLLECTION DATA
@@ -75,15 +67,14 @@ function addFilmToFirebase(filmType, currentMovieInfo) {
   addDoc(colRef, {
     type: filmType,
     filmid: currentMovieInfo.id,
-    original_title: currentMovieInfo.original_title, 
-    release_date: currentMovieInfo.release_date, 
-    poster_path: currentMovieInfo.poster_path, 
-    genre_ids: currentMovieInfo.genre_ids, 
+    original_title: currentMovieInfo.original_title,
+    release_date: currentMovieInfo.release_date,
+    poster_path: currentMovieInfo.poster_path,
+    genre_ids: currentMovieInfo.genre_ids,
     vote_average: currentMovieInfo.vote_average,
-    vote_count: currentMovieInfo.vote_count
+    vote_count: currentMovieInfo.vote_count,
   });
   // .then(() => {
-
   // })
 }
 
@@ -92,7 +83,6 @@ function delFilmFromFirebase() {
   const docRef = doc(db, userId, 'dFct0oY6Cg3vilIBLo96');
   deleteDoc(docRef);
   // .then(() => {
-
   // })
 }
 
@@ -102,22 +92,3 @@ export {
   getWatchedFilms,
   getQueueFilms,
 };
-
-
-// function onWatchedBtnClick() {
-//   if (getRefs().queueBtn.classList.contains('active-btn')) {
-//     getRefs().queueBtn.classList.remove('active-btn');
-//   }
-//   getRefs().watchedBtn.classList.add('active-btn');
-
-//   // container.innerHTML = '';
-
-//   // getWatchinLocal();
-// }
-
-// function onQueueBtnClick() {
-//   if (getRefs().watchedBtn.classList.contains('active-btn')) {
-//     getRefs().watchedBtn.classList.remove('active-btn');
-//   }
-//   // container.innerHTML = '';
-// }
