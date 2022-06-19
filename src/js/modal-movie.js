@@ -16,8 +16,8 @@ const container = getRefs().gallery;
 container.addEventListener('click', onContainerClick);
 
 
-let ADD_TO_WATCHED_FILM = "add-to-watched-film";
-let ADD_TO_QUEUE_FILM = "add-to-queue-film";
+// let ADD_TO_WATCHED_FILM = "add-to-watched-film";
+// let ADD_TO_QUEUE_FILM = "add-to-queue-film";
 
 
 // let currentMovie = '';
@@ -25,7 +25,7 @@ const addToWachedFilms = [];
 const addToQueueFilms = [];
 export function onContainerClick(event) {
   const parent = event.target.closest('li').firstChild;
-  const { id } = parent.dataset; 
+  const { id } = parent.dataset;
   if (!parent) {
     return;
   }
@@ -36,7 +36,7 @@ export function onContainerClick(event) {
   apiMainMovie.getMainMovie(id).then(({ title, genres, date, poster, about, populanty, vote, votes, id }) => {
     const ganreList = genres.map((ganre) => ganre.name).join(', ');
     const genre_ids = genres.map((ganre) => ganre.id);
-   
+
    const currentMovie = basicLightbox.create(`
     <div class="current-movie">
         <button data-modal-close class="modal__close-button-cm">
@@ -72,18 +72,18 @@ export function onContainerClick(event) {
 
     </div>`
       );
-   
+
   currentMovie.show();
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
-  const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue"); 
+  const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
 
   const currentMovieInfo = { id: id, original_title: title, release_date: date, poster_path: poster, genre_ids: genre_ids, vote_average: vote,
         vote_count: votes };
-    const dataWatchinMovie = JSON.parse(localStorage.getItem("add-to-watched-film")) || addToWachedFilms;
-    const dataQueueMovie = JSON.parse(localStorage.getItem("add-to-queue-film")) || addToQueueFilms;
-    
+    const dataWatchinMovie = JSON.parse(localStorage.getItem("watched")) || addToWachedFilms;
+    const dataQueueMovie = JSON.parse(localStorage.getItem("queue")) || addToQueueFilms;
 
-    
+
+
     btnAddToWatched.addEventListener("click", (() => {
       const unicId = dataWatchinMovie.map(({ id }) => {
           if (id === currentMovieInfo.id) {
@@ -96,6 +96,9 @@ export function onContainerClick(event) {
         Notify.success('You added this movie to Watched')
 
         dataWatchinMovie.push(currentMovieInfo);
+
+        localStorage.setItem('watched', JSON.stringify(dataWatchinMovie));
+
         localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
         console.log(currentMovieInfo.id);
         // Firebase code
@@ -103,23 +106,28 @@ export function onContainerClick(event) {
         filmId = currentMovieInfo.id;
         addFilmToFirebase(filmType, filmId);
 
-    }));
-  
 
-    btnAddToQueue.addEventListener("click", (() => {  
-     
+    }));
+
+
+    btnAddToQueue.addEventListener("click", (() => {
+
 
       const unicIdQ = dataQueueMovie.map(({ id }) => {
-        if (id === currentMovieInfo.id) {  
+        if (id === currentMovieInfo.id) {
             return true;
           }
       });
-      
+
         if (unicIdQ.find((item)=> item===true)) {
         return Notify.warning('You have already added this movie to Queue')
         }
         Notify.success('You added this movie to Queue')
         dataQueueMovie.push(currentMovieInfo);
+
+        localStorage.setItem('queue', JSON.stringify(dataQueueMovie));
+    }));
+
         localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(dataQueueMovie));
         // Firebase code
         filmType = 'queue';
@@ -127,15 +135,17 @@ export function onContainerClick(event) {
         addFilmToFirebase(filmType, filmId);
     })); 
 
+
   });
 }
 
   function onImageClose(event) {
     if (event.code === 'Escape') {
       currentMovie.close();
-      window.removeEventListener('keydown', onImageClose); 
+      window.removeEventListener('keydown', onImageClose);
     }
   }
+
 
 
   // const refs = {

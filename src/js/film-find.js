@@ -6,8 +6,8 @@ const incorrectInput = getRefs().incorrectInput;
 import { renderList } from './render-list';
 import ApiService from './api';
 const getFilm = new ApiService();
-import { containerTui, paginationTotalItems } from './pagination';
-export let searchBy = '';
+import { paginationTotalItems } from './pagination';
+
 export let queryForTui = '';
 
 //  onFormSubmit
@@ -30,8 +30,9 @@ function onFormSubmit(e) {
     if (total_results > 20) {
       if (total_results > 19980) total_results = 19980;
       paginationTotalItems(total_results);
-      searchBy = 'search';
-      containerTui.classList.remove('visually-hidden');
+      localStorage.removeItem('markerBy');
+      localStorage.setItem('markerBy', 'search');
+      getRefs().pagination.classList.remove('pagination-off');
     }
     // incorrectInputAnimation();
     if (results.length < 1) {
