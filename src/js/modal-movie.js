@@ -9,15 +9,13 @@ import { addFilmToFirebase } from './user-data'
 // Firebase const
 let filmType = '';
 let filmId = 0;
-
-
 const apiMainMovie = new ApiService();
 const container = getRefs().gallery;
 container.addEventListener('click', onContainerClick);
 
 
-// let ADD_TO_WATCHED_FILM = "add-to-watched-film";
-// let ADD_TO_QUEUE_FILM = "add-to-queue-film";
+let ADD_TO_WATCHED_FILM = "add-to-watched-film";
+let ADD_TO_QUEUE_FILM = "add-to-queue-film";
 
 
 // let currentMovie = '';
@@ -32,7 +30,6 @@ export function onContainerClick(event) {
 
   event.preventDefault();
   window.addEventListener('keydown', onImageClose);
-
   apiMainMovie.getMainMovie(id).then(({ title, genres, date, poster, about, populanty, vote, votes, id }) => {
     const ganreList = genres.map((ganre) => ganre.name).join(', ');
     const genre_ids = genres.map((ganre) => ganre.id);
@@ -74,7 +71,8 @@ export function onContainerClick(event) {
     </div>`
       );
 
-  currentMovie.show();
+    currentMovie.show();
+  const btnModalClose = document.querySelector(".modal__close-button-cm")
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
 
@@ -82,7 +80,7 @@ export function onContainerClick(event) {
         vote_count: votes };
     const dataWatchinMovie = JSON.parse(localStorage.getItem("watched")) || addToWachedFilms;
     const dataQueueMovie = JSON.parse(localStorage.getItem("queue")) || addToQueueFilms;
-
+btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
 
 
     btnAddToWatched.addEventListener("click", (() => {
@@ -138,6 +136,7 @@ export function onContainerClick(event) {
     if (event.code === 'Escape') {
       currentMovie.close();
       window.removeEventListener('keydown', onImageClose);
+      btnModalClose.removeEventListener('click', ()=>{ currentMovie.close();});
     }
   }
 

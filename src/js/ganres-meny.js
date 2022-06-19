@@ -31,9 +31,12 @@ const getFilmGenres = new ApiService();
 const ganreList = document.querySelector('.ganres__list');
 ganreList.addEventListener('click',ganreSelekt) 
 function ganreSelekt(evt) {
-    console.log("click")
     const currentGanre = evt.target.closest('li').firstChild.dataset.name;
     onLinkSubmit(currentGanre);
+    if (currentGanre) {
+        const activLink = evt.target.closest('li').firstChild;
+        activLink 
+    }
       
 }
 

@@ -33,6 +33,7 @@ justify-content: center;
 // &.is-close{
 //     transform: scale(0);
 // }
+
 }
 .ganres__list.is-open {
     transform: scale(1);
@@ -64,6 +65,12 @@ transition: opacity 300ms linear;
     transform: scaleX(0);
     transition: transform 300ms linear;
 }
+&active:hover,
+&active:focus,
+&active:active,
+&active:visited {
+    transform: scaleX(1);
+    opacity: 1;}
 }
 // .active{
 //      transform: scaleX(1);
