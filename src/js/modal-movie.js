@@ -85,6 +85,9 @@ export function onContainerClick(event) {
 
 
     btnAddToWatched.addEventListener("click", (() => {
+      if (!dataWatchinMovie) {
+        return
+      }
       const unicId = dataWatchinMovie.map(({ id }) => {
           if (id === currentMovieInfo.id) {
             return true
@@ -111,7 +114,9 @@ export function onContainerClick(event) {
 
 
     btnAddToQueue.addEventListener("click", (() => {
-
+ if (!btnAddToQueue) {
+        return
+      }
 
       const unicIdQ = dataQueueMovie.map(({ id }) => {
         if (id === currentMovieInfo.id) {
@@ -133,11 +138,7 @@ export function onContainerClick(event) {
         filmType = 'queue';
         filmId = currentMovieInfo.id;
         addFilmToFirebase(filmType, filmId);
-    })); 
-
-
-  });
-}
+    }); 
 
   function onImageClose(event) {
     if (event.code === 'Escape') {
@@ -147,19 +148,6 @@ export function onContainerClick(event) {
   }
 
 
-
-  // const refs = {
-  //   openModalBtn: document.querySelector('[data-modal-open]'),
-  //   closeModalBtn: document.querySelector('[data-modal-close]'),
-  //   modal: document.querySelector('[data-modal]'),
-  // };
-
-  // refs.openModalBtn.addEventListener('click', toggleModal);
-  // refs.closeModalBtn.addEventListener('click', toggleModal);
-
-  // function toggleModal() {
-  //   refs.modal.classList.toggle('is-hidden');
-  // }
 
 
 

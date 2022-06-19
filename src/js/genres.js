@@ -9,6 +9,9 @@ getFilmGenres.getGanres().then(res => {
 //Функция возвращает массив объектов жанров по id
 
 function searchGenresById(genre_ids) {
+  if (!genre_ids) {
+    return
+  }
   return genre_ids.map(id => genresData.genres.find(g => g.id === id));
 }
 
