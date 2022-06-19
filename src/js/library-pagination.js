@@ -7,7 +7,7 @@ import noImg from '../images/no-poster-available.jpeg';
 import { genresAddOthers } from './genres';
 import { paginationTotalItems } from './pagination';
 // FIREBASE IMPORT
-import { getWatchedFilms, getQueueFilms } from './user-data';
+import { getWatchedFilms, getQueueFilms, watchedFilms, queueFilms } from './user-data';
 import { onWatchedBtnClickActipn, onQueueBtnClickActipn } from './header';
 
 
@@ -32,32 +32,33 @@ queuedBtn.addEventListener('click', onQueuedBtnClick);
 export function onWatchedBtnClick() {
     getRefs().pagination.classList.add('pagination-off');
     // processingStorage('watched', 1);
-    processingStorage(getWatchedFilms(), 1);
+    processingStorage(watchedFilms, 1);
     let arrayMovies = JSON.parse(localStorage.getItem('watched'));
     // paginationTotalItems(arrayMovies.length);
     localStorage.removeItem('markerBy');
     localStorage.setItem('markerBy', 'watched');
     // перемкнути видимість кнопок
     onWatchedBtnClickActipn();
+    console.log('watchedFilms: ', watchedFilms)
 }
 
 export function onQueuedBtnClick(evt) {
   getRefs().pagination.classList.add('pagination-off');
   // processingStorage('queue', 1);
-  processingStorage(getQueueFilms(), 1);
+  processingStorage(queueFilms, 1);
   let arrayMovies = JSON.parse(localStorage.getItem('queue'));
   paginationTotalItems(arrayMovies.length);
   localStorage.removeItem('markerBy');
   localStorage.setItem('markerBy', 'queue');
   // перемкнути видимість кнопок
   onQueueBtnClickActipn();
+  console.log('queueFilms: ', queueFilms)
 }
 
 export function processingStorage(value, i) {
   container.innerHTML = "";
   // let cards = JSON.parse(localStorage.getItem(value));
   let cards = value;
-  console.log('cards: ', cards);
   if (!cards) return;
   if (cards.length >20) {
     // paginationTotalItems(cards.length);

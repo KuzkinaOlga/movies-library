@@ -6,7 +6,6 @@ import {
 // Other import
 import { signOut } from 'firebase/auth';
 
-
 const refs = {
   myLibraryItem: document.querySelector('.nav_my-library'),
   loginItem: document.querySelector('.nav__login'),
@@ -29,8 +28,8 @@ const singInClick = e => {
       const user = result.user;
       // ...
       onLogoutShow();
-      userId = user.uid;
-      console.log(user);
+      // userId = user.uid;
+      // console.log(user);
       console.log('Sign-in successful');
     })
     .catch(error => {

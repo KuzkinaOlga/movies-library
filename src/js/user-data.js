@@ -8,74 +8,101 @@ import {
   query,
   where,
 } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-// let userId = '';
-
-// import { userId } from './login';
 let userId = 'izmMJHXqY6NJwC6a2MO5REctGrb2';
 
 // GET COLLECTION REF
 const colRef = collection(db, userId);
 let watchedFilms = [];
 let queueFilms = [];
-// let userData = [];
-
-// QUERIES
-const watchedQuery = query(colRef, where('type', '==', 'watched'));
-const queueQuery = query(colRef, where('type', '==', 'queue'));
 
 // FILMS COLLECTIONS
 function getWatchedFilms() {
-  onSnapshot(watchedQuery, snapshot => {
-    watchedFilms = [];
-    snapshot.docs.forEach(doc => {
-      watchedFilms.push({ ...doc.data(), id: doc.id });
-    });
-    console.log(watchedFilms);
+  let colRef = null;
+  const auth = getAuth();
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      colRef = collection(db, uid);
+      const watchedQuery = query(colRef, where('type', '==', 'watched'));
+
+      onSnapshot(watchedQuery, snapshot => {
+        watchedFilms = [];
+        snapshot.docs.forEach(doc => {
+          watchedFilms.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(watchedFilms);
+      });
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
   });
 
   return watchedFilms;
 }
 
 function getQueueFilms() {
-  onSnapshot(queueQuery, snapshot => {
-    queueFilms = [];
-    snapshot.docs.forEach(doc => {
-      queueFilms.push({ ...doc.data(), id: doc.id });
-    });
-    console.log(queueFilms);
+  let colRef = null;
+  const auth = getAuth();
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      colRef = collection(db, uid);
+      const queueQuery = query(colRef, where('type', '==', 'queue'));
+
+      onSnapshot(queueQuery, snapshot => {
+        queueFilms = [];
+        snapshot.docs.forEach(doc => {
+          queueFilms.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(queueFilms);
+      });
+
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
   });
 
   return queueFilms;
 }
 
-// REAL TIME COLLECTION DATA
-// function getUserData() {
-//     let userData = [];
-//   onSnapshot(colRef, snapshot => {
-//     snapshot.docs.forEach(doc => {
-//       userData.push({ ...doc.data(), id: doc.id });
-//     });
-//     console.log(userData);
-//     return userData;
-//   })
-
-// }
-
 // ADD DOCUMENTS TO COLLECTION
 function addFilmToFirebase(filmType, currentMovieInfo) {
-  addDoc(colRef, {
-    type: filmType,
-    filmid: currentMovieInfo.id,
-    original_title: currentMovieInfo.original_title,
-    release_date: currentMovieInfo.release_date,
-    poster_path: currentMovieInfo.poster_path,
-    genre_ids: currentMovieInfo.genre_ids,
-    vote_average: currentMovieInfo.vote_average,
-    vote_count: currentMovieInfo.vote_count,
+  let colRef = null;
+  const auth = getAuth();
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      colRef = collection(db, uid);
+
+      addDoc(colRef, {
+        type: filmType,
+        filmid: currentMovieInfo.id,
+        original_title: currentMovieInfo.original_title,
+        release_date: currentMovieInfo.release_date,
+        poster_path: currentMovieInfo.poster_path,
+        genre_ids: currentMovieInfo.genre_ids,
+        vote_average: currentMovieInfo.vote_average,
+        vote_count: currentMovieInfo.vote_count,
+      });
+
+      // ...
+    } else {
+      // User is signed out
+      // ...
+    }
   });
-  // .then(() => {
-  // })
 }
 
 // DELETING DOCUMENTS
@@ -91,4 +118,6 @@ export {
   delFilmFromFirebase,
   getWatchedFilms,
   getQueueFilms,
+  watchedFilms,
+  queueFilms,
 };

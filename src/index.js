@@ -17,7 +17,6 @@ import { onContainerClick } from './js/modal-movie';
 // AUTH IMPORTS
 import { singInClick, singOutClick } from './js/login';
 import authState from './js/auth-state';
-// import { userData } from './js/user-data';
 import { getQueueFilms, getWatchedFilms, delFilmFromFirebase } from './js/user-data';
 
 import { showWarningNoName } from './js/warning'
