@@ -7,7 +7,7 @@ export function onFooterClick(event) {
     <div class="footer-modal">
      <ul class="footer-team__list">
      <li class="footer-team__item">
-     <img class="footer-team__pic" width=200  src="images/KravchukOleksandr.jpg" alt="KravchukOleksandr" >
+     <img class="footer-team__pic" src="images/KravchukOleksandr.jpg" alt="KravchukOleksandr" >
      <div class="footer-team__crew">
      <h3 class="footer-team__name">Kravchuk Oleksandr</h3>
      <p class="footer-team__prof">Team Leader</p>

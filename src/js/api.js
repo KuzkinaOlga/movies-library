@@ -17,7 +17,7 @@ export default class ApiService {
   async getTopMovies() {
     try {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
+        `https://api.themoviedb.org/3/trending/movie/day?`
       );
       return data;
     } catch {
@@ -27,7 +27,7 @@ export default class ApiService {
   async getSearchMovies(searchQuery) {
     try {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchQuery}`
+        `https://api.themoviedb.org/3/search/movie?&query=${searchQuery}`
       );
       this.page += 1;
       return data;
@@ -39,18 +39,27 @@ export default class ApiService {
   async getGanres() {
     try {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
+        `https://api.themoviedb.org/3/genre/movie/list?`
       );
       return data;
     } catch {
       Notify.failure('Oops something went wrong');
     }
   }
-
+//  async getCollections() {
+//     try {
+//       const { data } = await axios.get(
+//         `https://api.themoviedb.org/3/movie/615469/similar`
+//       );
+//       console.log(data) ;
+//     } catch {
+//       Notify.failure('Oops something went wrong');
+//     }
+//   }
   async getMainMovie(value) {
     try {
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/${value}?api_key=${API_KEY}`
+        `https://api.themoviedb.org/3/movie/${value}?`
       );
       const base = await {
         title: data.original_title,
