@@ -6,6 +6,9 @@ import { onClickToAddToQueueBtn } from './modal-movie';
 import noImg from '../images/no-poster-available.jpeg';
 import { genresAddOthers } from './genres';
 import { paginationTotalItems } from './pagination';
+// FIREBASE IMPORT
+import { getWatchedFilms } from './user-data';
+
 
 const watchedBtn = document.querySelector('.js-watched-btn');
 const queuedBtn = getRefs().queueBtn;
@@ -29,7 +32,7 @@ export function onWatchedBtnClick() {
     getRefs().pagination.classList.add('pagination-off');
     processingStorage('watched', 1);
     let arrayMovies = JSON.parse(localStorage.getItem('watched'));
-    paginationTotalItems(arrayMovies.length);
+    // paginationTotalItems(arrayMovies.length);
     localStorage.removeItem('markerBy');
     localStorage.setItem('markerBy', 'watched');
     // перемкнути видимість кнопок

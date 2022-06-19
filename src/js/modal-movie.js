@@ -16,8 +16,8 @@ const container = getRefs().gallery;
 container.addEventListener('click', onContainerClick);
 
 
-// let ADD_TO_WATCHED_FILM = "add-to-watched-film";
-// let ADD_TO_QUEUE_FILM = "add-to-queue-film";
+let ADD_TO_WATCHED_FILM = "add-to-watched-film";
+let ADD_TO_QUEUE_FILM = "add-to-queue-film";
 
 
 // let currentMovie = '';
@@ -103,8 +103,8 @@ export function onContainerClick(event) {
         console.log(currentMovieInfo.id);
         // Firebase code
         filmType = 'watched';
-        filmId = currentMovieInfo.id;
-        addFilmToFirebase(filmType, filmId);
+        // filmId = currentMovieInfo.id;
+        addFilmToFirebase(filmType, currentMovieInfo);
 
 
     }));
@@ -124,13 +124,15 @@ export function onContainerClick(event) {
         dataQueueMovie.push(currentMovieInfo);
 
         localStorage.setItem('queue', JSON.stringify(dataQueueMovie));
-    }));
-
+        
         localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(dataQueueMovie));
         // Firebase code
         filmType = 'queue';
         filmId = currentMovieInfo.id;
         addFilmToFirebase(filmType, filmId);
+        
+      }));
+
     }); 
 
   function onImageClose(event) {
