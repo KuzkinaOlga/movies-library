@@ -39,12 +39,19 @@ export function onContainerClick(event) {
    
    const currentMovie = basicLightbox.create(`
     <div class="current-movie">
+        <button data-modal-close class="modal__close-button-cm">
+                    <svg class="modal__close-icon-cm">
+                        <use href="./images/form-sprite.svg#icon-close-button"></use>
+                    </svg>
+        </button>
+
         <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
         <div class="current-movie__info">
 
         <h2 class="current-movie__title"> ${event.target.alt}</h2>
         <p class="current-movie__votes"> Vote / Votes
           <span class="current-movie__vote-data">${vote}</span>
+          <span class="current-movie__votes_slash">/</span>
           <span class="current-movie__votes-data">${votes}</span>
         </p>
         <p class="current-movie__popularity"> Popularity <span class="current-movie__popularity-data">${populanty}</span></p>
@@ -129,6 +136,21 @@ export function onContainerClick(event) {
       window.removeEventListener('keydown', onImageClose); 
     }
   }
+
+
+  // const refs = {
+  //   openModalBtn: document.querySelector('[data-modal-open]'),
+  //   closeModalBtn: document.querySelector('[data-modal-close]'),
+  //   modal: document.querySelector('[data-modal]'),
+  // };
+
+  // refs.openModalBtn.addEventListener('click', toggleModal);
+  // refs.closeModalBtn.addEventListener('click', toggleModal);
+
+  // function toggleModal() {
+  //   refs.modal.classList.toggle('is-hidden');
+  // }
+
 
 
 
