@@ -35,7 +35,7 @@ function ganreSelekt(evt) {
     onLinkSubmit(currentGanre);
     if (currentGanre) {
         const activLink = evt.target.closest('li').firstChild;
-        activLink 
+        activLink.classList.add('active'); 
     }
       
 }
