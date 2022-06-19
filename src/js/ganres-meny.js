@@ -25,7 +25,8 @@ export default (() => {
   });
 })();
 
-
+ const restLink = document.querySelector('ganres__link')
+        console.log(restLink)
 const getFilmGenres = new ApiService();
 
 const ganreList = document.querySelector('.ganres__list');
@@ -34,8 +35,12 @@ function ganreSelekt(evt) {
     const currentGanre = evt.target.closest('li').firstChild.dataset.name;
     onLinkSubmit(currentGanre);
     if (currentGanre) {
-        const activLink = evt.target.closest('li').firstChild;
-        activLink.classList.add('active'); 
+        const activLink = evt.target.closest('li').firstChild
+       
+        // restLink.classList.remove('.ganres__link')
+        // const restLink = evt.target.closest('ul').childNodes;
+        // restLink.forEach((item)=>item.children.classList.remove('active') )
+        activLink.classList.add('active');
     }
       
 }
