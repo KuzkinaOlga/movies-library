@@ -507,7 +507,7 @@ export { genresAddOthers };
 // const addToQueueFilms = [];
 // export function onContainerClick(event) {
 //   const parent = event.target.closest('li').firstChild;
-//   const { id } = parent.dataset; 
+//   const { id } = parent.dataset;
 //   if (!parent) {
 //     return;
 //   }
@@ -550,7 +550,7 @@ export { genresAddOthers };
    
 //   currentMovie.show();
 //   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
-//   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue"); 
+//   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
 
 //   const currentMovieInfo = { id: id, original_title: title, release_date: date, poster_path: poster, genre_ids: genre_ids, vote_average: vote,
 //         vote_count: votes };
@@ -575,11 +575,11 @@ export { genresAddOthers };
 //     }));
   
 
-//     btnAddToQueue.addEventListener("click", (() => {  
+//     btnAddToQueue.addEventListener("click", (() => {
      
 
 //       const unicIdQ = dataQueueMovie.map(({ id }) => {
-//         if (id === currentMovieInfo.id) {  
+//         if (id === currentMovieInfo.id) {
 //             return true;
 //           }
 //       });
@@ -590,7 +590,7 @@ export { genresAddOthers };
 //         Notify.success('You added this movie to Queue')
 //         dataQueueMovie.push(currentMovieInfo);
 //         localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(dataQueueMovie));
-//     })); 
+//     }));
 
 //   });
 // }
@@ -598,6 +598,232 @@ export { genresAddOthers };
 //   function onImageClose(event) {
 //     if (event.code === 'Escape') {
 //       currentMovie.close();
-//       window.removeEventListener('keydown', onImageClose); 
+//       window.removeEventListener('keydown', onImageClose);
 //     }
 //   }
+
+
+// render main
+// const currentMovie = basicLightbox.create(`
+//     <div class="current-movie">
+//         <button data-modal-close class="modal__close-button-cm">
+        
+//         </button>
+
+//         <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
+        
+//         <div class="current-movie__info">
+
+//         <h2 class="current-movie__title"> ${event.target.alt}</h2>
+//         <div class="info__box">
+//         <ul class="info__name">
+//         <li class="current-movie__name"> Vote / Votes </li>
+//         <li class="current-movie__name"> Popularity </li>
+//         <li class="current-movie__name"> Original Title </li>
+//        <li class="current-movie__name"> Genre</li>
+//           </ul>
+        
+//         <ul class="info__value">
+//       <li class="info__item"><p > <span class="current-movie__vote-data">${vote} </span><span class="current-movie__votes_slash">/</span> <span class="current-movie__votes-data">${votes}</span></p></li>
+//       <li class="info__item"><p class="current-movie__popularity-data">${populanty}</p></li>
+//       <li class="info__item"><p class="current-movie__original-title-data">${title}</p></li>
+//       <li class="info__item"><p class="current-movie__genre-data">${ganreList}</p></li>
+//       </ul></div>
+//         <div class="current-movie__about-section">
+//           <h3 class="current-movie__about"> ABOUT</h3>
+//           <p class="current-movie__about-data"> ${about} </p>
+//         </div>
+
+//         <div class="current-movie__btn-container">
+//         <button type = "button" class="current-movie_btn-add-to-watched btn">ADD TO WATCHED</button>
+//         <button type = "button" class="current-movie_btn-add-to-queue btn">ADD TO QUEUE</button>
+//       </div>
+//     </div>`
+//       );
+
+// css main
+// .current-movie {
+//   background-color: white;
+//   @media screen and (max-width: 767px) {
+//     width: 90vw;
+// height: 98vh;
+//   }
+//   padding: 40px 20px 40px 20px;
+
+//   @media screen and (min-width: 768px) {
+//     display: flex;
+//     width: 704px;
+//     padding: 40px 36px;
+//   }
+
+//   @media screen and (min-width: 1024px) {
+//     width: 814px;
+//     padding: 40px 16px;
+//   }
+// }
+
+// .modal__close-button-cm {
+//   position: absolute;
+//   top: 8px;
+//   right: 8px;
+//   cursor: pointer;
+// background-image: url(../images/closest.svg);
+// background-repeat: no-repeat;
+// background-size:cover;
+//   justify-content: center;
+//   width: 30px;
+//   height: 30px;
+//   padding: 0;
+//   border-radius: 50%;
+//   border: 1px solid;
+//   border-color: rgba(0, 0, 0, 0.1);
+ 
+// }
+
+// .current-movie__img {
+//   width: 100%;
+//   @media screen and (min-width: 768px) {
+//     width:264px;
+//   }
+
+//   @media screen and (min-width: 1024px) {
+//     width: 375px;
+//   }
+// }
+
+// .current-movie__info {
+//   @media screen and (min-width: 768px) {
+//     margin-left: 68px;
+//   }
+
+//   @media screen and (min-width: 1024px) {
+//     margin-left: 16px;
+//   }
+// }
+// .info__box{
+//   display: flex;
+// }
+// .info__name{
+//    width:100px;
+//       @media screen and (min-width: 768px) {
+//     width:120px;
+//   }
+//     @media screen and (min-width: 1024px) {
+//     width:100px;
+//   }
+// }
+// .info__value{
+//    margin-left: 35px;
+//   @media screen and (min-width: 1024px) {
+//     margin-left: 75px;
+//     width:200px;
+//   }
+// }
+// .current-movie__title {
+//   margin-bottom: 20px;
+//   text-transform: uppercase;
+//   font-family: 'Roboto';
+// font-style: normal;
+// font-weight: 500;
+// font-size: 20px;
+// line-height: 1.15;
+// @media screen and (min-width: 1024px) {
+//     font-size: 30px;
+// line-height: 1.17;
+//   }
+//   @media screen and (max-width: 767px) {
+//     margin-top: 20px;
+//   }
+// }
+// .current-movie__name{
+//   color: #8c8c8c;
+//   font-family: 'Roboto';
+// font-style: normal;
+// font-weight: 500;
+// font-size: 12px;
+// line-height: 1.33;
+// }
+// .current-movie__name:not(:last-child){
+//     margin-bottom: 8px;
+// }
+// .info__item{
+//    color: #000000;
+//      font-family: 'Roboto';
+// font-style: normal;
+// font-weight: 500;
+// font-size: 12px;
+//   line-height: 1.33; 
+// }
+// .info__item:not(:last-child){
+//   margin-bottom: 8px;
+// }
+
+
+// .current-movie__vote-data {
+//   padding-left: 5px;
+//   padding-right: 8px;
+//   background-color: #ff6b08;
+//   border-radius: 5px;
+//   color: #fff;
+// }
+
+// .current-movie__about-section {
+//   margin-top:20px;
+//    margin-bottom: 20px;
+// }
+// .current-movie__about {
+//   font-family: 'Roboto';
+// font-style: normal;
+// font-weight: 500;
+// font-size: 12px;
+// line-height: 1.33;
+//   margin-bottom: 8px;
+//   text-transform: uppercase;
+// }
+// .current-movie__about-data {
+//   font-family: 'Roboto';
+// font-style: normal;
+// font-weight: 500;
+// font-size: 12px;
+// line-height: 1.67;
+// }
+// .current-movie__btn-container {
+//   display: flex;
+// }
+// .current-movie_btn-add-to-watched {
+//   @media screen and (min-width: 1024px) {
+//     margin-left: 34px;
+//   }
+// }
+
+// .btn{
+//     margin-left: 15px;
+//   font-weight: 500;
+//   font-size: 12px;
+//   line-height: 16px;
+//   border: 1px solid #000000;
+//   border-radius: 5px;
+//   padding-top: 14px;
+//   padding-bottom: 12px;
+//   justify-content: center;
+//   text-transform: uppercase;
+//   margin-left: 20px;
+//   cursor: pointer;
+//   transition: background-color 250ms linear,color 250ms linear;
+//   @media screen and (min-width: 768px) {
+//     margin-left: 15px;
+//   }
+//   &:hover,
+//   &:focus,
+//   &:active{
+//   font-weight: 500;
+//   font-size: 12px;
+//   line-height: 16px;
+//   background-color: #ff6b01;
+//   color: #fff;
+//   border-radius: 5px;
+
+//   justify-content: center;
+//   text-transform: uppercase;
+//   }
+// }
