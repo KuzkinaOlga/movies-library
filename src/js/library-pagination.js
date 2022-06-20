@@ -29,33 +29,39 @@ queuedBtn.addEventListener('click', onQueuedBtnClick);
 // paginationTotalItems(arrayMovies.length);
 
 export function onWatchedBtnClick() {
-    getRefs().pagination.classList.add('pagination-off');
-    processingStorage('watched', 1);
-    let arrayMovies = JSON.parse(localStorage.getItem('watched'));
-    paginationTotalItems(arrayMovies.length);
-    localStorage.removeItem('markerBy');
-    localStorage.setItem('markerBy', 'watched');
-    // перемкнути видимість кнопок
-    onWatchedBtnClickActipn();
-    console.log('watchedFilms: ', watchedFilms)
+  getRefs().pagination.classList.add('pagination-off');
+  processingStorage('watched', 1);
+  // let arrayMovies = JSON.parse(localStorage.getItem('watched'));
+  paginationTotalItems(watchedFilms.length);
+  localStorage.removeItem('markerBy');
+  localStorage.setItem('markerBy', 'watched');
+  // перемкнути видимість кнопок
+  onWatchedBtnClickActipn();
+  console.log('watchedFilms: ', watchedFilms)
 }
 
 export function onQueuedBtnClick(evt) {
-  getRefs().pagination.classList.add('pagination-off');
-  processingStorage('queue', 1);
-  let arrayMovies = JSON.parse(localStorage.getItem('queue'));
-  paginationTotalItems(arrayMovies.length);
-  localStorage.removeItem('markerBy');
-  localStorage.setItem('markerBy', 'queue');
-  // перемкнути видимість кнопок
-  onQueueBtnClickActipn();
-  console.log('queueFilms: ', queueFilms)
+getRefs().pagination.classList.add('pagination-off');
+processingStorage('queue', 1);
+// let arrayMovies = JSON.parse(localStorage.getItem('queue'));
+paginationTotalItems(queueFilms.length);
+localStorage.removeItem('markerBy');
+localStorage.setItem('markerBy', 'queue');
+// перемкнути видимість кнопок
+onQueueBtnClickActipn();
+console.log('queueFilms: ', queueFilms)
 }
 
 export function processingStorage(value, i) {
-  container.innerHTML = "";
-  let cards = JSON.parse(localStorage.getItem(value));
-  if (!cards) return;
+container.innerHTML = "";
+let cards;
+if (value === 'watched') {
+  cards = watchedFilms;
+} else {
+  cards = queueFilms;
+}
+// let cards = JSON.parse(localStorage.getItem(value));
+if (!cards) return;
   if (cards.length >20) {
     getRefs().pagination.classList.remove('pagination-off');
     console.log('log')
