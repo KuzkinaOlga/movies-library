@@ -1,5 +1,4 @@
-import { getRefs } from './get-refs';
-import axios from "axios";
+
 
 import ApiService from './api';
 import { onClickToAddToQueueBtn } from './modal-movie';
