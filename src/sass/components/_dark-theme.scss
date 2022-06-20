@@ -107,10 +107,18 @@ body.dark {
   & .movie-title {
     color: $secondaryDarkTextColor;
   }
+
+  & .tui-page-btn {
+    color: #f8f8f8;
+  }
 }
 
 .header,
 .main,
 footer {
   transition: background 0.2s linear;
+}
+
+.up-btn .material-icons {
+  line-height: 1.4;
 }

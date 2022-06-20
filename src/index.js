@@ -1,28 +1,34 @@
 import { renderList } from './js/render-list';
-// import { renderMarkup } from './js/film-find';
 import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
+import './js/pagination';
 import './js/film-find';
 import './js/up-btn';
-
+import './js/library-pagination';
 import ApiService from './js/api';
 import { paginationTotalItems } from './js/pagination';
 import { onFooterClick } from './js/modal-footer';
 import { onContainerClick } from './js/modal-movie';
-// import { onContainerClick } from './js/my-modal';
+import {linkGanresClear} from './js/ganres-meny'
 
-import { showWarningNoName } from './js/warning'
-import { onWatchedBtnClick, onQueuedBtnClick } from './js/library';
 
-export let searchBy = '';
-export let queryForTui = '';
+
+// AUTH IMPORTS
+import { singInClick, singOutClick } from './js/login';
+import authState from './js/auth-state';
+import { getQueueFilms, getWatchedFilms, delFilmFromFirebase } from './js/user-data';
+
 const apiData = new ApiService();
 const container = getRefs().gallery;
 const mainCard = getRefs().linkCard;
 const foterLink = getRefs().footerLink;
-
+const restLinks = getRefs().restLink;
+authState();
 darkTheme();
+// delFilmFromFirebase();
+getWatchedFilms();
+getQueueFilms();
 
 // Top movies
 function topMoviesRender() {
@@ -34,6 +40,7 @@ function topMoviesRender() {
   });
 }
 topMoviesRender();
+localStorage.removeItem('markerBy');
 
 // Main movie
 container.addEventListener('click', onContainerClick);
@@ -45,14 +52,16 @@ foterLink.addEventListener('click', onFooterClick);
 getRefs().logo.addEventListener('click', onLogoClick);
 getRefs().homeBtn.addEventListener('click', onHomeBtnClick);
 getRefs().myLibraryBtn.addEventListener('click', onMyLybraryBtnClick);
-// getRefs().watchedBtn.addEventListener('click', onWatchedBtnClick);
-// getRefs().queueBtn.addEventListener('click', onQueueBtnClick);
+getRefs().loginBtn.addEventListener('click', singInClick)
+getRefs().logoutBtn.addEventListener('click', singOutClick)
 
 // Header functions
 function onLogoClick(e) {
   e.preventDefault();
   onShowHome();
   topMoviesRender();
+  localStorage.removeItem('markerBy');
+   linkGanresClear(restLinks);
   getRefs().pagination.classList.remove('pagination-off');
 }
 
@@ -60,6 +69,8 @@ function onHomeBtnClick(e) {
   e.preventDefault();
   onShowHome();
   topMoviesRender();
+  localStorage.removeItem('markerBy');
+  linkGanresClear(restLinks);
   getRefs().pagination.classList.remove('pagination-off');
 }
 
@@ -68,23 +79,4 @@ function onMyLybraryBtnClick(e) {
   onShowMyLibrary();
   container.innerHTML = '';
   getRefs().pagination.classList.add('pagination-off');
-  // getWatchinLocal();
 }
-
-// function onWatchedBtnClick() {
-//   if (getRefs().queueBtn.classList.contains('active-btn')) {
-//     getRefs().queueBtn.classList.remove('active-btn');
-//   }
-//   getRefs().watchedBtn.classList.add('active-btn');
-
-//   // container.innerHTML = '';
-
-//   // getWatchinLocal();
-// }
-
-// function onQueueBtnClick() {
-//   if (getRefs().watchedBtn.classList.contains('active-btn')) {
-//     getRefs().watchedBtn.classList.remove('active-btn');
-//   }
-//   // container.innerHTML = '';
-// }

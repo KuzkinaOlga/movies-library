@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { Loading } from 'notiflix';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
 axios.defaults.params = {
@@ -15,21 +15,27 @@ export default class ApiService {
   }
 
   async getTopMovies() {
-    try {
+       try {
+        Loading.standard();
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
+        `https://api.themoviedb.org/3/trending/movie/day?`
       );
+      Loading.remove();
       return data;
-    } catch {
+      } 
+      catch {
       Notify.failure('Oops something went wrong');
     }
   }
+
   async getSearchMovies(searchQuery) {
     try {
+      Loading.standard();
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchQuery}`
+        `https://api.themoviedb.org/3/search/movie?&query=${searchQuery}`
       );
       this.page += 1;
+      Loading.remove();
       return data;
     } catch {
       Notify.failure('Oops something went wrong');
@@ -38,9 +44,11 @@ export default class ApiService {
 
   async getGanres() {
     try {
+      Loading.standard();
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
+        `https://api.themoviedb.org/3/genre/movie/list?`
       );
+      Loading.remove();
       return data;
     } catch {
       Notify.failure('Oops something went wrong');
@@ -49,8 +57,9 @@ export default class ApiService {
 
   async getMainMovie(value) {
     try {
+      Loading.standard();
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/movie/${value}?api_key=${API_KEY}`
+        `https://api.themoviedb.org/3/movie/${value}?`
       );
       const base = await {
         title: data.original_title,
@@ -63,6 +72,7 @@ export default class ApiService {
         vote: data.vote_average,
         votes: data.vote_count,
       };
+      Loading.remove();
       return base;
     } catch {
       Notify.failure('Oops something went wrong');

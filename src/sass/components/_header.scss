@@ -31,7 +31,7 @@
   }
   &__container {
     position: relative;
-    width: 320px;
+    // width: 320px;
     margin: 0 auto;
     padding-top: 44px;
     padding-left: 20px;
@@ -53,6 +53,7 @@
 
     @media screen and (min-width: 768px) {
       padding-bottom: 80px;
+      
     }
   }
 
@@ -175,13 +176,14 @@
 }
 
 .form {
+  max-width: 90%;
   position: relative;
   display: flex;
   justify-content: space-between;
   width: 280px;
   height: 20px;
   margin: 0 auto;
-  padding-bottom: 5px;
+  // padding-bottom: 5px;
 
   @media screen and (min-width: 768px) {
     width: 336px;
@@ -254,9 +256,13 @@
     background-color: transparent;
     border: 1px solid white;
     border-radius: 5px;
-
+transition: background-color 250ms linear,border-color 250ms linear;
     cursor: pointer;
-
+&:hover,
+&:focus{
+   background-color: #ff6b08;
+  border-color: #ff6b08;
+}
     @media screen and (min-width: 768px) {
       width: 152px;
       height: 44px;
@@ -265,8 +271,7 @@
 }
 
 .active-btn {
-  background-color: #ff6b08;
-  border-color: #ff6b08;
+ 
 }
 
 .is-hidden {

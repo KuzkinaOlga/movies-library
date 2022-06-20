@@ -18,7 +18,9 @@ export function onFooterClick(event) {
     <div class="footer-modal">
      <ul class="footer-team__list">
      <li class="footer-team__item">
+
      <img class="footer-team__pic" src=${oskar} alt="KravchukOleksandr" >
+
      <div class="footer-team__crew">
      <a target="_blank" href="https://github.com/AleksandroKravchuk" class="footer-team__name">Kravchuk Oleksandr</a>
      <p class="footer-team__prof">Team Leader</p>

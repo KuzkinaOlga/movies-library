@@ -17,6 +17,9 @@ export function getRefs() {
     myLibraryBtns: document.querySelector('.js-librari-list'),
     watchedBtn: document.querySelector('.js-watched-btn'),
     queueBtn: document.querySelector('.js-queue-btn'),
+    loginBtn: document.querySelector('a[data-link="login"]'),
+    logoutBtn: document.querySelector('a[data-link="logout"]'),
+    restLink: document.querySelectorAll('.ganres__link'),
 
     // Pagination-Tui
     pagination: document.querySelector('.tui-pagination'),
