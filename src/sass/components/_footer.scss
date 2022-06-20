@@ -58,9 +58,6 @@ footer {
 .footer-modal {
   position: relative;
   background-color: #f7f7f7;
-  // background: url(../images/ukr-flag.jpeg);
-  // background-repeat: no-repeat;
-  // background-size: cover;
   padding: 30px;
   overflow: auto;
   @media screen and (min-width: 768px) {
@@ -145,5 +142,15 @@ footer {
 //   width: 28px;
 //   height: 28px;
 
-//   fill: currentColor;
-// }
+
+  fill: currentColor;
+
+.basicLightbox{
+  @media screen and (max-width: 767px) {
+    margin-top: 15px;
+    padding-top: 240px;
+   height: 95vh; 
+   overflow-y: auto,
+  }
+}
+
