@@ -10,44 +10,39 @@ const galleryList = getRefs().gallery;
 // export let searchBy = '';
 export let queryForTui = '';
 export default (() => {
-  const productsBtnRef = document.querySelector("[data-open-products]");
-  const productListRef = document.querySelector("[data-modal-products]");
+    const productsBtnRef = document.querySelector("[data-open-products]");
+    const productListRef = document.querySelector("[data-modal-products]");
 
-  productsBtnRef.addEventListener("click", () => {
-    const expanded =
-      productsBtnRef.getAttribute("aria-expanded") === "true" || false;
+    productsBtnRef.addEventListener("click", () => {
+        const expanded =
+            productsBtnRef.getAttribute("aria-expanded") === "true" || false;
 
-    productsBtnRef.classList.toggle("is-open");
-    productsBtnRef.setAttribute("aria-expanded", !expanded);
- 
-    productListRef.classList.toggle("is-open");
-    
-  });
+        productsBtnRef.classList.toggle("is-open");
+        productsBtnRef.setAttribute("aria-expanded", !expanded);
+
+        productListRef.classList.toggle("is-open");
+
+    });
 })();
 
- const restLink = document.querySelector('ganres__link')
-        console.log(restLink)
+
 const getFilmGenres = new ApiService();
 
 const ganreList = document.querySelector('.ganres__list');
-ganreList.addEventListener('click',ganreSelekt) 
+ganreList.addEventListener('click', ganreSelekt)
 function ganreSelekt(evt) {
     const currentGanre = evt.target.closest('li').firstChild.dataset.name;
     onLinkSubmit(currentGanre);
     if (currentGanre) {
-        const activLink = evt.target.closest('li').firstChild
-       
-        // restLink.classList.remove('.ganres__link')
-        // const restLink = evt.target.closest('ul').childNodes;
-        // restLink.forEach((item)=>item.children.classList.remove('active') )
-        activLink.classList.add('active');
+const activLink = evt.target.closest('li').firstChild
+const restLink = document.querySelectorAll('.ganres__link');
+restLink.forEach((item)=>item.classList.remove('active'))
+activLink.classList.add('active');
     }
-      
 }
 
-
 let genresData = [];
-let idGanres = 0;   
+let idGanres = 0;
 let ganreArray = [];
 let markup = [];
 function onLinkSubmit(currentGanre) {
@@ -55,36 +50,36 @@ function onLinkSubmit(currentGanre) {
     markup = [];
     renderGenres(currentGanre)
     function renderGenres(currentGanre) {
- 
-     getFilmGenres.getGanres().then(({genres}) => {
-         genresData = genres;  
-         idGanres  = genresData.find((item) => {
-             return item.name === currentGanre  
-         });
-         
-         getFilm.getSearchMovies(currentGanre).then(({ results, total_results }) => {
-    //         if (total_results > 20) {
-    //   if (total_results > 19980) total_results = 19980;
-    //   paginationTotalItems(total_results);
-    //   localStorage.removeItem('markerBy');
-    //   localStorage.setItem('markerBy', 'search');
-    //   getRefs().pagination.classList.remove('pagination-off');
-    // }
-             results.map((items) => {
-                 ganreArray = items.genre_ids;
-                 ganreArray.find((item) => {
-                     if (item === idGanres.id) {
-                         markup.push(items)
-                        //  console.log(markup) 
-                         galleryList.innerHTML = '';   
-                         return renderList(markup, galleryList);  
-                     }
-                 })
-             })
-          
-      });  
-});   
-}
+
+        getFilmGenres.getGanres().then(({ genres }) => {
+            genresData = genres;
+            idGanres = genresData.find((item) => {
+                return item.name === currentGanre
+            });
+
+            getFilm.getSearchMovies(currentGanre).then(({ results, total_results }) => {
+                //         if (total_results > 20) {
+                //   if (total_results > 19980) total_results = 19980;
+                //   paginationTotalItems(total_results);
+                //   localStorage.removeItem('markerBy');
+                //   localStorage.setItem('markerBy', 'search');
+                //   getRefs().pagination.classList.remove('pagination-off');
+                // }
+                results.map((items) => {
+                    ganreArray = items.genre_ids;
+                    ganreArray.find((item) => {
+                        if (item === idGanres.id) {
+                            markup.push(items)
+                            //  console.log(markup) 
+                            galleryList.innerHTML = '';
+                            return renderList(markup, galleryList);
+                        }
+                    })
+                })
+
+            });
+        });
+    }
     ganreList.classList.remove('is-open');
     // ganresLink.classList.add('active')
 }
