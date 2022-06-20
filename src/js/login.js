@@ -5,6 +5,7 @@ import {
 } from 'firebase/auth';
 // Other import
 import { signOut } from 'firebase/auth';
+import { Loading } from 'notiflix';
 
 const refs = {
   myLibraryItem: document.querySelector('.nav_my-library'),
@@ -18,8 +19,9 @@ let userId = '';
 // LOGIN
 const singInClick = e => {
   e.preventDefault();
-
+  Loading.standard();
   signInWithPopup(auth, provider)
+  
     .then(result => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -32,6 +34,9 @@ const singInClick = e => {
       // console.log(user);
       console.log('Sign-in successful');
     })
+    .finally (()=>{
+      Loading.remove();
+      })
     .catch(error => {
       // Handle Errors here.
       const errorCode = error.code;
@@ -42,13 +47,13 @@ const singInClick = e => {
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
-
+     
 };
 
 // LOGOUT
 const singOutClick = e => {
   e.preventDefault();
-
+  Loading.standard();
   //   const auth = getAuth();
   signOut(auth)
     .then(() => {
@@ -56,6 +61,9 @@ const singOutClick = e => {
       onLoginShow();
       console.log('Sign-out successful');
     })
+    .finally (()=> {
+      Loading.remove();
+      })
     .catch(error => {
       // An error happened.
       console.log(error.message);
