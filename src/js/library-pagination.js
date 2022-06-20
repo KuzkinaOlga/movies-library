@@ -8,7 +8,7 @@ import { paginationTotalItems } from './pagination';
 // FIREBASE IMPORT
 import { getWatchedFilms, getQueueFilms, watchedFilms, queueFilms } from './user-data';
 import { onWatchedBtnClickActipn, onQueueBtnClickActipn } from './header';
-
+import { getRefs } from './get-refs';
 
 const watchedBtn = document.querySelector('.js-watched-btn');
 const queuedBtn = getRefs().queueBtn;
