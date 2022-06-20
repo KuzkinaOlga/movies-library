@@ -8,7 +8,7 @@ const getFilm = new ApiService();
 const galleryList = getRefs().gallery;
 // const ganresLink = document.querySelector('.ganres__link')
 // export let searchBy = '';
-export let queryForTui = '';
+export let ganresForTui = '';
 export default (() => {
     const productsBtnRef = document.querySelector("[data-open-products]");
     const productListRef = document.querySelector("[data-modal-products]");
@@ -32,7 +32,11 @@ const ganreList = document.querySelector('.ganres__list');
 ganreList.addEventListener('click', ganreSelekt)
 function ganreSelekt(evt) {
     const currentGanre = evt.target.closest('li').firstChild.dataset.name;
+    getRefs().pagination.classList.add('pagination-off');
     onLinkSubmit(currentGanre);
+    localStorage.removeItem('markerBy');
+    localStorage.setItem('markerBy', 'ganres');
+
     if (currentGanre) {
 const activLink = evt.target.closest('li').firstChild;
 const restLinks = getRefs().restLink;
@@ -41,7 +45,7 @@ activLink.classList.add('active');
     }
 }
 export function linkGanresClear(restLinks) {
-   restLinks.forEach((item)=>item.classList.remove('active')) 
+   restLinks.forEach((item)=>item.classList.remove('active'))
 }
 let genresData = [];
 let idGanres = 0;
@@ -60,19 +64,18 @@ function onLinkSubmit(currentGanre) {
             });
 
             getFilm.getSearchMovies(currentGanre).then(({ results, total_results }) => {
-                //         if (total_results > 20) {
-                //   if (total_results > 19980) total_results = 19980;
-                //   paginationTotalItems(total_results);
-                //   localStorage.removeItem('markerBy');
-                //   localStorage.setItem('markerBy', 'search');
-                //   getRefs().pagination.classList.remove('pagination-off');
-                // }
+                if (total_results > 20) {
+                  if (total_results > 19980) total_results = 19980;
+                  paginationTotalItems(total_results);
+                  ganresForTui = idGanres.id;
+                  getRefs().pagination.classList.remove('pagination-off');
+                }
                 results.map((items) => {
                     ganreArray = items.genre_ids;
                     ganreArray.find((item) => {
                         if (item === idGanres.id) {
                             markup.push(items)
-                            //  console.log(markup) 
+                            //  console.log(markup)
                             galleryList.innerHTML = '';
                             return renderList(markup, galleryList);
                         }

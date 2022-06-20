@@ -7,6 +7,7 @@ import { renderList } from './render-list';
 import { getRefs } from './get-refs';
 import { markerBy, queryForTui } from './film-find';
 import { processingStorage } from './library-pagination';
+import { ganresForTui } from './ganres-meny';
 
 const container = getRefs().gallery;
 export const containerTui = document.getElementById('tui-pagination-container');
@@ -56,6 +57,14 @@ pagination.on('afterMove', e => {
   console.log('markerBy =', markerBy);
 
   switch (markerBy) {
+    case 'ganres':
+      value = ganresForTui;
+      console.log(ganresForTui);
+      paginationSearch(
+        `https://api.themoviedb.org/3/discover/movie?&page=${currentPage}&with_genres=${value}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`
+        );
+        // &sort_by=popularity.desc&include_adult=false
+      break;
     case 'queue':
       processingStorage('queue', currentPage);
       break;
