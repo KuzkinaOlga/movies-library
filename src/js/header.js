@@ -70,19 +70,6 @@ function onMyLybraryBtnClick(e) {
   onShowMyLibrary();
 }
 
-// function onFormSubmit(e) {
-//   e.preventDefault();
-//   searchQuery = e.currentTarget.elements.searchQuery.value.trim();
-
-//   if (!searchQuery) {
-//     alert('Not correct search key');
-//     return;
-//   }
-
-//   console.log('onFormSubmit');
-//   console.log(searchQuery);
-// }
-
 function onWatchedBtnClickActipn() {
   if (queueBtn.classList.contains('active-btn')) {
     queueBtn.classList.remove('active-btn');

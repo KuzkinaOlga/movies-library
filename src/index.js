@@ -1,5 +1,4 @@
 import { renderList } from './js/render-list';
-import { ganresMenu } from './js/ganres-meny';
 import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
 import { onShowMyLibrary, onShowHome } from './js/header';
@@ -13,15 +12,12 @@ import { onFooterClick } from './js/modal-footer';
 import { onContainerClick } from './js/modal-movie';
 import {linkGanresClear} from './js/ganres-meny'
 
-// import { onContainerClick } from './js/my-modal';
+
 
 // AUTH IMPORTS
 import { singInClick, singOutClick } from './js/login';
 import authState from './js/auth-state';
 import { getQueueFilms, getWatchedFilms, delFilmFromFirebase } from './js/user-data';
-
-import { showWarningNoName } from './js/warning'
-// import { onWatchedBtnClick, onQueuedBtnClick } from './js/library';
 
 const apiData = new ApiService();
 const container = getRefs().gallery;
@@ -56,8 +52,6 @@ foterLink.addEventListener('click', onFooterClick);
 getRefs().logo.addEventListener('click', onLogoClick);
 getRefs().homeBtn.addEventListener('click', onHomeBtnClick);
 getRefs().myLibraryBtn.addEventListener('click', onMyLybraryBtnClick);
-// getRefs().watchedBtn.addEventListener('click', onWatchedBtnClick);
-// getRefs().queueBtn.addEventListener('click', onQueueBtnClick);
 getRefs().loginBtn.addEventListener('click', singInClick)
 getRefs().logoutBtn.addEventListener('click', singOutClick)
 
@@ -85,23 +79,4 @@ function onMyLybraryBtnClick(e) {
   onShowMyLibrary();
   container.innerHTML = '';
   getRefs().pagination.classList.add('pagination-off');
-  // getWatchinLocal();
 }
-
-// function onWatchedBtnClick() {
-//   if (getRefs().queueBtn.classList.contains('active-btn')) {
-//     getRefs().queueBtn.classList.remove('active-btn');
-//   }
-//   getRefs().watchedBtn.classList.add('active-btn');
-
-//   // container.innerHTML = '';
-
-//   // getWatchinLocal();
-// }
-
-// function onQueueBtnClick() {
-//   if (getRefs().watchedBtn.classList.contains('active-btn')) {
-//     getRefs().watchedBtn.classList.remove('active-btn');
-//   }
-//   // container.innerHTML = '';
-// }

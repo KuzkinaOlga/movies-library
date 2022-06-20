@@ -3,11 +3,10 @@ import ApiService from './api';
 import { renderList } from './render-list';
 import { paginationTotalItems } from './pagination';
 import { getRefs } from './get-refs';
-// import {  genresAddOthers } from './genres';
+
 const getFilm = new ApiService();
 const galleryList = getRefs().gallery;
-// const ganresLink = document.querySelector('.ganres__link')
-// export let searchBy = '';
+
 export let ganresForTui = '';
 export default (() => {
     const productsBtnRef = document.querySelector("[data-open-products]");
@@ -24,9 +23,6 @@ export default (() => {
 
     });
 })();
-
-
-const getFilmGenres = new ApiService();
 
 const ganreList = document.querySelector('.ganres__list');
 ganreList.addEventListener('click', ganreSelekt)
@@ -57,7 +53,7 @@ function onLinkSubmit(currentGanre) {
     renderGenres(currentGanre)
     function renderGenres(currentGanre) {
 
-        getFilmGenres.getGanres().then(({ genres }) => {
+        getFilm.getGanres().then(({ genres }) => {
             genresData = genres;
             idGanres = genresData.find((item) => {
                 return item.name === currentGanre
@@ -75,7 +71,6 @@ function onLinkSubmit(currentGanre) {
                     ganreArray.find((item) => {
                         if (item === idGanres.id) {
                             markup.push(items)
-                            //  console.log(markup)
                             galleryList.innerHTML = '';
                             return renderList(markup, galleryList);
                         }
@@ -86,5 +81,4 @@ function onLinkSubmit(currentGanre) {
         });
     }
     ganreList.classList.remove('is-open');
-    // ganresLink.classList.add('active')
 }

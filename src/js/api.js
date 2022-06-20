@@ -2,9 +2,6 @@ import axios from 'axios';
 import { Loading } from 'notiflix';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-
-
-
 const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
 axios.defaults.params = {
   api_key: API_KEY,
@@ -30,8 +27,6 @@ export default class ApiService {
       Notify.failure('Oops something went wrong');
     }
   }
-
- 
 
   async getSearchMovies(searchQuery) {
     try {
@@ -59,16 +54,7 @@ export default class ApiService {
       Notify.failure('Oops something went wrong');
     }
   }
-//  async getCollections() {
-//     try {
-//       const { data } = await axios.get(
-//         `https://api.themoviedb.org/3/movie/615469/similar`
-//       );
-//       console.log(data) ;
-//     } catch {
-//       Notify.failure('Oops something went wrong');
-//     }
-//   }
+
   async getMainMovie(value) {
     try {
       Loading.standard();

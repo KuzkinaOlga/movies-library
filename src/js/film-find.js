@@ -44,7 +44,5 @@ function onFormSubmit(e) {
     galleryList.innerHTML = '';
     return renderList(results, galleryList);
   });
-  // clear input value
-  // e.currentTarget.elements.searchQuery.value = '';
   searchFilm.reset();
 }

@@ -140,13 +140,6 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
       btnModalClose.removeEventListener('click', ()=>{ currentMovie.close();});
     }
   }
-
-
-
-
-
-
-
 }
 
 
