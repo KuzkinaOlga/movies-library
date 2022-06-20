@@ -52,8 +52,6 @@ function onShowHome() {
   nav.classList.remove('nav__library-margin');
 }
 
-export { onShowMyLibrary, onShowHome };
-
 function onLogoClick(e) {
   e.preventDefault();
   console.log('onLogoClick');
@@ -85,16 +83,18 @@ function onMyLybraryBtnClick(e) {
 //   console.log(searchQuery);
 // }
 
-function onWatchedBtnClick() {
+function onWatchedBtnClickActipn() {
   if (queueBtn.classList.contains('active-btn')) {
     queueBtn.classList.remove('active-btn');
   }
   watchedBtn.classList.add('active-btn');
 }
 
-function onQueueBtnClick() {
+function onQueueBtnClickActipn() {
   if (watchedBtn.classList.contains('active-btn')) {
     watchedBtn.classList.remove('active-btn');
   }
   queueBtn.classList.add('active-btn');
 }
+
+export { onShowMyLibrary, onShowHome, onWatchedBtnClickActipn, onQueueBtnClickActipn };

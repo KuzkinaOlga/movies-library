@@ -14,6 +14,7 @@ export function authState() {
     onLoginShow()
     console.log('User is logged out');
   });
+
 }
 
 export default authState;

@@ -10,7 +10,7 @@
 import ApiService from './api';
 import { onClickToAddToQueueBtn } from './modal-movie';
 import noImg from '../images/no-poster-available.jpeg';
-import { genresAddOthers } from './genres';
+import { genresAddOthers } from './genres'; 
 // Firebase import
 
 // Firebase films collections
@@ -41,10 +41,10 @@ import { genresAddOthers } from './genres';
 
 // export function onWatchedBtnClick(evt) {
 //     evt.preventDefault();
-//     watchedFilms = JSON.parse(localStorage.getItem(ADD_TO_WATCHED_FILM_L));
-//     console.log(watchedFilms);
+//     // watchedFilms = JSON.parse(localStorage.getItem(ADD_TO_WATCHED_FILM_L));
+//     // console.log(watchedFilms);
 //     container.innerHTML = "";
-//      renderLibrary(watchedFilms);
+//      renderLibrary(getWatchedFilms, container);
 // }
 
 // export function onQueuedBtnClick(evt) {
