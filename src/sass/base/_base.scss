@@ -6,9 +6,6 @@ a {
     &.is-open {
       overflow: hidden;
     }
-      @media screen and (max-width: 767px) {
-   overflow-y:auto;
-  }
   }
   text-decoration: none;
 }
