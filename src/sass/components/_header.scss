@@ -176,14 +176,14 @@
 }
 
 .form {
-  max-width: 100%;
+  max-width: 90%;
   position: relative;
   display: flex;
   justify-content: space-between;
   width: 280px;
   height: 20px;
   margin: 0 auto;
-  padding-bottom: 5px;
+  // padding-bottom: 5px;
 
   @media screen and (min-width: 768px) {
     width: 336px;
