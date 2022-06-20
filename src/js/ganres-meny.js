@@ -34,13 +34,15 @@ function ganreSelekt(evt) {
     const currentGanre = evt.target.closest('li').firstChild.dataset.name;
     onLinkSubmit(currentGanre);
     if (currentGanre) {
-const activLink = evt.target.closest('li').firstChild
-const restLink = document.querySelectorAll('.ganres__link');
-restLink.forEach((item)=>item.classList.remove('active'))
+const activLink = evt.target.closest('li').firstChild;
+const restLinks = getRefs().restLink;
+linkGanresClear(restLinks)
 activLink.classList.add('active');
     }
 }
-
+export function linkGanresClear(restLinks) {
+   restLinks.forEach((item)=>item.classList.remove('active')) 
+}
 let genresData = [];
 let idGanres = 0;
 let ganreArray = [];

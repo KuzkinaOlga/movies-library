@@ -11,6 +11,7 @@ import ApiService from './js/api';
 import { paginationTotalItems } from './js/pagination';
 import { onFooterClick } from './js/modal-footer';
 import { onContainerClick } from './js/modal-movie';
+import {linkGanresClear} from './js/ganres-meny'
 
 // import { onContainerClick } from './js/my-modal';
 
@@ -26,7 +27,7 @@ const apiData = new ApiService();
 const container = getRefs().gallery;
 const mainCard = getRefs().linkCard;
 const foterLink = getRefs().footerLink;
-
+const restLinks = getRefs().restLink;
 authState();
 darkTheme();
 // delFilmFromFirebase();
@@ -66,6 +67,7 @@ function onLogoClick(e) {
   onShowHome();
   topMoviesRender();
   localStorage.removeItem('markerBy');
+   linkGanresClear(restLinks);
   getRefs().pagination.classList.remove('pagination-off');
 }
 
@@ -74,6 +76,7 @@ function onHomeBtnClick(e) {
   onShowHome();
   topMoviesRender();
   localStorage.removeItem('markerBy');
+  linkGanresClear(restLinks);
   getRefs().pagination.classList.remove('pagination-off');
 }
 
