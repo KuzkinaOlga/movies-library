@@ -1,4 +1,15 @@
 import * as basicLightbox from 'basiclightbox';
+import KravchukOleksandr from '../images/KravchukOleksandr.jpg';
+// import KolischukOleg from '../images/KolischukOleg.jpg';
+import AndriietsHryhorii from '../images/AndriietsHryhorii.jpg';
+import SmychenkoOleksiy from '../images/SmychenkoOleksiy.jpg';
+import DedovViacheslav from '../images/DedovViacheslav.jpg';
+import YankoDmitriy from '../images/YankoDmitriy.jpg';
+import TetianaMyslynska from '../images/TetianaMyslynska.jpg';
+import SkrytskaIrina from '../images/SkrytskaIrina.jpg';
+import KuzkinaOlga from '../images/KuzkinaOlga.jpg';
+import iconGithub from '../images/github.svg';
+import oskar from '../images/oskar.jpg';
 
 export function onFooterClick(event) {
   event.preventDefault();
@@ -7,273 +18,71 @@ export function onFooterClick(event) {
     <div class="footer-modal">
      <ul class="footer-team__list">
      <li class="footer-team__item">
-     <img class="footer-team__pic" width=200  src="images/KravchukOleksandr.jpg" alt="KravchukOleksandr" >
+     <img class="footer-team__pic" src=${oskar} alt="KravchukOleksandr" >
      <div class="footer-team__crew">
-     <h3 class="footer-team__name">Kravchuk Oleksandr</h3>
+     <a target="_blank" href="https://github.com/AleksandroKravchuk" class="footer-team__name">Kravchuk Oleksandr</a>
      <p class="footer-team__prof">Team Leader</p>
-     <ul class="footer-team__media-social">
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link" target="_blank" href="https://github.com/AleksandroKravchuk">
-     <svg class="footer-team__media-icon">
-     <use href="../images/footer-symbol-defs.svg#icon-github"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-linkedin"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="/images/footer-symbol-defs.svg#icon-facebook"></use>
-     </svg>
-     </a>
-     </li>
-     </ul>
     </div>
      </li>
      <li class="footer-team__item">
-     <img class="footer-team__pic"  src="#" alt="" >
+     <img class="footer-team__pic"  src=${oskar} alt="Kolischuk Oleg" >
      <div class="footer-team__crew">
-     <h3 class="footer-team__name">Kolischuk Oleg</h3>
+     <a target="_blank" href="https://github.com/Ohleh" class="footer-team__name">Kolischuk Oleg</a>
      <p class="footer-team__prof">Scrum Master</p>
-     <ul class="footer-team__media-social">
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link" target="_blank" href="https://github.com/Ohleh">
-     <svg class="footer-team__media-icon">
-     <use href="../images/footer-symbol-defs.svg#icon-github"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-linkedin"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-facebook"></use>
-     </svg>
-     </a>
-     </li>
-     </ul>
     </div>
      </li>
      <li class="footer-team__item">
-     <img class="footer-team__pic"  src="./images/AndriietsHryhorii.jpg" alt="AndriietsHryhorii" >
+     <img class="footer-team__pic"  src=${oskar} alt="AndriietsHryhorii" >
      <div class="footer-team__crew">
-     <h3 class="footer-team__name">Andriiets Hryhorii</h3>
+     <a target="_blank" href="https://github.com/HryhoriiAndriiets1974" class="footer-team__name">Andriiets Hryhorii</a>
      <p class="footer-team__prof">Developer</p>
-     <ul class="footer-team__media-social">
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link" target="_blank" href="https://github.com/HryhoriiAndriiets1974">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-github"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-linkedin"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-facebook"></use>
-     </svg>
-     </a>
-     </li>
-     </ul>
     </div>
      </li>
      <li class="footer-team__item">
-     <img class="footer-team__pic"  src="#" alt="" >
+     <img class="footer-team__pic"  src=${oskar} alt="Smychenko Oleksiy" >
      <div class="footer-team__crew">
-     <h3 class="footer-team__name">Smychenko Oleksiy</h3>
+     <a target="_blank" href="https://github.com/alfrntlower" class="footer-team__name">Smychenko Oleksiy</a>
      <p class="footer-team__prof">Developer</p>
-     <ul class="footer-team__media-social">
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link" target="_blank" href="https://github.com/alfrntlower">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-github"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-linkedin"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-facebook"></use>
-     </svg>
-     </a>
-     </li>
-     </ul>
+
     </div>
      </li>
      <li class="footer-team__item">
-     <img class="footer-team__pic"  src="./images/DedovViacheslav.jpg" alt="DedovViacheslav" >
+     <img class="footer-team__pic"  src=${oskar} alt="DedovViacheslav" >
      <div class="footer-team__crew">
-     <h3 class="footer-team__name">Dedov Viacheslav</h3>
+     <a target="_blank" href="https://github.com/ViacheslavDedov" class="footer-team__name">Dedov Viacheslav</a>
      <p class="footer-team__prof">Developer</p>
-     <ul class="footer-team__media-social">
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link" target="_blank" href="https://github.com/ViacheslavDedov">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-github"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-linkedin"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-facebook"></use>
-     </svg>
-     </a>
-     </li>
-     </ul>
+
     </div>
      </li>
      <li class="footer-team__item">
-     <img class="footer-team__pic"  src="./images/YankoDmitriy.jpg" alt="YankoDmitriy" >
+     <img class="footer-team__pic"  src=${oskar} alt="YankoDmitriy" >
      <div class="footer-team__crew">
-     <h3 class="footer-team__name">Yanko Dmitriy</h3>
+     <a target="_blank" href="https://github.com/yanko-dima" class="footer-team__name">Yanko Dmitriy</a>
      <p class="footer-team__prof">Developer</p>
-     <ul class="footer-team__media-social">
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link" target="_blank" href="https://github.com/yanko-dima">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-github"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-linkedin"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="/images/footer-symbol-defs.svg#icon-facebook"></use>
-     </svg>
-     </a>
-     </li>
-     </ul>
+
     </div>
      </li>
      <li class="footer-team__item">
-     <img class="footer-team__pic"  src="./images/TetianaMyslynska.jpg" alt="TetianaMyslynska" >
+     <img class="footer-team__pic"  src=${oskar} alt="TetianaMyslynska" >
      <div class="footer-team__crew">
-     <h3 class="footer-team__name">Tetiana Myslynska</h3>
+     <a target="_blank" href="https://github.com/TetianaMyslynska" class="footer-team__name">Tetiana Myslynska</a>
      <p class="footer-team__prof">Developer</p>
-     <ul class="footer-team__media-social">
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link" target="_blank" href="https://github.com/TetianaMyslynska">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-github"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-linkedin"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="/images/footer-symbol-defs.svg#icon-facebook"></use>
-     </svg>
-     </a>
-     </li>
-     </ul>
+
     </div>
      </li>
      <li class="footer-team__item">
-     <img class="footer-team__pic"  src="./images/SkrytskaIrina.jpg" alt="SkrytskaIrina" >
+     <img class="footer-team__pic"  src=${oskar} alt="SkrytskaIrina" >
      <div class="footer-team__crew">
-     <h3 class="footer-team__name">Skrytska Irina</h3>
+     <a target="_blank" href="#" class="footer-team__name">Skrytska Irina</a>
      <p class="footer-team__prof">Developer</p>
-     <ul class="footer-team__media-social">
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link" target="_blank" href="#">
-     <svg class="footer-team__media-icon">
-     <use href="../images/footer-symbol-defs.svg#icon-github"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-linkedin"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="/images/footer-symbol-defs.svg#icon-facebook"></use>
-     </svg>
-     </a>
-     </li>
-     </ul>
+
     </div>
      </li>
      <li class="footer-team__item">
-     <img class="footer-team__pic"  src="./images/KuzkinaOlga.jpg" alt="KuzkinaOlga" >
+     <img class="footer-team__pic"  src=${oskar} alt="KuzkinaOlga" >
      <div class="footer-team__crew">
-     <h3 class="footer-team__name">Kuzkina Olga</h3>
+     <a target="_blank" href="https://github.com/KuzkinaOlga" class="footer-team__name">Kuzkina Olga</a>
      <p class="footer-team__prof">Developer</p>
-     <ul class="footer-team__media-social">
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link" target="_blank" href="https://github.com/KuzkinaOlga">
-     <svg class="footer-team__media-icon">
-     <use href="../images/footer-symbol-defs.svg#icon-github"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="./images/footer-symbol-defs.svg#icon-linkedin"></use>
-     </svg>
-     </a>
-     </li>
-     <li class="footer-team__media-zone">
-     <a class="footer-team__media-link">
-     <svg class="footer-team__media-icon">
-     <use href="/images/footer-symbol-defs.svg#icon-facebook"></use>
-     </svg>
-     </a>
-     </li>
-     </ul>
     </div>
      </li>
 
