@@ -31,10 +31,9 @@ queuedBtn.addEventListener('click', onQueuedBtnClick);
 
 export function onWatchedBtnClick() {
     getRefs().pagination.classList.add('pagination-off');
-    // processingStorage('watched', 1);
-    processingStorage(watchedFilms, 1);
+    processingStorage('watched', 1);
     let arrayMovies = JSON.parse(localStorage.getItem('watched'));
-    // paginationTotalItems(arrayMovies.length);
+    paginationTotalItems(arrayMovies.length);
     localStorage.removeItem('markerBy');
     localStorage.setItem('markerBy', 'watched');
     // перемкнути видимість кнопок
@@ -44,8 +43,7 @@ export function onWatchedBtnClick() {
 
 export function onQueuedBtnClick(evt) {
   getRefs().pagination.classList.add('pagination-off');
-  // processingStorage('queue', 1);
-  processingStorage(queueFilms, 1);
+  processingStorage('queue', 1);
   let arrayMovies = JSON.parse(localStorage.getItem('queue'));
   paginationTotalItems(arrayMovies.length);
   localStorage.removeItem('markerBy');
@@ -57,11 +55,9 @@ export function onQueuedBtnClick(evt) {
 
 export function processingStorage(value, i) {
   container.innerHTML = "";
-  // let cards = JSON.parse(localStorage.getItem(value));
-  let cards = value;
+  let cards = JSON.parse(localStorage.getItem(value));
   if (!cards) return;
   if (cards.length >20) {
-    // paginationTotalItems(cards.length);
     getRefs().pagination.classList.remove('pagination-off');
   }
 
