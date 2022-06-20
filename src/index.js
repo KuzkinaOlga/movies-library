@@ -15,9 +15,8 @@ import { onContainerClick } from './js/modal-movie';
 // import { onContainerClick } from './js/my-modal';
 
 // AUTH IMPORTS
-import {singInClick, singOutClick} from './js/login';
+import { singInClick, singOutClick } from './js/login';
 import authState from './js/auth-state';
-// import { userData } from './js/user-data';
 import { getQueueFilms, getWatchedFilms, delFilmFromFirebase } from './js/user-data';
 
 import { showWarningNoName } from './js/warning'
@@ -33,7 +32,6 @@ darkTheme();
 // delFilmFromFirebase();
 getWatchedFilms();
 getQueueFilms();
-
 
 // Top movies
 function topMoviesRender() {

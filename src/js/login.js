@@ -28,9 +28,8 @@ const singInClick = e => {
       const user = result.user;
       // ...
       onLogoutShow();
-      userId = user.uid;
-      console.log(user);
-      console.log(userId);
+      // userId = user.uid;
+      // console.log(user);
       console.log('Sign-in successful');
     })
     .catch(error => {
@@ -43,6 +42,7 @@ const singInClick = e => {
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
+
 };
 
 // LOGOUT

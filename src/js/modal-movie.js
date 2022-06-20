@@ -102,8 +102,7 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
         console.log(currentMovieInfo.id);
         // Firebase code
         filmType = 'watched';
-        filmId = currentMovieInfo.id;
-        addFilmToFirebase(filmType, filmId);
+        addFilmToFirebase(filmType, currentMovieInfo);
 
 
     }));
@@ -123,13 +122,14 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
         dataQueueMovie.push(currentMovieInfo);
 
         localStorage.setItem('queue', JSON.stringify(dataQueueMovie));
-    }));
-
+        
         localStorage.setItem(ADD_TO_QUEUE_FILM, JSON.stringify(dataQueueMovie));
         // Firebase code
         filmType = 'queue';
-        filmId = currentMovieInfo.id;
-        addFilmToFirebase(filmType, filmId);
+        addFilmToFirebase(filmType, currentMovieInfo);
+        
+      }));
+
     }); 
 
   function onImageClose(event) {
@@ -146,7 +146,7 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
 
 
 
-
+}
 
 
 
