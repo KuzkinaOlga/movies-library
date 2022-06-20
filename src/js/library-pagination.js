@@ -63,6 +63,7 @@ export function processingStorage(value, i) {
   if (cards.length >20) {
     // paginationTotalItems(cards.length);
     getRefs().pagination.classList.remove('pagination-off');
+    console.log('log')
   }
 
   let pageCards = cards.slice( i * 20 - 20, i * 20);
