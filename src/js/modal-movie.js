@@ -72,7 +72,9 @@ export function onContainerClick(event) {
       );
 
     currentMovie.show();
-  const btnModalClose = document.querySelector(".modal__close-button-cm")
+    {/* const modalOpen = document.querySelector('.basicLightbox'); 
+    console.log(modalOpen) */}
+    const btnModalClose = document.querySelector(".modal__close-button-cm");
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
   const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
 
