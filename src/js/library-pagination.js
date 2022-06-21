@@ -38,6 +38,7 @@ export function onWatchedBtnClick() {
   // перемкнути видимість кнопок
   onWatchedBtnClickActipn();
   console.log('watchedFilms: ', watchedFilms);
+  console.log('getWatchedFilms: ', getWatchedFilms());
 }
 
 export function onQueuedBtnClick(evt) {
