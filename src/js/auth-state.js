@@ -2,6 +2,8 @@ import { auth } from "./firebase";
 import {onLogoutShow, onLoginShow } from "./login"; 
 
 export function authState() {
+  let authData = {};
+
   auth.onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
