@@ -56,7 +56,7 @@ footer {
 }
 
 .footer-modal {
-@media screen and (max-width: 767px) {
+  @media screen and (max-width: 767px) {
     top: 530px;
   }
   position: relative;
@@ -78,8 +78,9 @@ footer {
   margin-bottom: 10px;
   width: 150px;
   height: 200px;
-   @media screen and (min-width: 768px) {
-     width: 160px;
+  border-radius: 5px;
+  @media screen and (min-width: 510px) {
+    width: 160px;
   }
 }
 .footer-team__item:hover {
@@ -89,13 +90,12 @@ footer {
 }
 .footer-team__pic {
   width: 100%;
-  height: 70%;
+  height: 80%;
 }
 .footer-team__crew {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding-top: 7px;
 }
 .footer-team__name {
   cursor: pointer;
@@ -118,5 +118,3 @@ footer {
   letter-spacing: 0.03em;
   color: #757575;
 }
-
-
