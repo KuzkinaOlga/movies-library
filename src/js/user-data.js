@@ -10,10 +10,10 @@ import {
 } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-let userId = 'izmMJHXqY6NJwC6a2MO5REctGrb2';
+// let userId = 'izmMJHXqY6NJwC6a2MO5REctGrb2';
 
 // GET COLLECTION REF
-const colRef = collection(db, userId);
+// const colRef = collection(db, userId);
 let watchedFilms = [];
 let queueFilms = [];
 
