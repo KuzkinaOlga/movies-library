@@ -9,9 +9,8 @@ justify-content: center;
     @media screen and (max-width: 767px) {
     position: absolute;
     left: 35%;
-
     width: 30%;
-    padding: 5px 15px;
+   padding: 5px 15px;
     background-color: $accent-color;
     text-align: start;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),0 10px 10px rgba(0, 0, 0, 0.22);
@@ -43,7 +42,6 @@ justify-content: center;
     line-height: 1.2;
     color:aliceblue;
 
-
 cursor: pointer;
 transition: opacity 300ms linear;
 &:hover,
@@ -53,7 +51,8 @@ transition: opacity 300ms linear;
         transform: scaleX(1);
     }
 }
-&::after {
+  @media screen and (min-width: 768px) {
+    &::after {
     content:"";
     width: 100%;
     height: 1px;
@@ -62,6 +61,9 @@ transition: opacity 300ms linear;
     transform: scaleX(0);
     transition: transform 300ms linear;
 }
+   
+}
+
 
 }
 .active{
@@ -92,10 +94,8 @@ align-items: center;
        background-size: cover;
        width: 14px;
        height: 20px;
-     
        background-position: center;
       color:aliceblue;
-    //   background-color: aqua;
        background-image: url(../images/icons-.png);
     }
 }

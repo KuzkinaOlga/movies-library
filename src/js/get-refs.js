@@ -28,5 +28,6 @@ export function getRefs() {
 
     // Footer
     footerLink: document.querySelector('.footer__link'),
+    btnFooterClose: document.querySelector(['button[data-action="close"]']),
   };
 }

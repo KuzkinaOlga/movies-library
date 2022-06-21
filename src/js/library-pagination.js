@@ -37,7 +37,7 @@ export function onWatchedBtnClick() {
   localStorage.setItem('markerBy', 'watched');
   // перемкнути видимість кнопок
   onWatchedBtnClickActipn();
-  console.log('watchedFilms: ', watchedFilms)
+  // console.log('watchedFilms: ', watchedFilms)
 }
 
 export function onQueuedBtnClick(evt) {
@@ -49,7 +49,7 @@ localStorage.removeItem('markerBy');
 localStorage.setItem('markerBy', 'queue');
 // перемкнути видимість кнопок
 onQueueBtnClickActipn();
-console.log('queueFilms: ', queueFilms)
+// console.log('queueFilms: ', queueFilms)
 }
 
 export function processingStorage(value, i) {
@@ -64,7 +64,7 @@ if (value === 'watched') {
 if (!cards) return;
   if (cards.length >20) {
     getRefs().pagination.classList.remove('pagination-off');
-    console.log('log')
+    // console.log('log')
   }
 
   let pageCards = cards.slice( i * 20 - 20, i * 20);

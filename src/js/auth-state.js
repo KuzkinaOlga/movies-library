@@ -6,13 +6,13 @@ export function authState() {
     if (user) {
       // User is signed in.
       onLogoutShow();
-      console.log('User is signed in');
+      // console.log('User is signed in');
 
       return;
     }
 
     onLoginShow()
-    console.log('User is logged out');
+    // console.log('User is logged out');
   });
 
 }

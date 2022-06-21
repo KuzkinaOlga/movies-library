@@ -59,14 +59,14 @@ const singOutClick = e => {
     .then(() => {
       // Sign-out successful.
       onLoginShow();
-      console.log('Sign-out successful');
+      // console.log('Sign-out successful');
     })
     .finally (()=> {
       Loading.remove();
       })
     .catch(error => {
       // An error happened.
-      console.log(error.message);
+      // console.log(error.message);
     });
 };
 

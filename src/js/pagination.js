@@ -49,12 +49,12 @@ const pagination = new Pagination(containerTui, options);
 
 pagination.on('afterMove', e => {
   currentPage = e.page;
-  console.log(currentPage);
+  // console.log(currentPage);
   container.innerHTML = '';
   getRefs().pagination.classList.remove('pagination-off');
 
   let markerBy = localStorage.getItem('markerBy');
-  console.log('markerBy =', markerBy);
+  // console.log('markerBy =', markerBy);
 
   switch (markerBy) {
     case 'ganres':
