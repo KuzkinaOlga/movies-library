@@ -17,7 +17,7 @@ import {linkGanresClear} from './js/ganres-meny'
 // AUTH IMPORTS
 import { singInClick, singOutClick } from './js/login';
 import authState from './js/auth-state';
-import { getQueueFilms, getWatchedFilms, delFilmFromFirebase } from './js/user-data';
+// import { getQueueFilms, getWatchedFilms, delFilmFromFirebase } from './js/user-data';
 
 const apiData = new ApiService();
 const container = getRefs().gallery;
@@ -27,8 +27,8 @@ const restLinks = getRefs().restLink;
 authState();
 darkTheme();
 // delFilmFromFirebase();
-getWatchedFilms();
-getQueueFilms();
+// getWatchedFilms();
+// getQueueFilms();
 
 // Top movies
 function topMoviesRender() {
@@ -80,3 +80,6 @@ function onMyLybraryBtnClick(e) {
   container.innerHTML = '';
   getRefs().pagination.classList.add('pagination-off');
 }
+
+
+export { topMoviesRender };
