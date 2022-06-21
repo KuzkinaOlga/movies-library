@@ -7,8 +7,9 @@ import { renderList } from './render-list';
 import ApiService from './api';
 const getFilm = new ApiService();
 import { paginationTotalItems } from './pagination';
-
+const restLinks = getRefs().restLink;
 export let queryForTui = '';
+import {linkGanresClear} from './ganres-meny'
 
 //  onFormSubmit
 searchFilm.addEventListener('submit', onFormSubmit);
@@ -45,4 +46,5 @@ function onFormSubmit(e) {
     return renderList(results, galleryList);
   });
   searchFilm.reset();
+  linkGanresClear(restLinks);
 }
