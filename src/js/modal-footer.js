@@ -60,7 +60,7 @@ export function onFooterClick(event) {
           <li class="footer-team__item">
      <img class="footer-team__pic"  src=${TetianaMyslynska} alt="TetianaMyslynska" >
      <div class="footer-team__crew">
-     <a target="_blank" href="https://github.com/TetianaMyslynska" class="footer-team__name">Tetiana Myslynska</a>
+     <a target="_blank" href="https://github.com/TetianaMyslynska" class="footer-team__name">Myslynska Tetiana</a>
         <a target="_blank" href="linkedin.com/in/tanya-mislinska-4a76a7162" class="footer-team__prof">Developer</a>
 
     </div>
