@@ -34,7 +34,7 @@ function getWatchedFilms() {
         snapshot.docs.forEach(doc => {
           watchedFilms.push({ ...doc.data(), id: doc.id });
         });
-        console.log(watchedFilms);
+        // console.log(watchedFilms);
       });
       // ...
     } else {
@@ -106,16 +106,16 @@ function addFilmToFirebase(filmType, currentMovieInfo) {
 }
 
 // DELETING DOCUMENTS
-function delFilmFromFirebase() {
-  const docRef = doc(db, userId, 'dFct0oY6Cg3vilIBLo96');
-  deleteDoc(docRef);
-  // .then(() => {
-  // })
-}
+// function delFilmFromFirebase() {
+//   const docRef = doc(db, userId, 'dFct0oY6Cg3vilIBLo96');
+//   deleteDoc(docRef);
+//   // .then(() => {
+//   // })
+// }
 
 export {
   addFilmToFirebase,
-  delFilmFromFirebase,
+  // delFilmFromFirebase,
   getWatchedFilms,
   getQueueFilms,
   watchedFilms,

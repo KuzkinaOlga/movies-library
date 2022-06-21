@@ -16,7 +16,7 @@ const refs = {
 };
 
 const { myLibraryItem, loginItem, logoutItem } = refs;
-let userId = '';
+// let userId = '';
 
 // LOGIN
 const singInClick = e => {
@@ -86,4 +86,4 @@ function onLoginShow() {
   loginItem.classList.remove('is-hidden');
 }
 
-export { singInClick, singOutClick, onLogoutShow, onLoginShow, userId };
+export { singInClick, singOutClick, onLogoutShow, onLoginShow };
