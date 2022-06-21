@@ -6,6 +6,8 @@ import {
 // Other import
 import { signOut } from 'firebase/auth';
 import { Loading } from 'notiflix';
+import { onShowHome } from './header';
+import { topMoviesRender } from '..';
 
 const refs = {
   myLibraryItem: document.querySelector('.nav_my-library'),
@@ -59,6 +61,8 @@ const singOutClick = e => {
     .then(() => {
       // Sign-out successful.
       onLoginShow();
+      onShowHome();
+      topMoviesRender();
       console.log('Sign-out successful');
     })
     .finally (()=> {

@@ -100,7 +100,6 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
         localStorage.setItem('watched', JSON.stringify(dataWatchinMovie));
 
         localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
-        console.log(currentMovieInfo.id);
         // Firebase code
         filmType = 'watched';
         addFilmToFirebase(filmType, currentMovieInfo);

@@ -54,19 +54,16 @@ function onShowHome() {
 
 function onLogoClick(e) {
   e.preventDefault();
-  console.log('onLogoClick');
   onShowHome();
 }
 
 function onHomeBtnClick(e) {
   e.preventDefault();
-  console.log('onHomeBtnClick');
   onShowHome();
 }
 
 function onMyLybraryBtnClick(e) {
   e.preventDefault();
-  console.log('onMyLybraryBtnClick');
   onShowMyLibrary();
 }
 
