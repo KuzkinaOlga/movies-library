@@ -1,13 +1,13 @@
 import * as basicLightbox from 'basiclightbox';
-import KravchukOleksandr from '../images/KravchukOleksandr_1.25.jpg';
-import KolischukOleg from '../images/KolischukOleg_1.25.jpg';
-import AndriietsHryhorii from '../images/AndriietsHryhorii_1.25.jpg';
-import SmychenkoOleksiy from '../images/SmychenkoOleksiy_1.25.jpg';
-import DedovViacheslav from '../images/DedovViacheslav_1.25.jpg';
-import YankoDmitriy from '../images/YankoDmitriy_1.25.jpg';
-import TetianaMyslynska from '../images/TetianaMyslynska_1.25.jpg';
-import SkrytskaIrina from '../images/SkrytskaIrina_1.25.jpg';
-import KuzkinaOlga from '../images/KuzkinaOlga_1.25.jpg';
+import KravchukOleksandr from '../images/KravchukOleksandr-2.jpg';
+import KolischukOleg from '../images/KolischukOleg-2.jpg';
+import AndriietsHryhorii from '../images/AndriietsHryhorii-2.jpg';
+import SmychenkoOleksiy from '../images/SmychenkoOleksiy-2.jpg';
+import DedovViacheslav from '../images/DedovViacheslav-2.jpg';
+import YankoDmitriy from '../images/YankoDmitriy-2.jpg';
+import TetianaMyslynska from '../images/TetianaMyslynska-2.jpg';
+import SkrytskaIrina from '../images/SkrytskaIrina-2.jpg';
+import KuzkinaOlga from '../images/KuzkinaOlga-2.jpg';
 import iconGithub from '../images/github.svg';
 import oskar from '../images/oskar.jpg';
 
@@ -33,6 +33,15 @@ export function onFooterClick(event) {
      <p class="footer-team__prof">Scrum Master</p>
     </div>
      </li>
+
+          <li class="footer-team__item">
+     <img class="footer-team__pic"  src=${SkrytskaIrina} alt="SkrytskaIrina" >
+     <div class="footer-team__crew">
+     <a target="_blank" href="#" class="footer-team__name">Skrytska Irina</a>
+     <p class="footer-team__prof">Developer</p>
+
+    </div>
+     </li>
      <li class="footer-team__item">
      <img class="footer-team__pic"  src=${AndriietsHryhorii} alt="AndriietsHryhorii" >
      <div class="footer-team__crew">
@@ -48,6 +57,15 @@ export function onFooterClick(event) {
 
     </div>
      </li>
+          <li class="footer-team__item">
+     <img class="footer-team__pic"  src=${TetianaMyslynska} alt="TetianaMyslynska" >
+     <div class="footer-team__crew">
+     <a target="_blank" href="https://github.com/TetianaMyslynska" class="footer-team__name">Tetiana Myslynska</a>
+     <p class="footer-team__prof">Developer</p>
+
+    </div>
+     </li>
+
      <li class="footer-team__item">
      <img class="footer-team__pic"  src=${DedovViacheslav} alt="DedovViacheslav" >
      <div class="footer-team__crew">
@@ -64,22 +82,7 @@ export function onFooterClick(event) {
 
     </div>
      </li>
-     <li class="footer-team__item">
-     <img class="footer-team__pic"  src=${TetianaMyslynska} alt="TetianaMyslynska" >
-     <div class="footer-team__crew">
-     <a target="_blank" href="https://github.com/TetianaMyslynska" class="footer-team__name">Tetiana Myslynska</a>
-     <p class="footer-team__prof">Developer</p>
 
-    </div>
-     </li>
-     <li class="footer-team__item">
-     <img class="footer-team__pic"  src=${SkrytskaIrina} alt="SkrytskaIrina" >
-     <div class="footer-team__crew">
-     <a target="_blank" href="#" class="footer-team__name">Skrytska Irina</a>
-     <p class="footer-team__prof">Developer</p>
-
-    </div>
-     </li>
      <li class="footer-team__item">
      <img class="footer-team__pic"  src=${KuzkinaOlga} alt="KuzkinaOlga" >
      <div class="footer-team__crew">
