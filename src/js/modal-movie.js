@@ -41,7 +41,7 @@ export function onContainerClick(event) {
         
         </button>
 
-        <img  src=`https://image.tmdb.org/t/p/w500$${poster_path}` class="current-movie__img">
+        <img  src="${posterPath(poster)}" class="current-movie__img">
         
         <div class="current-movie__info">
 
@@ -115,7 +115,6 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
             return true;
           }
       });
-
         if (unicIdQ.find((item)=> item===true)) {
         return Notify.warning('You have already added this movie to Queue')
         }
@@ -143,10 +142,10 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
 }
 
 
-// function posterPath(poster) {
-//   if (poster === null) {
-//     return noImg;
-//   }
-//   return `https://image.tmdb.org/t/p/w500${poster}`;
-// }
+function posterPath(poster) {
+  if (poster === null) {
+    return noImg;
+  }
+  return `https://image.tmdb.org/t/p/w500${poster}`;
+}
 

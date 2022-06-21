@@ -34,7 +34,7 @@ const singInClick = e => {
       onLogoutShow();
       // userId = user.uid;
       // console.log(user);
-      console.log('Sign-in successful');
+      // console.log('Sign-in successful');
     })
     .finally (()=>{
       Loading.remove();
