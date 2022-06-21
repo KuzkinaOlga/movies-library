@@ -43,7 +43,6 @@ function getWatchedFilms() {
     }
   });
 
-  console.log(watchedFilms);
   return watchedFilms;
 }
 
@@ -73,7 +72,6 @@ function getQueueFilms() {
     }
   });
 
-  console.log(queueFilms);
   return queueFilms;
 }
 
