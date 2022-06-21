@@ -34,7 +34,7 @@ function getWatchedFilms() {
         snapshot.docs.forEach(doc => {
           watchedFilms.push({ ...doc.data(), id: doc.id });
         });
-        // console.log(watchedFilms);
+        console.log(watchedFilms);
       });
       // ...
     } else {
@@ -62,7 +62,7 @@ function getQueueFilms() {
         snapshot.docs.forEach(doc => {
           queueFilms.push({ ...doc.data(), id: doc.id });
         });
-        // console.log(queueFilms);
+        console.log(queueFilms);
       });
 
       // ...

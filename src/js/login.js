@@ -64,8 +64,6 @@ const singOutClick = e => {
       // console.log('Sign-out successful');
       onShowHome();
       topMoviesRender();
-     
-
     })
     .finally (()=> {
       Loading.remove();
