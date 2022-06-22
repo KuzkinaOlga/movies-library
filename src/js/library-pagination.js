@@ -12,44 +12,29 @@ import { getRefs } from './get-refs';
 
 const watchedBtn = document.querySelector('.js-watched-btn');
 const queuedBtn = getRefs().queueBtn;
-// const libraryPage = document.querySelector('.films__library__page')
-// const homeButton = getRefs().homeBtn;
 const container = getRefs().gallery
 
 
 
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queuedBtn.addEventListener('click', onQueuedBtnClick);
-// homeButton.addEventListener('click', onHomeBtnClickn);
-
-// function onHomeBtnClickn(evt) {
-//     libraryPage.classList.add('js-is-hidden');
-// }
-// let arrayMovies = JSON.parse(localStorage.getItem('watched'));
-// paginationTotalItems(arrayMovies.length);
 
 export function onWatchedBtnClick() {
   getRefs().pagination.classList.add('pagination-off');
   processingStorage('watched', 1);
-  // let arrayMovies = JSON.parse(localStorage.getItem('watched'));
   paginationTotalItems(watchedFilms.length);
   localStorage.removeItem('markerBy');
   localStorage.setItem('markerBy', 'watched');
-  // перемкнути видимість кнопок
   onWatchedBtnClickActipn();
-  // console.log('watchedFilms: ', watchedFilms)
 }
 
 export function onQueuedBtnClick(evt) {
 getRefs().pagination.classList.add('pagination-off');
 processingStorage('queue', 1);
-// let arrayMovies = JSON.parse(localStorage.getItem('queue'));
 paginationTotalItems(queueFilms.length);
 localStorage.removeItem('markerBy');
 localStorage.setItem('markerBy', 'queue');
-// перемкнути видимість кнопок
 onQueueBtnClickActipn();
-// console.log('queueFilms: ', queueFilms)
 }
 
 export function processingStorage(value, i) {
@@ -60,11 +45,9 @@ if (value === 'watched') {
 } else {
   cards = queueFilms;
 }
-// let cards = JSON.parse(localStorage.getItem(value));
 if (!cards) return;
   if (cards.length >20) {
     getRefs().pagination.classList.remove('pagination-off');
-    // console.log('log')
   }
 
   let pageCards = cards.slice( i * 20 - 20, i * 20);
