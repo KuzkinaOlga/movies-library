@@ -1,5 +1,6 @@
 import { auth } from "./firebase";
-import {onLogoutShow, onLoginShow } from "./login"; 
+import {onLogoutShow, onLoginShow } from "./login";
+import { getUserName } from "./user-data";
 
 export function authState() {
   let authData = {};
@@ -8,6 +9,7 @@ export function authState() {
     if (user) {
       // User is signed in.
       onLogoutShow();
+      getUserName()
       // console.log('User is signed in');
 
       return;

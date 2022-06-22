@@ -11,6 +11,10 @@ $secondaryDarkTextColor: #ffffff;
   display: flex;
   justify-content: end;
 
+  &__user-name {
+    color: $secondaryDarkTextColor;
+  }
+
   &__checkbox {
     opacity: 0;
     visibility: hidden;
