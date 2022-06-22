@@ -10,10 +10,10 @@ import {
 } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-let userId = 'izmMJHXqY6NJwC6a2MO5REctGrb2';
+// let userId = 'izmMJHXqY6NJwC6a2MO5REctGrb2';
 
 // GET COLLECTION REF
-const colRef = collection(db, userId);
+// const colRef = collection(db, userId);
 let watchedFilms = [];
 let queueFilms = [];
 
@@ -34,7 +34,7 @@ function getWatchedFilms() {
         snapshot.docs.forEach(doc => {
           watchedFilms.push({ ...doc.data(), id: doc.id });
         });
-        console.log(watchedFilms);
+        // console.log(watchedFilms);
       });
       // ...
     } else {
@@ -62,7 +62,7 @@ function getQueueFilms() {
         snapshot.docs.forEach(doc => {
           queueFilms.push({ ...doc.data(), id: doc.id });
         });
-        console.log(queueFilms);
+        // console.log(queueFilms);
       });
 
       // ...
@@ -106,16 +106,16 @@ function addFilmToFirebase(filmType, currentMovieInfo) {
 }
 
 // DELETING DOCUMENTS
-function delFilmFromFirebase() {
-  const docRef = doc(db, userId, 'dFct0oY6Cg3vilIBLo96');
-  deleteDoc(docRef);
-  // .then(() => {
-  // })
-}
+// function delFilmFromFirebase() {
+//   const docRef = doc(db, userId, 'dFct0oY6Cg3vilIBLo96');
+//   deleteDoc(docRef);
+//   // .then(() => {
+//   // })
+// }
 
 export {
   addFilmToFirebase,
-  delFilmFromFirebase,
+  // delFilmFromFirebase,
   getWatchedFilms,
   getQueueFilms,
   watchedFilms,

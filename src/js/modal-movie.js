@@ -3,6 +3,7 @@ import * as basicLightbox from 'basiclightbox'
 import { getRefs } from './get-refs';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import ApiService from './api';
+import noImg from '../images/no-poster-available.jpeg';
 // Firebase import
 import { addFilmToFirebase } from './user-data'
 
@@ -40,7 +41,7 @@ export function onContainerClick(event) {
         
         </button>
 
-        <img  src="https://image.tmdb.org/t/p/w500${poster}" class="current-movie__img">
+        <img  src="${posterPath(poster)}" class="current-movie__img">
         
         <div class="current-movie__info">
 
@@ -100,7 +101,6 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
         localStorage.setItem('watched', JSON.stringify(dataWatchinMovie));
 
         localStorage.setItem(ADD_TO_WATCHED_FILM, JSON.stringify(dataWatchinMovie));
-        console.log(currentMovieInfo.id);
         // Firebase code
         filmType = 'watched';
         addFilmToFirebase(filmType, currentMovieInfo);
@@ -115,7 +115,6 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
             return true;
           }
       });
-
         if (unicIdQ.find((item)=> item===true)) {
         return Notify.warning('You have already added this movie to Queue')
         }
@@ -143,4 +142,10 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
 }
 
 
+function posterPath(poster) {
+  if (poster === null) {
+    return noImg;
+  }
+  return `https://image.tmdb.org/t/p/w500${poster}`;
+}
 

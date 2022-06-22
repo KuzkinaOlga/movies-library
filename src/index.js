@@ -80,3 +80,6 @@ function onMyLybraryBtnClick(e) {
   container.innerHTML = '';
   getRefs().pagination.classList.add('pagination-off');
 }
+
+
+export { topMoviesRender };

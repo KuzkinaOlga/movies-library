@@ -6,6 +6,8 @@ import {
 // Other import
 import { signOut } from 'firebase/auth';
 import { Loading } from 'notiflix';
+import { onShowHome } from './header';
+import { topMoviesRender } from '..';
 
 const refs = {
   myLibraryItem: document.querySelector('.nav_my-library'),
@@ -14,7 +16,7 @@ const refs = {
 };
 
 const { myLibraryItem, loginItem, logoutItem } = refs;
-let userId = '';
+// let userId = '';
 
 // LOGIN
 const singInClick = e => {
@@ -32,7 +34,7 @@ const singInClick = e => {
       onLogoutShow();
       // userId = user.uid;
       // console.log(user);
-      console.log('Sign-in successful');
+      // console.log('Sign-in successful');
     })
     .finally (()=>{
       Loading.remove();
@@ -59,14 +61,16 @@ const singOutClick = e => {
     .then(() => {
       // Sign-out successful.
       onLoginShow();
-      console.log('Sign-out successful');
+      // console.log('Sign-out successful');
+      onShowHome();
+      topMoviesRender();
     })
     .finally (()=> {
       Loading.remove();
       })
     .catch(error => {
       // An error happened.
-      console.log(error.message);
+      // console.log(error.message);
     });
 };
 
@@ -82,4 +86,4 @@ function onLoginShow() {
   loginItem.classList.remove('is-hidden');
 }
 
-export { singInClick, singOutClick, onLogoutShow, onLoginShow, userId };
+export { singInClick, singOutClick, onLogoutShow, onLoginShow };
