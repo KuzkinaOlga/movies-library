@@ -189,7 +189,14 @@ line-height: 1.67;
   justify-content: center;
   text-transform: uppercase;
   }
+
+  &:disabled:hover,
+  &:disabled:focus {
+    background-color: #fff;
+    color: #9d9d9d;
+  }
 }
+
 .basicLightbox{
   @media screen and (max-width: 767px) {
     margin-top: 5px;

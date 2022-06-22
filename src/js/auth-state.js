@@ -1,11 +1,11 @@
-import { auth } from "./firebase";
-import {onLogoutShow, onLoginShow } from "./login";
-import { getUserName } from "./user-data";
+import { auth } from './firebase';
+import { onLogoutShow, onLoginShow } from './login';
+import { getUserName } from './user-data';
 
 export function authState() {
   let authData = {};
 
-  auth.onAuthStateChanged(function(user) {
+  auth.onAuthStateChanged(function (user) {
     if (user) {
       // User is signed in.
       onLogoutShow();
@@ -15,9 +15,7 @@ export function authState() {
     }
 
     onLoginShow();
-    
   });
-
 }
 
 export default authState;

@@ -6,6 +6,7 @@ import ApiService from './api';
 import noImg from '../images/no-poster-available.jpeg';
 // Firebase import
 import { addFilmToFirebase } from './user-data'
+import { auth } from "./firebase";
 
 // Firebase const
 let filmType = '';
@@ -66,8 +67,8 @@ export function onContainerClick(event) {
         </div>
 
         <div class="current-movie__btn-container">
-        <button type = "button" class="current-movie_btn-add-to-watched btn">ADD TO WATCHED</button>
-        <button type = "button" class="current-movie_btn-add-to-queue btn">ADD TO QUEUE</button>
+        <button type = "button" class="current-movie_btn-add-to-watched btn" disabled>ADD TO WATCHED</button>
+        <button type = "button" class="current-movie_btn-add-to-queue btn" disabled>ADD TO QUEUE</button>
       </div>
     </div>`
       );
@@ -84,6 +85,17 @@ export function onContainerClick(event) {
     const dataQueueMovie = JSON.parse(localStorage.getItem("queue")) || addToQueueFilms;
 btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
 
+  // Auth AddBtn Disabled/Enabled
+  auth.onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      btnAddToWatched.disabled = false;
+      btnAddToQueue.disabled = false;
+
+      return;
+    }
+    
+  });
 
     btnAddToWatched.addEventListener("click", (() => {
       const unicId = dataWatchinMovie.map(({ id }) => {
