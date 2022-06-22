@@ -192,12 +192,7 @@ window.addEventListener('keydown', onImageClose);
     } catch (error) {
       console.error(error);
   }
-
     }; 
-
-
-
-
 function posterPath(poster) {
   if (poster === null) {
     return noImg;
