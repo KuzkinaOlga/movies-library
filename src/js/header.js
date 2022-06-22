@@ -1,3 +1,5 @@
+import { onWatchedBtnClick } from "./library-pagination";
+
 // Refs
 const refs = {
   headerContainer: document.querySelector('.js-header-container'),
@@ -52,20 +54,20 @@ function onShowHome() {
   nav.classList.remove('nav__library-margin');
 }
 
-function onLogoClick(e) {
-  e.preventDefault();
-  onShowHome();
-}
+// function onLogoClick(e) {
+//   e.preventDefault();
+//   onShowHome();
+// }
 
-function onHomeBtnClick(e) {
-  e.preventDefault();
-  onShowHome();
-}
+// function onHomeBtnClick(e) {
+//   e.preventDefault();
+//   onShowHome();
+// }
 
-function onMyLybraryBtnClick(e) {
-  e.preventDefault();
-  onShowMyLibrary();
-}
+// function onMyLybraryBtnClick(e) {
+//   e.preventDefault();
+//   onShowMyLibrary();
+// }
 
 function onWatchedBtnClickActipn() {
   if (queueBtn.classList.contains('active-btn')) {

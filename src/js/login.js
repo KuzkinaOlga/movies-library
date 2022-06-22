@@ -65,7 +65,7 @@ const singOutClick = e => {
       onShowHome();
       topMoviesRender();
     })
-    .finally (()=> {
+    .finally (() => {
       Loading.remove();
       })
     .catch(error => {
