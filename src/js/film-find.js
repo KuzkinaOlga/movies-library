@@ -45,6 +45,6 @@ function onFormSubmit(e) {
     galleryList.innerHTML = '';
     return renderList(results, galleryList);
   });
-  searchFilm.reset();
+  // searchFilm.reset();
   linkGanresClear(restLinks);
 }

@@ -18,7 +18,7 @@ export default class ApiService {
        try {
         Loading.standard();
       const { data } = await axios.get(
-        `https://api.themoviedb.org/3/trending/movie/day?`
+        `https://api.themoviedb.org/3/trending/movie/day?page=${this.page}`
       );
       Loading.remove();
       return data;
@@ -79,7 +79,7 @@ export default class ApiService {
     }
   }
   resetPage() {
-    this.page = 1;
+    this.page += 1;
   }
   get query() {
     return this.value;

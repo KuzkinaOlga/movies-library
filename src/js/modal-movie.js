@@ -32,11 +32,11 @@ export function onContainerClick(event) {
   }
 
   event.preventDefault();
-  window.addEventListener('keydown', onImageClose);
+  
   apiMainMovie.getMainMovie(id).then(({ title, genres, date, poster, about, populanty, vote, votes, id }) => {
     const ganreList = genres.map((ganre) => ganre.name).join(', ');
     const genre_ids = genres.map((ganre) => ganre.id);
-
+window.addEventListener('keydown', onImageClose);
   const currentMovie = basicLightbox.create(`
     <div class="current-movie">
         <button data-modal-close class="modal__close-button-cm">
@@ -77,15 +77,27 @@ export function onContainerClick(event) {
 
     currentMovie.show();
 
+
+ function onImageClose(event) {
+    if (event.code === 'Escape') {
+      currentMovie.close();
+      window.removeEventListener('keydown', onImageClose);
+      btnModalClose.removeEventListener('click',addListnerCurrent );
+    }
+    }
+    function addListnerCurrent() {
+      currentMovie.close()
+    }
+
     const btnModalClose = document.querySelector(".modal__close-button-cm");
   const btnAddToWatched = document.querySelector(".current-movie_btn-add-to-watched");
-  const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue");
-
+    const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue")
+    btnModalClose.addEventListener('click', addListnerCurrent);
   const currentMovieInfo = { id: id, original_title: title, release_date: date, poster_path: poster, genre_ids: genre_ids, vote_average: vote,
         vote_count: votes };
     const dataWatchinMovie = JSON.parse(localStorage.getItem("watched")) || addToWachedFilms;
     const dataQueueMovie = JSON.parse(localStorage.getItem("queue")) || addToQueueFilms;
-btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
+
 
 
     btnAddToWatched.addEventListener("click", (() => {
@@ -133,7 +145,7 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
 
       }));
 
-        // ========================= trailer
+
       const trailerBtn = document.querySelector('.trailer-btn');
 
       trailerBtn.addEventListener('click', event => {
@@ -155,7 +167,7 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
       btnModalClose.removeEventListener('click', ()=>{ currentMovie.close();});
     }
   }
-  // ========================= trailer
+
 
   async function getTrailer(n) {
     try {
@@ -180,6 +192,16 @@ btnModalClose.addEventListener('click', ()=>{ currentMovie.close()});
     } catch (error) {
       console.error(error);
   }
+
+    }); 
+  // function onImageClose(event) {
+  //   if (event.code === 'Escape') {
+  //     currentMovie.close();
+  //     window.removeEventListener('keydown', onImageClose);
+  //     // btnModalClose.removeEventListener('click', ()=>{ currentMovie.close();});
+  //   }
+  // }
+
 }
 
 
