@@ -16,7 +16,7 @@ export function onFooterClick(event) {
   window.addEventListener('keydown', onFooterClose);
   const renderFooter = basicLightbox.create(`
     <div class="footer-modal">
-      <button data-action="close" class="modal__close-button-cm"> </button>
+      <button data-action="close" class="modal__close-button-footer"> </button>
      <ul class="footer-team__list">
      <li class="footer-team__item">
 

@@ -71,7 +71,7 @@ width:90vw;
     padding-bottom: 15px;
   }
 }
-.modal__close-button-cm {
+.modal__close-button-footer {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -94,7 +94,7 @@ background-size:cover;
  }
   @media screen and (min-width: 1024px) {
  top: 8px;
-  right: -10px;
+  right: -15px;
   }
 }
 .footer-team__list {
