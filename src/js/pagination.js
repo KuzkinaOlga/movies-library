@@ -5,18 +5,17 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { renderList } from './render-list';
 // import { renderMarkup } from './film-find';
 import { getRefs } from './get-refs';
-import { markerBy, queryForTui } from './film-find';
+import { queryForTui } from './film-find';
 import { processingStorage } from './library-pagination';
 import { ganresForTui } from './ganres-meny';
 
 const container = getRefs().gallery;
 export const containerTui = document.getElementById('tui-pagination-container');
-// const instance = new Pagination(containerTui, { ... });
-
-// instance.getCurrentPage();
 
 let value = '';
 let currentPage = 1;
+const API_KEY = '419c8d7d79cbcac22c5520f1ac14d2c7';
+const BASE_URL = 'https://api.themoviedb.org/3';
 
 const options = {
   totalItems: 0,
@@ -49,19 +48,17 @@ const pagination = new Pagination(containerTui, options);
 
 pagination.on('afterMove', e => {
   currentPage = e.page;
-  // console.log(currentPage);
   container.innerHTML = '';
   getRefs().pagination.classList.remove('pagination-off');
 
   let markerBy = localStorage.getItem('markerBy');
-  // console.log('markerBy =', markerBy);
 
   switch (markerBy) {
     case 'ganres':
       value = ganresForTui;
       console.log(ganresForTui);
       paginationSearch(
-        `https://api.themoviedb.org/3/discover/movie?&page=${currentPage}&with_genres=${value}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`
+        `${BASE_URL}/discover/movie?&page=${currentPage}&with_genres=${value}&api_key=${API_KEY}`
         );
         // &sort_by=popularity.desc&include_adult=false
       break;
@@ -75,12 +72,12 @@ pagination.on('afterMove', e => {
       value = queryForTui;
       console.log(queryForTui);
       paginationSearch(
-      `https://api.themoviedb.org/3/search/movie?&query=${value}&page=${currentPage}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`
+      `${BASE_URL}/search/movie?&query=${value}&page=${currentPage}&api_key=${API_KEY}`
       );
       break;
     default:
       paginationSearch(
-        `https://api.themoviedb.org/3/trending/movie/week?page=${currentPage}&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`
+        `${BASE_URL}/trending/movie/week?page=${currentPage}&api_key=${API_KEY}`
       );
   }
   return currentPage;
@@ -88,7 +85,6 @@ pagination.on('afterMove', e => {
 
 async function paginationSearch(url) {
   try {
-    //------------ start Loader
     Loading.arrows({
       svgColor: '#ff6b08',
       backgroundColor: 'rgba(0,0,0,0.25)',
@@ -101,24 +97,12 @@ async function paginationSearch(url) {
     const results = await result.results;
     renderList(results, container);
     // renderMarkup(results, container);
-    //  //----------- stop Loader
      Loading.remove();
      getRefs().pagination.classList.remove('pagination-off');
   } catch (error) {
     console.error(error);
   }
 }
-
-// pagination.on('beforeMove', evt => {
-//   const { page } = evt;
-//   const result = ajax.call({page});
-
-//   if(result) {
-//     pagination.movePageTo(page);
-//   } else {
-//     return false;
-//   }
-// });
 
 function paginationTotalItems(n) {
   pagination.reset(n);
