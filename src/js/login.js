@@ -16,7 +16,6 @@ const refs = {
 };
 
 const { myLibraryItem, loginItem, logoutItem } = refs;
-// let userId = '';
 
 // LOGIN
 const singInClick = e => {
@@ -56,12 +55,13 @@ const singInClick = e => {
 const singOutClick = e => {
   e.preventDefault();
   Loading.standard();
-  //   const auth = getAuth();
   signOut(auth)
     .then(() => {
       // Sign-out successful.
+      const userNameContainer = document.querySelector('.theme__user-name');
+
+      userNameContainer.classList.add('is-hidden');
       onLoginShow();
-      // console.log('Sign-out successful');
       onShowHome();
       topMoviesRender();
     })
@@ -70,7 +70,6 @@ const singOutClick = e => {
       })
     .catch(error => {
       // An error happened.
-      // console.log(error.message);
     });
 };
 

@@ -83,20 +83,11 @@ function getUserName() {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       const userName = user.displayName;
-      // colRef = collection(db, uid);
-      // const watchedQuery = query(colRef, where('type', '==', 'watched'));
       const userNameContainer = document.querySelector('.theme__user-name');
-      userNameContainer.textContent = userName;
-      console.log(userName)
-      console.log(userNameContainer)
-      // onSnapshot(watchedQuery, snapshot => {
-      //   watchedFilms = [];
-      //   snapshot.docs.forEach(doc => {
-      //     watchedFilms.push({ ...doc.data(), id: doc.id });
-      //   });
-        // console.log(watchedFilms);
-      // });
-      // ...
+
+      let firstName = userName.split(' ')[0];
+      userNameContainer.textContent = `Hello  ${firstName}`;
+      userNameContainer.classList.remove('is-hidden');
     } else {
       // User is signed out
       // ...

@@ -9,14 +9,13 @@ export function authState() {
     if (user) {
       // User is signed in.
       onLogoutShow();
-      getUserName()
-      // console.log('User is signed in');
+      getUserName();
 
       return;
     }
 
-    onLoginShow()
-    // console.log('User is logged out');
+    onLoginShow();
+    
   });
 
 }
