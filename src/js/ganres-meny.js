@@ -59,7 +59,7 @@ function onLinkSubmit(currentGanre) {
                 return item.name === currentGanre
             });
 
-            getFilm.getTopMovies().then(({ results, total_results }) => {
+            getFilm.getSearchMovies(currentGanre).then(({ results, total_results }) => {
                 if (total_results > 20) {
                   if (total_results > 19980) total_results = 19980;
                   paginationTotalItems(total_results);
