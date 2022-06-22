@@ -6,7 +6,7 @@ display: flex;
 justify-content: center;
 }
 .ganres__list {
-    @media screen and (max-width: 767px) {
+    
     position: absolute;
     left: 35%;
     width: 30%;
@@ -17,8 +17,12 @@ justify-content: center;
     transform: scale(0);
     transform-origin: top left;
     transition: transform 300ms linear;
+   @media screen and (min-width: 768px) {
+    left: 35%;
+    width: 30%;
+   padding: 5px 15px;
 }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1024px) {
      width: 100%;
    display: flex;
    justify-content: space-around;

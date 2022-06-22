@@ -141,13 +141,6 @@ window.addEventListener('keydown', onImageClose);
       }));
 
     }); 
-  // function onImageClose(event) {
-  //   if (event.code === 'Escape') {
-  //     currentMovie.close();
-  //     window.removeEventListener('keydown', onImageClose);
-  //     // btnModalClose.removeEventListener('click', ()=>{ currentMovie.close();});
-  //   }
-  // }
 }
 
 
