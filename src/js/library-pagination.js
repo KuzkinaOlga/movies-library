@@ -5,6 +5,7 @@ import { onClickToAddToQueueBtn } from './modal-movie';
 import noImg from '../images/no-poster-available.jpeg';
 import { genresAddOthers } from './genres';
 import { paginationTotalItems } from './pagination';
+import {onLibruaryCardClick} from './libruary-card'
 // FIREBASE IMPORT
 import { getWatchedFilms, getQueueFilms, watchedFilms, queueFilms } from './user-data';
 import { onWatchedBtnClickActipn, onQueueBtnClickActipn } from './header';
@@ -52,12 +53,12 @@ if (!cards) return;
 
   let pageCards = cards.slice( i * 20 - 20, i * 20);
 
-    const markup = pageCards.map(({ original_title, poster_path, release_date, genre_ids, vote_average }) => {
+    const markup = pageCards.map(({id, original_title, poster_path, release_date, genre_ids, vote_average }) => {
 
     let genres = renderGenres(genre_ids);
 
-    return `<li class="films__list">
-    <a class="films__id" data-id="">
+    return `<li class="films__list"data-id="${id}">
+    <a class="films__id" >
 <div class="film__photo__card">
 
 <picture class="films__pictures__thumb">
@@ -100,7 +101,10 @@ if (!cards) return;
 </a></li>
     `}).join('');
 container.insertAdjacentHTML("beforeend", markup);
-getRefs().pagination.classList.remove('pagination-off');
+  getRefs().pagination.classList.remove('pagination-off');
+  // const containerLib = document.querySelector('.films__list');
+  // containerLib.addEventListener('click',onLibruaryCardClick)
+
 }
 
 function posterPath(poster) {

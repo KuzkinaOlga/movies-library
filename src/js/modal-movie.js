@@ -26,13 +26,14 @@ const addToWachedFilms = [];
 const addToQueueFilms = [];
 export function onContainerClick(event) {
   const parent = event.target.closest('li').firstChild;
+  console.log(parent)
   const { id } = parent.dataset;
   if (!parent) {
     return;
   }
 
   event.preventDefault();
-  
+  console.log(id)
   apiMainMovie.getMainMovie(id).then(({ title, genres, date, poster, about, populanty, vote, votes, id }) => {
     const ganreList = genres.map((ganre) => ganre.name).join(', ');
     const genre_ids = genres.map((ganre) => ganre.id);
@@ -159,15 +160,6 @@ window.addEventListener('keydown', onImageClose);
       });
 
     });
-
-  function onImageClose(event) {
-    if (event.code === 'Escape') {
-      currentMovie.close();
-      window.removeEventListener('keydown', onImageClose);
-      btnModalClose.removeEventListener('click', ()=>{ currentMovie.close();});
-    }
-  }
-
 
   async function getTrailer(n) {
     try {
