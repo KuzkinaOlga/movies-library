@@ -8,6 +8,7 @@ import axios from 'axios';
 import 'basiclightbox/dist/basicLightbox.min.css';
 // Firebase import
 import { addFilmToFirebase } from './user-data'
+import { auth } from "./firebase";
 
 // Firebase const
 let filmType = '';
@@ -67,9 +68,11 @@ window.addEventListener('keydown', onImageClose);
         </div>
 
         <div class="current-movie__btn-container">
+
         <button type = "button" class="current-movie_btn-add-to-watched btn">ADD TO WATCHED</button>
         <button type = "button" class="current-movie_btn-add-to-queue btn">ADD TO QUEUE</button>
         <button type = "button" class="current-movie_btn-add-to-queue btn trailer-btn">Trailer</button>
+
       </div>
     </div>`
       );
@@ -98,6 +101,17 @@ window.addEventListener('keydown', onImageClose);
     const dataQueueMovie = JSON.parse(localStorage.getItem("queue")) || addToQueueFilms;
 
 
+  // Auth AddBtn Disabled/Enabled
+  auth.onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      btnAddToWatched.disabled = false;
+      btnAddToQueue.disabled = false;
+
+      return;
+    }
+    
+  });
 
     btnAddToWatched.addEventListener("click", (() => {
       const unicId = dataWatchinMovie.map(({ id }) => {

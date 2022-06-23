@@ -7,18 +7,21 @@ import { genresAddOthers } from './genres';
 import { paginationTotalItems } from './pagination';
 import {onLibruaryCardClick} from './libruary-card'
 // FIREBASE IMPORT
-import { getWatchedFilms, getQueueFilms, watchedFilms, queueFilms } from './user-data';
+import { watchedFilms, queueFilms } from './user-data';
 import { onWatchedBtnClickActipn, onQueueBtnClickActipn } from './header';
 import { getRefs } from './get-refs';
 
 const watchedBtn = document.querySelector('.js-watched-btn');
 const queuedBtn = getRefs().queueBtn;
-const container = getRefs().gallery
-
-
+const container = getRefs().gallery;
+const myLibraryBtn = getRefs().myLibraryBtn;
 
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queuedBtn.addEventListener('click', onQueuedBtnClick);
+
+// export function onMyLibraryBtnClick() {
+
+// }
 
 export function onWatchedBtnClick() {
   getRefs().pagination.classList.add('pagination-off');

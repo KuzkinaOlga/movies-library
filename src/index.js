@@ -1,7 +1,7 @@
 import { renderList } from './js/render-list';
 import { getRefs } from './js/get-refs';
 import darkTheme from './js/dark-theme';
-import { onShowMyLibrary, onShowHome } from './js/header';
+import { onShowMyLibrary, onShowHome, onWatchedBtnClickActipn } from './js/header';
 import './js/pagination';
 import './js/film-find';
 import './js/up-btn';
@@ -12,18 +12,18 @@ import { onFooterClick } from './js/modal-footer';
 import { onContainerClick } from './js/modal-movie';
 import {linkGanresClear} from './js/ganres-meny'
 
-
-
 // AUTH IMPORTS
 import { singInClick, singOutClick } from './js/login';
 import authState from './js/auth-state';
 import { getQueueFilms, getWatchedFilms, delFilmFromFirebase } from './js/user-data';
+import { onWatchedBtnClick } from './js/library-pagination';
 
 const apiData = new ApiService();
 const container = getRefs().gallery;
 const mainCard = getRefs().linkCard;
 const foterLink = getRefs().footerLink;
 const restLinks = getRefs().restLink;
+
 authState();
 darkTheme();
 // delFilmFromFirebase();
@@ -79,6 +79,7 @@ function onMyLybraryBtnClick(e) {
   onShowMyLibrary();
   container.innerHTML = '';
   getRefs().pagination.classList.add('pagination-off');
+  onWatchedBtnClick();
 }
 
 

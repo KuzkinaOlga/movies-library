@@ -271,11 +271,16 @@ transition: background-color 250ms linear,border-color 250ms linear;
 }
 
 .active-btn {
- 
+  background-color: #ff6b08;
+  border-color: #ff6b08;
 }
 
 .is-hidden {
   display: none;
+}
+
+.disabled {
+  
 }
 
 .incorrect__input {

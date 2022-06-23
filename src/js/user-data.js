@@ -75,6 +75,26 @@ function getQueueFilms() {
   return queueFilms;
 }
 
+function getUserName() {
+  // let colRef = null;
+  const auth = getAuth();
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const userName = user.displayName;
+      const userNameContainer = document.querySelector('.theme__user-name');
+
+      let firstName = userName.split(' ')[0];
+      userNameContainer.textContent = `Hello  ${firstName}`;
+      userNameContainer.classList.remove('is-hidden');
+    } else {
+      // User is signed out
+      // ...
+    }
+  });
+}
+
 // ADD DOCUMENTS TO COLLECTION
 function addFilmToFirebase(filmType, currentMovieInfo) {
   let colRef = null;
@@ -120,4 +140,5 @@ export {
   getQueueFilms,
   watchedFilms,
   queueFilms,
+  getUserName,
 };
