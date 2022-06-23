@@ -8,7 +8,9 @@ import { signOut } from 'firebase/auth';
 import { Loading } from 'notiflix';
 import { onShowHome } from './header';
 import { topMoviesRender } from '..';
-
+import { getRefs } from './get-refs';
+import {linkGanresClear} from './ganres-meny'
+const restLinks = getRefs().restLink;
 const refs = {
   myLibraryItem: document.querySelector('.nav_my-library'),
   loginItem: document.querySelector('.nav__login'),
@@ -64,6 +66,7 @@ const singOutClick = e => {
       onLoginShow();
       onShowHome();
       topMoviesRender();
+        linkGanresClear(restLinks);
     })
     .finally (() => {
       Loading.remove();

@@ -77,6 +77,7 @@ function onHomeBtnClick(e) {
 function onMyLybraryBtnClick(e) {
   e.preventDefault();
   onShowMyLibrary();
+  linkGanresClear(restLinks);
   container.innerHTML = '';
   getRefs().pagination.classList.add('pagination-off');
   onWatchedBtnClick();

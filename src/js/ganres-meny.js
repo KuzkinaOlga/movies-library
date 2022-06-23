@@ -120,23 +120,12 @@ function onLinkSubmit(currentGanre) {
                                if (markup.length>20) {
                             return 
                             }
-
-                            // getFilm.resetPage();
-                            
-                           
                         }
-
-                      
-
                     })
                 })
-
                          })
                            
                         }
-
-                      
-
                     })
                 })
 
