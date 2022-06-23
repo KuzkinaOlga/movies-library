@@ -3,7 +3,8 @@ import ApiService from './api';
 import { renderList } from './render-list';
 import { paginationTotalItems } from './pagination';
 import { getRefs } from './get-refs';
-
+import { onShowHome } from './header';
+import { topMoviesRender } from '..';
 const getFilm = new ApiService();
 const galleryList = getRefs().gallery;
 
@@ -27,6 +28,8 @@ export default (() => {
 const ganreList = document.querySelector('.ganres__list');
 ganreList.addEventListener('click', ganreSelekt)
 function ganreSelekt(evt) {
+      onShowHome();
+      topMoviesRender();
     const currentGanre = evt.target.closest('li').firstChild.dataset.name;
     getRefs().pagination.classList.add('pagination-off');
     onLinkSubmit(currentGanre);

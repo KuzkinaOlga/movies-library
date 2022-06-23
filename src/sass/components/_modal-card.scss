@@ -55,9 +55,11 @@ background-size:cover;
 .current-movie__info {
   @media screen and (min-width: 768px) {
   margin-left: 68px;
+  width: 300px;
   }
   @media screen and (min-width: 1024px) {
   margin-left: 16px;
+   width: 400px;
   }
 }
 .info__box{
@@ -144,6 +146,7 @@ line-height: 1.33;
   text-transform: uppercase;
 }
 .current-movie__about-data {
+ 
   font-family: 'Roboto';
 font-style: normal;
 font-weight: 500;
@@ -152,42 +155,45 @@ line-height: 1.67;
 }
 .current-movie__btn-container {
   display: flex;
+  justify-content: center;
 }
-.current-movie_btn-add-to-watched {
+.current-movie_btn-add-to-watched:not(:first-child) {
   @media screen and (min-width: 1024px) {
-    margin-left: 34px;
+    margin-left: 20px;
   }
 }
-
-.btn{
+.btn:not(:first-child){
+    margin-left: 10px;
+      @media screen and (min-width: 768px) {
     margin-left: 15px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
+  }
+}
+.btn{
+  
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 1.33;
   border: 1px solid #000000;
   border-radius: 5px;
-  padding-top: 14px;
-  padding-bottom: 12px;
-  justify-content: center;
-  text-transform: uppercase;
-  margin-left: 20px;
+ width: 120px;
+ height: 40px;
+      @media screen and (min-width: 768px) {
+    font-size: 10px;    
+    width: 100px;
+ height: 35px;
+  }
   cursor: pointer;
   transition: background-color 250ms linear,color 250ms linear;
-  @media screen and (min-width: 768px) {
-    margin-left: 15px;
-  }
+
   &:hover,
   &:focus,
   &:active{
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
   background-color: #ff6b01;
   color: #fff;
   border-radius: 5px;
-
   justify-content: center;
-  text-transform: uppercase;
   }
 
   &:disabled:hover,

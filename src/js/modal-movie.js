@@ -110,7 +110,8 @@ window.addEventListener('keydown', onImageClose);
 
       return;
     }
-    
+     btnAddToWatched.disabled = true;
+      btnAddToQueue.disabled = true;
   });
 
     btnAddToWatched.addEventListener("click", (() => {
