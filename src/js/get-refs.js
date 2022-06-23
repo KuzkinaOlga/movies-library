@@ -6,7 +6,7 @@ export function getRefs() {
     searchMovie: document.querySelector('#search-form'),
     incorrectInput: document.querySelector('.incorrect__input'),
     // galleryContainer: document.querySelector('.gallery>.container'),
-
+ containerLib: document.querySelector('.libruary'),
     // Header Refs
     headerContainer: document.querySelector('.js-header-container'),
     nav: document.querySelector('.nav'),

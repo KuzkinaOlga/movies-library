@@ -100,31 +100,6 @@ function onLinkSubmit(currentGanre) {
                                if (markup.length>20) {
                             return 
                             }
-
-                            getFilm.resetPage();
-                            
-                         getFilm.getTopMovies().then(({ results, total_results })=>{
-                            //  console.log(page)
-                                  results.map((items) => {
-                    ganreArray = items.genre_ids;
-                    ganreArray.find((item) => {
-                        if (item === idGanres.id) {
-                            markup.push(items);
-                            // galleryList.innerHTML = '';
-                            // return renderList(markup, galleryList);  
-
-                            if (markup.length ===20) {
-                               galleryList.innerHTML = '';
-                            return renderList(markup, galleryList);  
-                            }
-                               if (markup.length>20) {
-                            return 
-                            }
-                        }
-                    })
-                })
-                         })
-                           
                         }
                     })
                 })

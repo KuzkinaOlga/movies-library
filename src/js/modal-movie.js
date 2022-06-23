@@ -96,7 +96,8 @@ window.addEventListener('keydown', onImageClose);
     const btnAddToQueue = document.querySelector(".current-movie_btn-add-to-queue")
     btnModalClose.addEventListener('click', addListnerCurrent);
   const currentMovieInfo = { id: id, original_title: title, release_date: date, poster_path: poster, genre_ids: genre_ids, vote_average: vote,
-        vote_count: votes };
+      vote_count: votes
+    };
     const dataWatchinMovie = JSON.parse(localStorage.getItem("watched")) || addToWachedFilms;
     const dataQueueMovie = JSON.parse(localStorage.getItem("queue")) || addToQueueFilms;
 

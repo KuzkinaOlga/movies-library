@@ -1,5 +1,8 @@
 import { onWatchedBtnClick } from "./library-pagination";
-
+import { getRefs } from './get-refs';
+const containerLib = getRefs().gallery;
+import { onContainerClick } from './modal-movie';
+import {onLibruaryCardClick} from './libruary-card'
 // Refs
 const refs = {
   headerContainer: document.querySelector('.js-header-container'),
@@ -39,6 +42,7 @@ function onShowMyLibrary() {
   nav.classList.add('nav__library-margin');
   nav.classList.remove('nav__home-margin');
   container.innerHTML = "";
+  containerLib.removeEventListener('click', onContainerClick);
 }
 
 function onShowHome() {
@@ -52,6 +56,8 @@ function onShowHome() {
   headerContainer.classList.remove('header__library-padding');
   nav.classList.add('nav__home-margin');
   nav.classList.remove('nav__library-margin');
+  containerLib.addEventListener('click', onContainerClick);
+ containerLib.removeEventListener('click', onLibruaryCardClick);
 }
 
 // function onLogoClick(e) {

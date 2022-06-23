@@ -15,7 +15,7 @@ const watchedBtn = document.querySelector('.js-watched-btn');
 const queuedBtn = getRefs().queueBtn;
 const container = getRefs().gallery;
 const myLibraryBtn = getRefs().myLibraryBtn;
-
+const contLib = getRefs().containerLib;
 watchedBtn.addEventListener('click', onWatchedBtnClick);
 queuedBtn.addEventListener('click', onQueuedBtnClick);
 
@@ -44,8 +44,8 @@ onQueueBtnClickActipn();
 export function processingStorage(value, i) {
 container.innerHTML = "";
 let cards;
-if (value === 'watched') {
-  cards = watchedFilms;
+  if (value === 'watched') {
+    cards = watchedFilms;
 } else {
   cards = queueFilms;
 }
@@ -56,11 +56,11 @@ if (!cards) return;
 
   let pageCards = cards.slice( i * 20 - 20, i * 20);
 
-    const markup = pageCards.map(({id, original_title, poster_path, release_date, genre_ids, vote_average }) => {
+    const markup = pageCards.map(({ filmid, original_title, poster_path, release_date, genre_ids, vote_average }) => {
 
     let genres = renderGenres(genre_ids);
 
-    return `<li class="films__list"data-id="${id}">
+    return `<li class="films__list"data-id="${filmid}">
     <a class="films__id" >
 <div class="film__photo__card">
 
@@ -105,8 +105,7 @@ if (!cards) return;
     `}).join('');
 container.insertAdjacentHTML("beforeend", markup);
   getRefs().pagination.classList.remove('pagination-off');
-  // const containerLib = document.querySelector('.films__list');
-  // containerLib.addEventListener('click',onLibruaryCardClick)
+  contLib.addEventListener('click', onLibruaryCardClick);
 
 }
 
