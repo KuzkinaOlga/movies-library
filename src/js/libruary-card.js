@@ -71,15 +71,50 @@ export function onLibruaryCardClick(event) {
     }
     function addListnerCurrent() {
       currentMovie.close()
-    }  
-    })
+    } 
     
+     const trailerBtn = document.querySelector('.trailer-btn');
+
+      trailerBtn.addEventListener('click', event => {
+        event.preventDefault();
+        getTrailer(id);
+      });
+
+      window.addEventListener('keydown', e => {
+        const trailerRef = document.querySelector('.basicLightbox');
+        if (e.code === 'Escape' && !trailerRef) closeModal();
+      });
+    })
+    async function getTrailer(n) {
+    try {
+      Loading.arrows({
+        svgColor: '#ff6b08',
+        backgroundColor: 'rgba(0,0,0,0.25)',
+        cssAnimation: true,
+        cssAnimationDuration: 2000,
+        clickToClose: true,
+      });
+      const response = await axios.get(`https://api.themoviedb.org/3/movie/${n}/videos?&api_key=419c8d7d79cbcac22c5520f1ac14d2c7`);
+      const trailer = await response.data.results[0].key;
+
+      const trailerShow = basicLightbox.create(
+        `<iframe width="1024" height="630" style="border: none;" src='https://www.youtube.com/embed/${trailer}?autoplay=1&mute=1&controls=1' allow="fullscreen"></iframe>`,
+      );
+      trailerShow.show();
+      window.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && trailerShow.visible()) trailerShow.close();
+      });
+      Loading.remove();
+    } catch (error) {
+      console.error(error);
+  }
+    }; 
 }
 
 
 
 
-    const btnModalClose = document.querySelector(".modal__close-button-cm");
+   
 
   async function getTrailer(n) {
     try {
