@@ -95,12 +95,15 @@ export function onFooterClick(event) {
     </div>`);
   renderFooter.show();
   const btnFooterClose = document.querySelector(['button[data-action="close"]']);
-  btnFooterClose.addEventListener('click', ()=>{ renderFooter.close()});
+  btnFooterClose.addEventListener('click',  onButtonClose);
   function onFooterClose(event) {
     if (event.code === 'Escape') {
       renderFooter.close();
       window.removeEventListener('keydown', onFooterClose);
-      btnFooterClose.removeEventListener('click', ()=>{ renderFooter.close()});
+      btnFooterClose.removeEventListener('click',  onButtonClose);
     }
+  }
+  function onButtonClose() {
+    renderFooter.close()
   }
 }

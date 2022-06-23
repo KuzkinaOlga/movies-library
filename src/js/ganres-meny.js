@@ -56,10 +56,29 @@ function onLinkSubmit(currentGanre) {
         getFilm.getGanres().then(({ genres }) => {
             genresData = genres;
             idGanres = genresData.find((item) => {
-                return item.name === currentGanre
+                if (item.name === currentGanre) {
+                    return item.name; 
+                }
+                        getFilm.resetPage();
+                        getFilm.getSearchMovies(currentGanre).then(({ results, total_results})=>{
+                            results.map((items) => {
+                    ganreArray = items.genre_ids;
+                    ganreArray.find((item) => {
+                        if (item === idGanres.id) {
+                            markup.push(items);
+                            if (markup.length ===20) {
+                               galleryList.innerHTML = '';
+                            return renderList(markup, galleryList);  
+                            }
+                               if (markup.length>20) {
+                            return 
+                            }
+                        }
+                    })
+                })})
             });
 
-            getFilm.getSearchMovies(currentGanre).then(({ results, total_results }) => {
+            getFilm.getTopMovies().then(({ results, total_results }) => {
                 if (total_results > 20) {
                   if (total_results > 19980) total_results = 19980;
                   paginationTotalItems(total_results);
@@ -70,10 +89,51 @@ function onLinkSubmit(currentGanre) {
                     ganreArray = items.genre_ids;
                     ganreArray.find((item) => {
                         if (item === idGanres.id) {
-                            markup.push(items)
-                            galleryList.innerHTML = '';
-                            return renderList(markup, galleryList);
+                            markup.push(items);
+                            if (markup.length ===20) {
+                               galleryList.innerHTML = '';
+                            return renderList(markup, galleryList);  
+                            }
+                               if (markup.length>20) {
+                            return 
+                            }
+
+                            getFilm.resetPage();
+                            
+                         getFilm.getTopMovies().then(({ results, total_results })=>{
+                            //  console.log(page)
+                                  results.map((items) => {
+                    ganreArray = items.genre_ids;
+                    ganreArray.find((item) => {
+                        if (item === idGanres.id) {
+                            markup.push(items);
+                            // galleryList.innerHTML = '';
+                            // return renderList(markup, galleryList);  
+
+                            if (markup.length ===20) {
+                               galleryList.innerHTML = '';
+                            return renderList(markup, galleryList);  
+                            }
+                               if (markup.length>20) {
+                            return 
+                            }
+
+                            // getFilm.resetPage();
+                            
+                           
                         }
+
+                      
+
+                    })
+                })
+
+                         })
+                           
+                        }
+
+                      
+
                     })
                 })
 
